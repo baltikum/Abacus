@@ -1,0 +1,14 @@
+-What do I want to learn or understand better?
+For this week I want to learn the basics of android studio and the syntax of kotlin.
+By the end of the week I want to be able to get data from an open API.
+I also want to learn more about the agile workflow.
+ 
+-How can I help someone else, or the entire team, to learn something new?
+I can teach them about my findings and what I learn from android studio.
+
+ 
+-What is my contribution towards the team’s use of Scrum?
+I was part of the planning of userstories and what should be done within the sprint
+ 
+-What is my contribution towards the team’s deliveries?
+I made a prototype app that was able to fetch data from Göteborgs airquality.
