@@ -1,0 +1,27 @@
+- What do I want to learn or understand better?
+
+I need to get a deeper understanding of how the Agile process works. We just started putting scrumboard up, setting values and
+trying to figure everything out. I did Agile in a previous project but not as strict as this, mainly we used a scrumboard and set up
+some socialcontract rules for meetings and so on. So even the whole weekly sprint concept is new to me, which we overlooked last project.
+
+
+- How can I help someone else, or the entire team, to learn something new?
+I hope to be an asset in some parts of the coding. Hopefully I can help others improve.
+
+- What is my contribution towards the team’s use of Scrum?
+Ive been putting up user stories trying to divide the project together with the others. Weve been working on 
+meeting times so everyones been gathered while weve been working on it. Thererfore everyone is contributing to it.
+
+- What is my contribution towards the team’s deliveries?
+Mainly ive been looking into the open data API Göteborgs Luftkvalite.
+Ive made some simple querys to fetch the right data from right stations at right times etc.
+Also I tried setting up an graphical app that could parse the JSON data and display it.
+
+
+
+
+
+
+
+
+
