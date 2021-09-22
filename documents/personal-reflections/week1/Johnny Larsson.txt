@@ -1,0 +1,11 @@
+What do I want to learn or understand better?
+I want to understand the basics of Kotlin better, and how to use the Scrum board.
+ 
+How can I help someone else, or the entire team, to learn something new?
+I can help with UI and how I make tabs and imported pictures.
+ 
+What is my contribution towards the team’s use of Scrum?
+I was part of creating user stories and what we should focus on for this weeks sprint.
+ 
+What is my contribution towards the team’s deliveries?
+I made an app with 3 tabs and 3 fragments. I then imported/made pictures to get a good overview on how our final app could look like. 
