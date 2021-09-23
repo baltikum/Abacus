@@ -1,0 +1,19 @@
+Team Reflection - Week 3
+Team Abacus
+20 September 2021
+
+
+
+Customer value & scope
+We chose to focus the first sprint week around getting comfortable with the tools we will be using throughout the project. Team members separately spent time playing around with Android studio and Kotlin. Also the first test to fetch data from the OpenData-API Göteborgs stads Luftkvalite was made successfully. An empty static shell of an app was built to illustrate to the product owner what a final product might look like. Separately the attempt at fetching data from the API printed its results to the screen clearly showing progress on the both in the backend and frontend.. Team members has according to our goals individually learned about Kotlin and Android studio. This not showing much value to the product manager but is essential for the final product. Even though none of the finished code from this sprint is likely to be used in the final product it clearly shows a lot of value towards the product owner. 
+ 
+Social contract and effort
+We changed the time for our meetings from 10 am to 09:15 am, as it worked better for the group. 
+During this sprint the team did not log the time spent on the course as every member individually researched and tested the IDE. However, the time spent on meetings is estimated to be approximately 4 hours.
+Design decisions and product structure
+We have decided to provide coherent documentation of all public functions we write in order for other team members to effectively use these from other parts of the program as needed. 
+The API we have chosen provides values from measuring stations located in one single city (Göteborg), but the project may expand to include functionality for other cities as well in the future. 
+As an extra step to ensure good code quality and that the user story is done, we will have at least one team member code review the work done. The work should also satisfy the criterias on the card, and been tested without failures.
+
+Application of Scrum
+We didn't have any roles for Scrum master, secretary, and product owner. Instead, we started with that on Monday the week after. We used a randomizer to assign the roles and next week the ones that didn't have a role will be one of those. We didn't have any estimates for spring backlog and under progress for the first week but we have fixed that for week two. 
