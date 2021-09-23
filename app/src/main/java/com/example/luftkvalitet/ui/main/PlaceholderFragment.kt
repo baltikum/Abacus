@@ -1,4 +1,4 @@
-package com.example.tabtest3.ui.main
+package com.example.luftkvalitet.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.tabtest3.R
-import com.example.tabtest3.databinding.FragmentMainBinding
+import com.example.luftkvalitet.databinding.FragmentMainBinding
 
 /**
  * A placeholder fragment containing a simple view.

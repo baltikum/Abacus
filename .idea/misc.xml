@@ -11,10 +11,12 @@
         <entry key="..\:/Users/kossa_mu/AndroidStudioProjects/TabTest3/app/src/main/res/layout/fragment_statistik.xml" value="0.33" />
         <entry key="..\:/Users/kossa_mu/AndroidStudioProjects/TabTest3/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4328125" />
         <entry key="..\:/Users/kossa_mu/AndroidStudioProjects/TabTest3/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4328125" />
+        <entry key="..\:/Users/lukas/AndroidStudioProjects/Abacus/app/src/main/res/layout/activity_main.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/lukas/AndroidStudioProjects/Abacus/app/src/main/res/layout/fragment_start.xml" value="0.2755208333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

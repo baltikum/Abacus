@@ -8,17 +8,18 @@
     tools:context=".ui.main.startFragment">
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="203dp"
-        android:layout_marginBottom="480dp"
+        android:layout_marginTop="100dp"
         android:text="Femman"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.176" />
 
     <Button
         android:id="@+id/button2"

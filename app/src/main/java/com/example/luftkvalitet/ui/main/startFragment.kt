@@ -1,4 +1,4 @@
-package com.example.tabtest3.ui.main
+package com.example.luftkvalitet.ui.main
 
 import android.content.Context
 import android.os.Bundle
@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import com.example.tabtest3.R
+import com.example.luftkvalitet.R
 
 
 
@@ -24,7 +23,7 @@ import com.example.tabtest3.R
             ctx = container?.context
             self = LayoutInflater.from(ctx).inflate(R.layout.fragment_start, container, false)
 
-            val button1 = self?.findViewById<Button>(R.id.button1)
+            val button1 = self?.findViewById<Button>(R.id.button)
             val button2 = self?.findViewById<Button>(R.id.button2)
             val button3 = self?.findViewById<Button>(R.id.button3)
             val button4 = self?.findViewById<Button>(R.id.button4)
@@ -47,9 +46,6 @@ import com.example.tabtest3.R
                 resultTextView5?.text = "75 %"
                 resultTextView6?.text = "0.532"
                 resultTextView7?.text = "0.9363"
-
-                Toast.makeText(ctx, "button works!", Toast.LENGTH_SHORT).show()
-
             }
             button2?.setOnClickListener {
                 resultTextView1?.text = "Haga Norra"

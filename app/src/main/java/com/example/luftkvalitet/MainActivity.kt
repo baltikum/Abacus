@@ -1,15 +1,12 @@
-package com.example.tabtest3
+package com.example.luftkvalitet
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import com.example.tabtest3.ui.main.SectionsPagerAdapter
-import com.example.tabtest3.databinding.ActivityMainBinding
+import com.example.luftkvalitet.ui.main.SectionsPagerAdapter
+import com.example.luftkvalitet.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 

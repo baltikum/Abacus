@@ -1,4 +1,4 @@
-package com.example.tabtest3
+package com.example.luftkvalitet
 
 import org.junit.Test
 
