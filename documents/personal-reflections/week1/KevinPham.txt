@@ -1,0 +1,15 @@
+What do I want to learn or understand better?
+My goal is to gain knowledge in a new programming language or a new platform (Android)
+For now, I want to know how to make a simple app that just displays a string or a button.
+
+How can I help someone else, or the entire team, to learn something new?
+Share my knowledge and perspective.
+Contribute with what I have learned during the project.
+Being active and available in the teams communication channels.
+
+What is my contribution towards the team’s use of Scrum?
+I've been helping with user-stories and taking part of the meetings.
+
+What is my contribution towards the team’s deliveries?
+Keeping up with the sprint assignments.
+I have made basic prototype apps to get familiar with the IDE and followed guides to be prepared and take part in discussions.
