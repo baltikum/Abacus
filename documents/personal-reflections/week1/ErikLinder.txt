@@ -1,0 +1,15 @@
+- What do I want to learn or understand better?
+
+This week I want to learn more about Kotlin basics. I am going to start using Android Studio to create a few simple apps, and learn about syntax for various variables and functions in Kotlin. 
+
+- How can I help someone else, or the entire team, to learn something new?
+
+At this point I can share information on a subject and how I found it. 
+
+- What is my contribution towards the team’s use of Scrum?
+
+Being part of the scheduled meetings, including the sprint when deciding what we want to have accomplished for friday. 
+
+- What is my contribution towards the team’s deliveries?
+
+Getting to know the basics in Android Studio by using the graphical layouts and creating some mockup apps that I changed Strings in. 
