@@ -37,6 +37,8 @@ import com.example.luftkvalitet.R
             val resultTextView6 = self?.findViewById<TextView>(R.id.showInfo6)
             val resultTextView7 = self?.findViewById<TextView>(R.id.showInfo7)
 
+
+
             button1?.setOnClickListener {
 
                 resultTextView1?.text = "Femman"
