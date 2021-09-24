@@ -1,0 +1,18 @@
+-what do I want to learn or understand better?
+I want to get better at understanding how to use android studio, and especially learn more kotlin.
+I didn't use much kotlin in the last sprint, since my deliverable for last sprint was a task mainly consisting of xml.
+I want to learn basic syntax and understand fragments vs actions.
+
+-how can I help someone else, or the entire team, to learn something new?
+share my ideas and knowledge, 
+actively trying to help in the group chat or other communication if someone have a problem
+
+-what is my contribution towards the team’s use of Scrum?
+-i have helped with putting up user stories in the teams trello board. i have also been in the team meetings and trying to 
+contribute.
+
+-what is my contribution towards the team’s deliveries?
+i made an action in my prototype app which changed the text to what the user had typed when the user pressed the button,
+this knowledge didn't however work with fragments.
+the xml code worked, 
+
