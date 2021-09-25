@@ -1,0 +1,13 @@
+What do I want to learn or understand better?
+Deeper understanding of Kotlin.
+I learn the best by analyzing the teams code.
+
+How can I help someone else, or the entire team, to learn something new?
+I can share what I have read on and the solutions to the problems I have stumbled upon.
+
+What is my contribution towards the team’s use of Scrum?
+I have been discussing the goals in the meetings. This week we assigned special roles to some team members and I did not receive one,
+however next week we will switch it up and I will have a larger contribution to the scrum.
+
+What is my contribution towards the team’s deliveries?
+I took part in writing the reflection for this sprint and testing out button functions in fragments.
