@@ -12,38 +12,72 @@ private const val YEARLY ="12e75096-583d-4c0b-afac-093e90d8489e/json?"  //1
 private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 
 
+
 class API {
 
+    public fun getData(api: Int,
+                       station: String,
+                       date: String,
+                       time: String,
+                       parameter: String): ArrayList<HourlyResultObj> { // Dynamisk typ av array ???
 
+        when(api) {
+            0 -> {
+                return parseJSONtoHourlyObj(
+                    findJSONObjects(
+                        requestData(
+                            buildUrl(api, station, date, time, parameter)
+                        )
+                    )
+                )
+            }
+            else -> {  /// om 1 eller 2 AnytimeResultObjects.
+                println("Something went wrong")
+                return parseJSONtoHourlyObj(
+                    findJSONObjects(
+                        requestData(
+                            buildUrl(api, station, date, time, parameter)
+                        )
+                    )
+                )
+            }
+        }
+    }
 
     /**
      *
      * Build the complete request URL towards the datasource API.
      */
 
-    private fun buildUrl(api: Int, station: String, date: String, time: String, parameter: String ): String {
+    private fun buildUrl(
+        api: Int,
+        station: String,
+        date: String,
+        time: String,
+        parameter: String
+    ): String {
         var completeUrl: String = BASE_URL
 
-        when ( api ) {
+        when (api) {
             0 -> completeUrl.plus(HOURLY)
             1 -> completeUrl.plus(YEARLY)
             2 -> completeUrl.plus(ALLTIME)
-            else ->  {
+            else -> {
                 completeUrl.plus(HOURLY)
                 println("Wrong choice, hourlyAPI selected by default")
             }
         }
-        if ( station != null || station == "" ) {
-            completeUrl.plus("station=$station")
+        if (station != "" ) {
+            completeUrl.plus("&station=$station")
         }
-        if ( date != null || date == "" ) {
-            completeUrl.plus("date=$date")
+        if (date != "" ) {
+            completeUrl.plus("&date=$date")
         }
-        if ( time != null || time == "" ) {
-            completeUrl.plus("time=$time")
+        if (time != "" ) {
+            completeUrl.plus("&time=$time")
         }
-        if ( parameter != null || parameter == "" ) {
-            completeUrl.plus("parameter=$parameter")
+        if (parameter != "" ) {
+            completeUrl.plus("&parameter=$parameter")
         }
         return completeUrl
     }
@@ -76,7 +110,7 @@ class API {
             val obj: JSONObject = JSONObject(jsonString)
             val array: JSONArray = obj.getJSONArray("results");
 
-            if ( array.length() != 0 ) {
+            if (array.length() != 0) {
                 for (n in 0 until array.length()) {
                     listOfResults.add(array.getJSONObject(n));
                 }
@@ -91,10 +125,10 @@ class API {
      *
      * Used to parse JSON into HourlyResultObjects.
      */
-    private fun parseJSONtoHourlyObj(listOfObjects: ArrayList<JSONObject> ) : ArrayList<HourlyResultObj> {
+    private fun parseJSONtoHourlyObj(listOfObjects: ArrayList<JSONObject>): ArrayList<HourlyResultObj> {
         val parsedObjects = ArrayList<HourlyResultObj>()
 
-        for ( n in listOfObjects ) {
+        for (n in listOfObjects) {
             val parsedObj: HourlyResultObj = HourlyResultObj(
                 n.getString("date"),
                 n.getString("unit"),
@@ -116,11 +150,11 @@ class API {
      *
      * Used to parse JSON into AnytimeResultObjects.
      */
-    private fun parseJSONtoAnytimeObj(listOfObjects: ArrayList<JSONObject> ) : ArrayList<AnytimeResultObj> {
+    private fun parseJSONtoAnytimeObj(listOfObjects: ArrayList<JSONObject>): ArrayList<AnytimeResultObj> {
         val parsedObjects = ArrayList<AnytimeResultObj>()
 
-        for ( n in listOfObjects ) {
-            val parsedObj: AnytimeResultObj = AnytimeResultObj (
+        for (n in listOfObjects) {
+            val parsedObj: AnytimeResultObj = AnytimeResultObj(
                 n.getString("date"),
                 n.getString("femman_airpressure"),
                 n.getString("mobil2_pm10"),
@@ -160,7 +194,5 @@ class API {
         }
         return parsedObjects
     }
-
-
 
 }
