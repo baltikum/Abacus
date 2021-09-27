@@ -68,18 +68,14 @@ class OverViewModel : ViewModel() {
                 val listResult = AirApi.hour.getData(station, date, time)
                 println(listResult)
                 //_status.value = listResult
-
                 //_status.value = "Success: ${listResult.size} data received"
-
                 println("getData Success")
-
             } catch (e: Exception) {
                 _status.value = "Failure: ${e.message}"
                 println("getData Error ${e.message}")
             }
         }
     }
-
      */
 
 
