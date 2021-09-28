@@ -1,0 +1,13 @@
+-What do I want to learn or understand better?
+I want to learn more about kotlin and android studio. I want to be able to parse JSON and be able to display the data in the app.
+This week I am the scrum master so I have to learn more about that role.
+ 
+-How can I help someone else, or the entire team, to learn something new?
+I can show them what I have done and help them if they got any questions
+
+ 
+-What is my contribution towards the team’s use of Scrum?
+I was the scrum master this week so I held the order of the meeting and let everyone one by one show what they had done. I also asked if everything was ok and if they needed help with anything. I also recommended to do pair programming if they felt stuck.
+ 
+-What is my contribution towards the team’s deliveries?
+I learned how to parse JSON to a kotlin object and display that information in the app. I also helped some team members setup version control with android studio.

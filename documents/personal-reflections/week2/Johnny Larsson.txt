@@ -1,0 +1,15 @@
+What do I want to learn or understand better?
+I want to get a deeper understading of Kotlin and how to do more advanced things.
+Next week I will hopefully work on something that is a bit harder. 
+ 
+How can I help someone else, or the entire team, to learn something new?
+I can help with the things I have learned about UI and fragments.
+
+ 
+What is my contribution towards the team’s use of Scrum?
+I stared with using an randomizer to help assign the different roles for the week.
+In the meetings I was active and reminded people that we hadnt uploaded our team and invidual reflections.
+ 
+What is my contribution towards the team’s deliveries?
+In the startFragment I made 6 buttons that load different text and values to some textViews.
+I also looked at Lukas screen and helped him when we changed the project name in Android Studio.
