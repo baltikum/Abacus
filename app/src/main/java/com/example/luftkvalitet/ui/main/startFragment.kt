@@ -22,7 +22,7 @@ val overViewModel = OverViewModel()
 
         override fun onCreateView(inflater: LayoutInflater,
                                   container: ViewGroup?,
-                                  savedInstanceState: Bundle?): View? {
+                                  savedInstanceState: Bundle?): View {
 
             _binding = FragmentStartBinding.inflate(inflater, container, false)
             val view = binding.root
@@ -31,33 +31,24 @@ val overViewModel = OverViewModel()
             val date = "2021-09-17"
             val time = "22:00*"
             binding.button.setOnClickListener {
-
-                println("Click Femman")
-                //overViewModel.getHourData("Femman", date, time)
-
                 overViewModel.updateStationData("Femman", date, time, binding)
             }
             binding.button2.setOnClickListener {
                 overViewModel.updateStationData("Haga Norra", date, time, binding)
-
             }
             binding.button3.setOnClickListener {
-
                 overViewModel.updateStationData("Lejonet", date, time, binding)
             }
 
             binding.button4.setOnClickListener {
-
                 overViewModel.updateStationData("Mobil 1", date, time, binding)
             }
 
             binding.button5.setOnClickListener {
-
                 overViewModel.updateStationData("Mobil 2", date, time, binding)
             }
 
             binding.button6.setOnClickListener {
-
                 overViewModel.updateStationData("Mobil 3", date, time, binding)
             }
 

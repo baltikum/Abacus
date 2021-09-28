@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.databinding.FragmentStartBinding
-import com.example.luftkvalitet.network.AirApi
-import com.example.luftkvalitet.network.AirApiService
-import com.example.luftkvalitet.network.AirHourApiDataResponse
+import com.example.luftkvalitet.network.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -16,68 +15,43 @@ class OverViewModel : ViewModel() {
     private val _status = MutableLiveData<String>()
     val status: LiveData<String> = _status
 
+    private val api = API()
+
     init {
         _status.value = "Some text"
     }
 
-    suspend fun getHourData(station: String?, date: String?, time: String?) : AirHourApiDataResponse? {
-        var result : AirHourApiDataResponse? = null
-        try {
-            result = AirApi.hour.getData(station, date, time)
-            //_status.value = listResult
-
-            //_status.value = "Success: ${listResult.size} data received"
-
-            println("getData Success")
-            println("results: " + result.results.size)
-
-        } catch (e: Exception) {
-            _status.value = "Failure: ${e.message}"
-            println("getData Error ${e.message}")
-        }
-        return result
-    }
-
     fun updateStationData(station: String, date: String, time: String ,binding: FragmentStartBinding) {
         viewModelScope.launch {
-            val data = getHourData(station, date, time)
+            val dataList = api.getHourlyData(station, date, time, "")
+            // clear all text
+            binding.showInfo1.text = ""
+            binding.showInfo2.text = ""
+            binding.showInfo3.text = ""
+            binding.showInfo4.text = ""
+            binding.showInfo5.text = ""
+            binding.showInfo6.text = ""
+            binding.showInfo7.text = ""
 
-            if (data != null && data.results.size > 0) {
-                val res = data.results[0]
-                binding.showInfo1.text = res.station//"Mobil 3"
-                binding.showInfo2.text = res.latitudeWgs84
-                binding.showInfo3.text = res.longitudeWgs84
-                binding.showInfo4.text = "todo"
-                binding.showInfo5.text = "todo"
-                binding.showInfo6.text = "todo"
-                binding.showInfo7.text = "todo"
+            if (dataList.size > 0) {
+
+                binding.showInfo1.text = dataList[0].station
+                binding.showInfo2.text = dataList[0].latitude_wgs84
+                binding.showInfo3.text = dataList[0].longitude_wgs84
+
+                for (data in dataList) {
+                    when (data.parameter) {
+                        "NO2" -> binding.showInfo4.text = data.raw_value
+                        "NOx" -> binding.showInfo5.text = data.raw_value
+                        "PM2" -> binding.showInfo6.text = data.raw_value
+                        "PM10" -> binding.showInfo7.text = data.raw_value
+                    }
+                }
             } else {
                 println("No results for station: " + station)
-            }
 
-
-        }
-
-    }
-
-
-    /*
-    fun getHourData(station: String?, date: String?, time: String?) {
-        viewModelScope.launch {
-            try {
-                val listResult = AirApi.hour.getData(station, date, time)
-                println(listResult)
-                //_status.value = listResult
-                //_status.value = "Success: ${listResult.size} data received"
-                println("getData Success")
-            } catch (e: Exception) {
-                _status.value = "Failure: ${e.message}"
-                println("getData Error ${e.message}")
             }
         }
     }
-     */
-
-
 
 }
