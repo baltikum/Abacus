@@ -1,5 +1,7 @@
 package com.example.luftkvalitet.network
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -15,34 +17,16 @@ private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 
 class API {
 
-    public fun getData(api: Int,
-                       station: String,
-                       date: String,
-                       time: String,
-                       parameter: String): ArrayList<HourlyResultObj> { // Dynamisk typ av array ???
 
-        when(api) {
-            0 -> {
-                return parseJSONtoHourlyObj(
-                    findJSONObjects(
-                        requestData(
-                            buildUrl(api, station, date, time, parameter)
-                        )
-                    )
-                )
-            }
-            else -> {  /// om 1 eller 2 AnytimeResultObjects.
-                println("Something went wrong")
-                return parseJSONtoHourlyObj(
-                    findJSONObjects(
-                        requestData(
-                            buildUrl(api, station, date, time, parameter)
-                        )
-                    )
-                )
-            }
-        }
+    suspend fun getHourlyData(station: String, date: String, time: String, parameter: String) : ArrayList<HourlyResultObj> {
+        val url = buildUrl(0, station, date, time, parameter)
+        // runs requestData on the Dispatchers.IO thread to not block main thread
+        val stringData = withContext(Dispatchers.IO) { requestData(url) }
+
+        val json = findJSONObjects(stringData)
+        return parseJSONtoHourlyObj(json)
     }
+
 
     /**
      *
@@ -59,25 +43,25 @@ class API {
         var completeUrl: String = BASE_URL
 
         when (api) {
-            0 -> completeUrl.plus(HOURLY)
-            1 -> completeUrl.plus(YEARLY)
-            2 -> completeUrl.plus(ALLTIME)
+            0 -> completeUrl = completeUrl.plus(HOURLY)
+            1 -> completeUrl = completeUrl.plus(YEARLY)
+            2 -> completeUrl = completeUrl.plus(ALLTIME)
             else -> {
                 completeUrl.plus(HOURLY)
                 println("Wrong choice, hourlyAPI selected by default")
             }
         }
         if (station != "" ) {
-            completeUrl.plus("&station=$station")
+            completeUrl = completeUrl.plus("&station=$station")
         }
         if (date != "" ) {
-            completeUrl.plus("&date=$date")
+            completeUrl = completeUrl.plus("&date=$date")
         }
         if (time != "" ) {
-            completeUrl.plus("&time=$time")
+            completeUrl = completeUrl.plus("&time=$time")
         }
         if (parameter != "" ) {
-            completeUrl.plus("&parameter=$parameter")
+            completeUrl = completeUrl.plus("&parameter=$parameter")
         }
         return completeUrl
     }
@@ -92,7 +76,9 @@ class API {
                 .openStream()
                 .bufferedReader()
                 .use { it.readText() }
-        } catch (e: NullPointerException) {
+        } catch (e: Exception) {
+            println("Request Data error: ")
+            e.printStackTrace()
         }
         return response.toString()
     }
@@ -104,21 +90,21 @@ class API {
      */
     private fun findJSONObjects(jsonString: String): ArrayList<JSONObject> {
 
-        val listOfResults = ArrayList<JSONObject>();
+        val listOfResults = ArrayList<JSONObject>()
 
         try {
-            val obj: JSONObject = JSONObject(jsonString)
-            val array: JSONArray = obj.getJSONArray("results");
+            val obj = JSONObject(jsonString)
+            val array: JSONArray = obj.getJSONArray("results")
 
             if (array.length() != 0) {
                 for (n in 0 until array.length()) {
-                    listOfResults.add(array.getJSONObject(n));
+                    listOfResults.add(array.getJSONObject(n))
                 }
             }
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-        return listOfResults;
+        return listOfResults
     }
 
     /**
@@ -129,7 +115,7 @@ class API {
         val parsedObjects = ArrayList<HourlyResultObj>()
 
         for (n in listOfObjects) {
-            val parsedObj: HourlyResultObj = HourlyResultObj(
+            val parsedObj = HourlyResultObj(
                 n.getString("date"),
                 n.getString("unit"),
                 n.getString("raw_value"),
@@ -154,7 +140,7 @@ class API {
         val parsedObjects = ArrayList<AnytimeResultObj>()
 
         for (n in listOfObjects) {
-            val parsedObj: AnytimeResultObj = AnytimeResultObj(
+            val parsedObj = AnytimeResultObj(
                 n.getString("date"),
                 n.getString("femman_airpressure"),
                 n.getString("mobil2_pm10"),
