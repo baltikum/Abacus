@@ -1,5 +1,6 @@
 package com.example.luftkvalitet.overview
 
+import android.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -51,6 +52,16 @@ class OverViewModel : ViewModel() {
                 binding.showInfo5.text = "todo"
                 binding.showInfo6.text = "todo"
                 binding.showInfo7.text = "todo"
+
+
+
+                if(res.latitudeWgs84.toDouble() > 57.71){
+                    binding.showInfo2.setTextColor(Color.RED);
+                } else {
+                    binding.showInfo2.setTextColor(Color.GREEN);
+                }
+
+
             } else {
                 println("No results for station: " + station)
             }

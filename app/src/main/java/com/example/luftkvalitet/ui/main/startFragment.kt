@@ -11,6 +11,14 @@ import android.widget.TextView
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.overview.OverViewModel
+import android.widget.ArrayAdapter
+
+
+
+import android.widget.Spinner
+
+
+
 
 val overViewModel = OverViewModel()
 
@@ -60,6 +68,29 @@ val overViewModel = OverViewModel()
 
                 overViewModel.updateStationData("Mobil 3", date, time, binding)
             }
+
+
+            val values = arrayOf(
+                "Femman",
+                "Haga Norra",
+                "Lejonet",
+                "Mobil 1",
+                "Mobil 2",
+                "Mobil 3"
+            )
+            val adapter =
+                ArrayAdapter(this.requireActivity(), android.R.layout.simple_spinner_item, values)
+            adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+            binding.spinner.adapter = adapter;
+
+
+
+
+
+
+
+
+
 
             return view
         }
