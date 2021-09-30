@@ -23,12 +23,10 @@ class OverViewModel : ViewModel() {
             val date = "2021-09-17"
             val time = "22:00*"
             api.updateHourData(date, time)
-            println("update hour data complete")
-
         }
     }
 
-    fun updateStationData(station: String ,binding: FragmentStartBinding) {
+    fun updateStationData(station: String, binding: FragmentStartBinding) {
 
         val dataList = api.getStationDataHourly(station)
 

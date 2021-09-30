@@ -30,8 +30,6 @@ import com.example.luftkvalitet.overview.OverViewModel
             val view = binding.root
             val t = inflater.inflate(R.layout.fragment_start, container, false)
 
-            val date = "2021-09-17"
-            val time = "22:00*"
 
             val spinner : Spinner = t.findViewById<Spinner>(R.id.spinner)
 

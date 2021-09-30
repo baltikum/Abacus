@@ -56,6 +56,41 @@ class API {
         return hourData[station]
     }
 
+    /**
+     *
+     * Calculate distance in meters between two points
+     * Translated from http://www.movable-type.co.uk/scripts/latlong.html
+     *
+     */
+    private fun distanceInMeters(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val x = Math.toRadians(lon1 - lon2) * Math.cos(Math.toRadians(lat1 - lat2) / 2)
+        val y = Math.toRadians(lat1 - lat2)
+        return 6371000.0 * Math.sqrt(x * x + y * y)
+    }
+
+    /**
+     *
+     * return the closest station
+     */
+    public fun getClosestStationName(lat: Double, lon: Double): String {
+        var closestDist = Double.MAX_VALUE
+        var closestStation = ""
+        for ((key, value) in hourData) {
+            if (value.size > 0) {
+                val stationLat = value[0].latitude_wgs84.toDoubleOrNull()
+                val stationLon = value[0].longitude_wgs84.toDoubleOrNull()
+                if (stationLat == null || stationLon == null)
+                    continue
+                val dist = distanceInMeters(lat, lon, stationLat, stationLon)
+                if (dist <= closestDist) {
+                    closestDist = dist
+                    closestStation = key
+                }
+            }
+        }
+        return closestStation
+    }
+
 
     /**
      *
