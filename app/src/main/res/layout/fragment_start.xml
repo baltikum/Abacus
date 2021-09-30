@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout3"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/relativelayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".ui.main.startFragment">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:minHeight="32dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView2"
@@ -18,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/showStation"
+        android:id="@+id/showInfo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
@@ -37,7 +49,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/show_latitude"
+        android:id="@+id/showInfo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
@@ -56,7 +68,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/show_longitude"
+        android:id="@+id/showInfo3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
@@ -75,7 +87,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/show_no_2"
+        android:id="@+id/showInfo4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
@@ -94,7 +106,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/show_nox"
+        android:id="@+id/showInfo5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
@@ -113,7 +125,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/show_pm_25"
+        android:id="@+id/showInfo6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
@@ -132,7 +144,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/show_pm_10"
+        android:id="@+id/showInfo7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="212dp"
@@ -140,14 +152,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="264dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/imageButton_findLocation"
+        android:layout_width="38dp"
+        android:layout_height="32dp"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginLeft="1dp"
+        android:layout_toRightOf="@id/spinner"
+        android:src="@android:drawable/ic_menu_mylocation"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</RelativeLayout>
