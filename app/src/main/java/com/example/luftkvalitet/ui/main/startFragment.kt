@@ -12,11 +12,12 @@ import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.overview.OverViewModel
 
-val overViewModel = OverViewModel()
 
     class startFragment : Fragment() {
 
         private var _binding: FragmentStartBinding? = null
+
+        private val overViewModel = OverViewModel()
 
         private val binding get() = _binding!!
 
@@ -51,10 +52,11 @@ val overViewModel = OverViewModel()
                     val type = parent?.getItemAtPosition(position).toString()
                     /*Toast.makeText(activity,type, Toast.LENGTH_LONG).show()
                     println(type) */// debug
-                    overViewModel.updateStationData(type, date, time, binding)
+                    overViewModel.updateStationData(type, binding)
 
                 }
              }
+
             return view
         }
 

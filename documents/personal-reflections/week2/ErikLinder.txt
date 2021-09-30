@@ -1,0 +1,15 @@
+- What do I want to learn or understand better?
+
+I need to understand buttons and how to tie actions to them better. I also need to understand Android apps with multiple tabs better - how to create them and implement different structures in each tab. It is important for creating suggestions for UI that our team will use, and to further work more effectively in the future. For that reason I will work on investigating this further this week. 
+
+- How can I help someone else, or the entire team, to learn something new?
+
+When other team members need help with how Fragments in Kotlin work, I will hopefully be able to help. 
+
+- What is my contribution towards the team’s use of Scrum?
+
+I have participated in the weekly meetings and helped form the weekly goals. I did not get appointed a special role for this week, but we will alternate roles so next week I will be either scrum master, product owner, or secretary. 
+
+- What is my contribution towards the team’s deliveries?
+
+I made a self-made app from scratch with three tabs and 6 clickable buttons, displaying a list different mockup values when you click each one (several people had the same objective this week so we have a couple different ones to select between as we move forward). 
