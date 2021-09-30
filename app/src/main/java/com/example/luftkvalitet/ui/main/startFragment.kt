@@ -28,17 +28,13 @@ import com.example.luftkvalitet.overview.OverViewModel
 
             _binding = FragmentStartBinding.inflate(inflater, container, false)
             val view = binding.root
-            val t = inflater.inflate(R.layout.fragment_start, container, false)
-
-
-            val spinner : Spinner = t.findViewById<Spinner>(R.id.spinner)
 
             binding.spinner.adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.stations_array, android.R.layout.simple_spinner_item).also{
                     adapter ->
                 // Specify the layout to use when the list of choices appears
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 // Apply the adapter to the spinner
-                spinner.adapter = adapter
+                binding.spinner.adapter = adapter
             }
             binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
