@@ -12,11 +12,12 @@ import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.overview.OverViewModel
 
-val overViewModel = OverViewModel()
 
     class startFragment : Fragment() {
 
         private var _binding: FragmentStartBinding? = null
+
+        private val overViewModel = OverViewModel()
 
         private val binding get() = _binding!!
 
@@ -28,28 +29,26 @@ val overViewModel = OverViewModel()
             val view = binding.root
 
 
-            val date = "2021-09-17"
-            val time = "22:00*"
             binding.button.setOnClickListener {
-                overViewModel.updateStationData("Femman", date, time, binding)
+                overViewModel.updateStationData("Femman", binding)
             }
             binding.button2.setOnClickListener {
-                overViewModel.updateStationData("Haga Norra", date, time, binding)
+                overViewModel.updateStationData("Haga_Norra", binding) //todo: add Haga_Södra
             }
             binding.button3.setOnClickListener {
-                overViewModel.updateStationData("Lejonet", date, time, binding)
+                overViewModel.updateStationData("Lejonet", binding)
             }
 
             binding.button4.setOnClickListener {
-                overViewModel.updateStationData("Mobil 1", date, time, binding)
+                overViewModel.updateStationData("Mobil_1", binding)
             }
 
             binding.button5.setOnClickListener {
-                overViewModel.updateStationData("Mobil 2", date, time, binding)
+                overViewModel.updateStationData("Mobil_2", binding)
             }
 
             binding.button6.setOnClickListener {
-                overViewModel.updateStationData("Mobil 3", date, time, binding)
+                overViewModel.updateStationData("Mobil_3", binding)
             }
 
             return view

@@ -17,14 +17,43 @@ private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 
 class API {
 
+    private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
 
-    suspend fun getHourlyData(station: String, date: String, time: String, parameter: String) : ArrayList<HourlyResultObj> {
+    /**
+     *
+     * Fetch data from the hourly API
+     */
+    private suspend fun fetchHourlyData(station: String, date: String, time: String, parameter: String) : ArrayList<HourlyResultObj> {
         val url = buildUrl(0, station, date, time, parameter)
         // runs requestData on the Dispatchers.IO thread to not block main thread
         val stringData = withContext(Dispatchers.IO) { requestData(url) }
 
         val json = findJSONObjects(stringData)
         return parseJSONtoHourlyObj(json)
+    }
+    /**
+     *
+     * Fetches data from hourly API and saves the result in hourData
+     */
+    suspend fun updateHourData(date: String, time: String) {
+        hourData.clear()
+        val dataList = fetchHourlyData("", date, time, "")
+        for (data in dataList) {
+
+            if (!hourData.containsKey(data.station)) {
+                hourData[data.station] = ArrayList<HourlyResultObj>()
+            }
+
+            hourData[data.station]?.add(data)
+        }
+    }
+
+    /**
+     *
+     * get station data
+     */
+    fun getStationDataHourly(station: String) : ArrayList<HourlyResultObj>? {
+        return hourData[station]
     }
 
 
