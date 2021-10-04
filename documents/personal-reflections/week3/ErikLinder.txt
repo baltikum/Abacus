@@ -1,0 +1,17 @@
+- What do I want to learn or understand better?
+
+This week I will focus on learning how to implement a map into an Android app. I also want to learn a little about differences between different ways to implement a map into an app, most notably the differences between Google Maps and Open Street Maps, so that we as a team has a better idea of which way to direct ourselves for the future of the project. 
+
+- How can I help someone else, or the entire team, to learn something new?
+
+As a team, we need to know a little more about how the different implementations of maps work so that we can easier pick one that suits us, hopefully I will have a little more knowledge on the topic. 
+
+- What is my contribution towards the team’s use of Scrum?
+
+This week I was assigned the role of Product Owner. I tried my best to act as the Product Owner when the team decided which stories to select for the week, thinking about what adds value to the project and what a product owner might feel is important. 
+
+- What is my contribution towards the team’s deliveries?
+
+I tried profusely to get Open Street Maps to work with our app, using the MapBox API, but in the end had to give it up. MapBox seems like a professional and well managed system, but there were so many steps involved with integrating it with the project, different keys to fill in and so on, that despite trying over and over something was wrong and I could not pinpoint the issue (due to there being so many steps that could be wrong). Therefore I moved on to trying with Google Maps which was much easier to integrate into a standalone app, which I also did. The app had a scrollable and zoomable map, with two pinpoints on the two measuring stations that currently function (there is an issue with the Database we are currently using). 
+
+Speaking of the issue with the database (it has stopped updating since a week back), I received an answer towards the end of the week from the managers of the API by email who thanked us for bringing the issue to attention, and that they would work to fix it. 
