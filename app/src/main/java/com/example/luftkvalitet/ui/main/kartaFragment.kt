@@ -1,6 +1,7 @@
 package com.example.luftkvalitet.ui.main
 
 import android.graphics.Color
+import android.location.Location
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,14 +22,11 @@ class kartaFragment : Fragment(){
         _binding = FragmentKartaBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        var permission: LocationActivity = LocationActivity()
+        var permission: LocationActivity = LocationActivity(this.requireActivity())
 
         binding.gpsFetch.setOnClickListener {
             binding.gpsFetch.setBackgroundColor(Color.RED)
-            permission.getLocation()
-
-            binding.showInfo1.text = permission.lati
-            binding.showInfo2.text = permission.long
+            permission.getLocation(this.requireActivity(),binding)
         }
 
         return view

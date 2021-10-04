@@ -1,56 +1,41 @@
 package com.example.luftkvalitet.ui.main
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.FragmentActivity
+import com.example.luftkvalitet.databinding.FragmentKartaBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
-class LocationActivity : AppCompatActivity(), LocationListener {
+class LocationActivity(activity: FragmentActivity) : AppCompatActivity() {
 
+    private var fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
 
-    lateinit var lati: String
-    lateinit var long: String
-
-    private var locationManager : LocationManager? = null
-
-
-    @SuppressLint("MissingPermission")
-    fun getLocation() {
-       // locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+    fun getLocation(activity: FragmentActivity, binding: FragmentKartaBinding) {
+        //Permission check
         if (ActivityCompat.checkSelfPermission(
-                this,
+                activity,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
+                activity,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
+            ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),101)  //Popup "Toast" asking for permission
         }
-        locationManager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this)
+        fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
+            // Got last known location. In some rare situations this can be null.
+            println("Success gps")
+            binding.showInfo1.text = location?.latitude.toString()
+            binding.showInfo2.text = location?.longitude.toString()
+            //Unable to return location to kartaFragment. Don't know why.
+            //Debugged with println. Results does not show up in kartaFragment, only here.
+        }
     }
 
-
-    override fun onLocationChanged(location: Location) {
-        lati = location.latitude.toString()
-        long = location.longitude.toString()
-    }
-    override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
-    override fun onProviderEnabled(provider: String) {}
-    override fun onProviderDisabled(provider: String) {}
 
 
 
