@@ -1,0 +1,20 @@
+-what do I want to learn or understand better?
+I want to learn how to connect a fragment to google maps
+
+-how can I help someone else, or the entire team, to learn something new?
+share my ideas and knowledge about xml, 
+actively trying to help in the group chat or other communication if someone have a problem
+
+-what is my contribution towards the team’s use of Scrum?
+this week I were not assigned a role by the randomizer, so I have tried to help with putting up user stories in the teams trello board. 
+i have also been in the team meetings and trying to contribute.
+
+-what is my contribution towards the team’s deliveries?
+I made a spinner to the start fragment of the app, which when pressed on displayed all stations. 
+when the user clicks on a station, the app fetches the data and displays them to connected textfields.
+I also made a prototype button next to the spinner field, with a search icon that is not integrated with google maps yet. 
+Since we were three who worked on this assignment, 
+I also did research on the limit-values for the data and discussed the findings with Johnny who found a better source for limits.
+We used his source and found that we both agreed which limits we would use. These limits were for adding colour to the fetched data, depending if they had low or high values.
+
+ 

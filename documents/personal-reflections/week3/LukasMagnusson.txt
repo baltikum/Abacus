@@ -1,0 +1,12 @@
+-What do I want to learn or understand better?
+I want to continue work on the api. I also want to learn how to integrate gps and be able to compare latitude and longitude to get the shortest distance to the user.
+ 
+-How can I help someone else, or the entire team, to learn something new?
+I can help with integrating the api to the app. I also help if someone needs help or is stuck.
+
+ 
+-What is my contribution towards the team’s use of Scrum?
+I helped with how to resolve git merge conflict. I also helped when someone needed help with the code.
+ 
+-What is my contribution towards the team’s deliveries?
+I made the api more responsive and added functions to compare latitude and longitude to get the shortest distance.
