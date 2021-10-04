@@ -22,7 +22,7 @@ class LocationActivity : AppCompatActivity(), LocationListener {
 
     @SuppressLint("MissingPermission")
     fun getLocation() {
-       // locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager?
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
