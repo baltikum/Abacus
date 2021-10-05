@@ -18,7 +18,6 @@ private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 class API {
 
     private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
-    private val rangeData = HashMap<String, ArrayList<HourlyResultObj>>()
 
     /**
      *
@@ -49,7 +48,6 @@ class API {
         return parseJSONtoAnytimeObj(json)
     }
 
-    suspend fun
 
 
     /**
@@ -95,7 +93,7 @@ class API {
      *
      * return the closest station
      */
-    public fun getClosestStationName(lat: Double, lon: Double): String {
+    fun getClosestStationName(lat: Double, lon: Double): String {
         var closestDist = Double.MAX_VALUE
         var closestStation = ""
         for ((key, value) in hourData) {
