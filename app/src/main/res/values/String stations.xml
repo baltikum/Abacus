@@ -3,6 +3,7 @@
     <string name="spinner_name"></string>
     <string name="selected_station"></string>
    <string-array name="stations_array">
+       <item>Inget val</item>
         <item>Femman</item>
         <item>Haga_Norra</item>
         <item>Lejonet</item>
