@@ -18,6 +18,7 @@ private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 class API {
 
     private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
+    private val rangeData = HashMap<String, ArrayList<HourlyResultObj>>()
 
     /**
      *
@@ -31,6 +32,26 @@ class API {
         val json = findJSONObjects(stringData)
         return parseJSONtoHourlyObj(json)
     }
+
+
+    /**
+     *
+     * Fetch range of data from API
+     */
+    suspend fun fetchRangeData(year:String,
+                               month:String,
+                               time: String): ArrayList<AnytimeResultObj> {
+
+        val date = year.plus("-").plus(month).plus("-*")
+        val url = buildUrl(2, "", date, time,"")
+        val stringData = withContext(Dispatchers.IO) { requestData(url) }
+        val json = findJSONObjects(stringData)
+        return parseJSONtoAnytimeObj(json)
+    }
+
+    suspend fun
+
+
     /**
      *
      * Fetches data from hourly API and saves the result in hourData
@@ -47,6 +68,8 @@ class API {
             hourData[data.station]?.add(data)
         }
     }
+
+
 
     /**
      *

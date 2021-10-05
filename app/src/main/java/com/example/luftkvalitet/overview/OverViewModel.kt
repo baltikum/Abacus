@@ -8,6 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.network.*
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class OverViewModel : ViewModel() {
@@ -114,5 +117,55 @@ class OverViewModel : ViewModel() {
         }
 
     }
+
+
+    /**
+     * Fetch a months data.
+     *
+     * Returns an arraylist of pairs where key is date and value is sensors value for
+     * that specific time.
+     */
+    fun fetchGraphData(year: String,
+                       month:String,
+                       time: String,
+                       sensor: String,
+                       station: String): ArrayList<Pair<String,String>> {
+
+        var list: ArrayList<AnytimeResultObj> = ArrayList<AnytimeResultObj>()
+        viewModelScope.launch {
+
+            val currentDate = SimpleDateFormat("yyyy").format(Date())
+
+            if ((year.toInt() > 1984) && (currentDate.toInt() >= year.toInt())) {
+                if ((month.toInt() > 0) && (month.toInt() <= 12)) {
+                    list = api.fetchRangeData(year, month, time)
+                }
+            }
+        }
+
+        var res = ArrayList<Pair<String,String>>()
+        if ( list.size != 0 ) {
+            res = filterToPair(list, sensor,station)
+        }
+        return res
+    }
+
+    /**
+     * Helper function to filter per sensor and station.
+     */
+    private fun filterToPair(list: ArrayList<AnytimeResultObj>,
+                             sensor: String,
+                             station: String): ArrayList<Pair<String,String>> {
+        var filtered = ArrayList<Pair<String,String>>()
+
+        for ( entry in list ) {
+            var value = entry.getValue(sensor,station)
+            if ( value != null) {
+                filtered.add(value)
+            }
+        }
+        return filtered
+    }
+
 
 }
