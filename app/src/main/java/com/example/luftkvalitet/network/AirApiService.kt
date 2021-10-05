@@ -46,7 +46,7 @@ object AirApi {
 }
 
 data class AirHourApiData(
-   // val id: String,
+    // val id: String,
     @Json(name = "date") val date: String,
     @Json(name = "unit") val unit: String,
     @Json(name = "raw_value") val rawValue: String,

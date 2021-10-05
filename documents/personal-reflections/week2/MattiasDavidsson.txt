@@ -1,0 +1,30 @@
+- What do I want to learn or understand better?
+
+I feel Ive got alot of knowledge about how to use and handle the API. But less so about the graphical parts of creating the app since I focused on the backend sofar this sprint. Next week I hope to able to either make a graphical part or maybe integrate something with backend.
+I feel we got the scrumboard parts figured pretty well this week when having our supervisormeeting so thats good.
+I also need to orientate myself better in Android studio, theres just an abundance of things to use / see in there and it gets confusing at times.
+
+- How can I help someone else, or the entire team, to learn something new?
+
+I now hold alot of knowledge about the API, querying JSON parsing and those parts. So whenever a teamember needs help with that
+I can definetly help out and make others learn these parts to.
+
+- What is my contribution towards the team’s use of Scrum?
+I tried slicing this weeks sprint as good as I could. Breaking it into smaller pieces that could easily be divided between teammembers without any
+having to wait for eachother. I was this weeks secretary and think I did a good job documenting our meetings, we had a good lookback at my notes when writing our weekly reflection.
+
+
+- What is my contribution towards the team’s deliveries?
+Ive worked out a new way to query and fetch data form the API that is supposed to be implemented later on.
+Right now the App uses Lukas version with external librarys since we had to skip my original solution that used java packages
+that wasnt supported in Android studio. The new version im making will be easier for all of the team to understand, 
+making all further processes using it easier for the team.
+
+
+
+
+
+
+
+
+

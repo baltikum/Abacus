@@ -1,0 +1,23 @@
+- What do I want to learn or understand better?
+
+The Userstory dividing was pretty hard this week and we had alot to do so slicing stories is something I need to get better at.
+
+Also the KPIs were supposed to use are a bit confusing so I need some improvement.
+
+- How can I help someone else, or the entire team, to learn something new?
+
+Yes,  I will next week go onto further developing the API parts and will be 
+able to help alot when people need to fetch certain data form it.
+
+- What is my contribution towards the team’s use of Scrum?
+Ive been pushing alot of smaller slicings.  Also reading up on different KPIS we can use to our advantage .
+
+
+- What is my contribution towards the team’s deliveries?
+This week focused on GPS positioning for me. I spent much time fetching the current GPS location form the Android location using 
+a LocationListener. This turned out to be a greater assignment than anticipated since theres alot of permissions and different ways to performing this available. Ultimatly since Erik tried the Google Maps the team decided that this solution probably isnt the way to go and well reroute from OSM to Google Maps and Location services for next weeks sprint.
+
+
+
+
+

@@ -1,0 +1,16 @@
+What do I want to learn or understand better?
+I want to learn how to integrate the app with Google Play Services.
+
+How can I help someone else, or the entire team, to learn something new?
+If we are multiple team members on the same assignment I can provide with feedback or workarounds to problems that might occurr, depending on how far I have gotten in developing.
+
+What is my contribution towards the team’s use of Scrum?
+This sprint I was assigned the role Scrum-master and was in charge of keeping the team in check.
+I made use of the social contract agreements that we had made, such as scheduled meetings and how long they would last, since we had a tendency to "talk a lot".
+I think the team has now managed to go on a more structured path.
+
+What is my contribution towards the team’s deliveries?
+For this sprint I developed a dropdown list for the start fragment UI instead of having multiple buttons.
+Since many teammembers were working on this assignment a lot of code was similiar and we agreed to go with the simplest.
+I also managed to make use of gps, however only in an empty project since it caused havoc in our app.
+

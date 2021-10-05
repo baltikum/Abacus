@@ -8,6 +8,7 @@ import com.example.luftkvalitet.ui.main.SectionsPagerAdapter
 import com.example.luftkvalitet.databinding.ActivityMainBinding
 
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -23,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
-
 
 
     }
