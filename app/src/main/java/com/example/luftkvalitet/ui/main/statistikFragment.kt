@@ -1,60 +1,92 @@
 package com.example.luftkvalitet.ui.main
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.luftkvalitet.R
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.components.XAxis
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [statistikFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+
 class statistikFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentStatistikBinding? = null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistik, container, false)
+        _binding = FragmentStatistikBinding.inflate(inflater, container, false)
+        val view = binding.root
+        val t = inflater.inflate(R.layout.fragment_statistik, container, false)
+
+
+
+
+        val entries: ArrayList<BarEntry> = ArrayList()
+        entries.add(BarEntry(1f, 4f))
+        entries.add(BarEntry(2f, 10f))
+        entries.add(BarEntry(3f, 2f))
+        entries.add(BarEntry(4f, 15f))
+        entries.add(BarEntry(5f, 13f))
+        entries.add(BarEntry(6f, 2f))
+
+        val barDataSet = BarDataSet(entries, "")
+        barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)
+
+        val data = BarData(barDataSet)
+
+        val chart = binding.barChart
+
+
+        chart.data = data
+
+        //hide grid lines
+        chart.axisLeft.setDrawGridLines(false)
+        chart.xAxis.setDrawGridLines(false)
+        chart.xAxis.setDrawAxisLine(false)
+
+        //remove right y-axis
+        chart.axisRight.isEnabled = false
+
+        //remove legend
+        chart.legend.isEnabled = false
+
+
+        //remove description label
+        chart.description.isEnabled = false
+
+
+        //add animation
+        chart.animateY(1000)
+
+
+        //draw chart
+        chart.invalidate()
+
+        val xAxis: XAxis = chart.getXAxis()
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+
+
+
+
+        return view
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment statistikFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            statistikFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
+
+
+
+
 }

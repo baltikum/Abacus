@@ -9,13 +9,10 @@
 
     <Spinner
         android:id="@+id/spinner"
-<<<<<<< HEAD
-        android:layout_width="355dp"
-        android:layout_height="43dp"
-=======
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
->>>>>>> 3675b82a374142194b7a5c5b6b1b2df3344fdd75
+
         android:minHeight="32dp"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
@@ -156,5 +153,5 @@
         android:layout_marginTop="595dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    
+
 </RelativeLayout>
