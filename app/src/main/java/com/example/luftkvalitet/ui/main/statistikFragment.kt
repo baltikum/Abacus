@@ -1,18 +1,24 @@
 package com.example.luftkvalitet.ui.main
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import com.example.luftkvalitet.R
+import com.example.luftkvalitet.databinding.FragmentStartBinding
+import com.example.luftkvalitet.databinding.FragmentStatistikBinding
+import com.example.luftkvalitet.overview.OverViewModel
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.components.XAxis
-
-import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 
 
 
@@ -82,9 +88,8 @@ class statistikFragment : Fragment() {
 
         return view
 
+
     }
-
-
 
 
 
