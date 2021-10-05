@@ -1,0 +1,15 @@
+What do I want to learn or understand better?
+I want to understand more about KPI and how we should use that. 
+ 
+How can I help someone else, or the entire team, to learn something new?
+I can help with showing how different UI and fragment related things work. On Friday I shoved how you build and APK that you can install on your phone to test the app there.
+ 
+What is my contribution towards the team’s use of Scrum?
+I stared with using an randomizer to help assign the different roles for the week.
+This week I was the secretary and took notes and uploaded them to the a google docs document. 
+I have also been the person that uploads the team reflections and I think I will continue with having that role. 
+
+
+What is my contribution towards the team’s deliveries?
+I made a spinner instead of the buttons for choosing station. As we where multiple people working on the same thing we went with Victorias solution that had a bit shorter code.
+I also researched high and low levels of the different things we measure like and added color coding for those stats.
