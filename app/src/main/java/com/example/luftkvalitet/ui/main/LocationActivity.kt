@@ -12,9 +12,16 @@ import com.google.android.gms.location.LocationServices
 
 class LocationActivity(activity: FragmentActivity) : AppCompatActivity() {
 
+    private var position: Location? = null
     private var fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
+    private var activity: FragmentActivity = activity
 
-    fun getLocation(activity: FragmentActivity, binding: FragmentKartaBinding) {
+    //Get the location on class construction. Otherwise position will return null and require 2x getLocation() calls.
+    init {
+        getLocation()
+    }
+
+    fun getLocation(): Location? {
         //Permission check
         if (ActivityCompat.checkSelfPermission(
                 activity,
@@ -28,16 +35,9 @@ class LocationActivity(activity: FragmentActivity) : AppCompatActivity() {
         }
         fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
             // Got last known location. In some rare situations this can be null.
-            println("Success gps")
-            binding.showInfo1.text = location?.latitude.toString()
-            binding.showInfo2.text = location?.longitude.toString()
-            //Unable to return location to kartaFragment. Don't know why.
-            //Debugged with println. Results does not show up in kartaFragment, only here.
+            position = location
         }
+        return position
     }
-
-
-
-
 }
 

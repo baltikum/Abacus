@@ -167,5 +167,8 @@ class OverViewModel : ViewModel() {
         return filtered
     }
 
-
+    fun returnApi(): API
+    {
+        return api
+    }
 }

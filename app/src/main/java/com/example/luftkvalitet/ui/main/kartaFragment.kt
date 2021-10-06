@@ -29,11 +29,12 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
         _binding = FragmentKartaBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        var permission: LocationActivity = LocationActivity(this.requireActivity())
+        var gps = LocationActivity(this.requireActivity())
 
         binding.gpsFetch.setOnClickListener {
             binding.gpsFetch.setBackgroundColor(Color.RED)
-            permission.getLocation(this.requireActivity(),binding)
+            binding.showInfo1.text = gps.getLocation()?.latitude.toString()
+            binding.showInfo2.text = gps.getLocation()?.longitude.toString()
         }
 
         println("activity")
