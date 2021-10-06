@@ -9,6 +9,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.net.URL
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.math.cos
 import kotlin.math.sqrt
@@ -48,7 +49,7 @@ private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 class API {
 
     private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
-    private val graphData = HashMap<String,ArrayList<Pair<String,String>>>()
+    private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
 
     /**
      *
@@ -66,18 +67,39 @@ class API {
     /**
      * Fetch Daily data, all sensors.
      */
+    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun fetchDailyData(date: String): ArrayList<AnytimeResultObj>  {
-        val url = buildUrl(2, "", date,"","")
+        var api = 2
+        if ( stringToDateConverter(date).year == stringToDateConverter(todaysDate()).year ) {
+            api = 1
+        }
+        val url = buildUrl(api, "", date,"","")
         val stringData = withContext(Dispatchers.IO) { requestData(url) }
         val json = findJSONObjects(stringData)
         return parseJSONtoAnytimeObj(json)
+    }
+
+
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun rewindOneWeek(date: String): String  {
+       var inDate = stringToDateConverter(date)
+        return inDate.minusDays(6).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+    }
+    /**
+     * Helper function to get current date.
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun todaysDate(): String {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
     }
 
     /**
      * Helper to convert string to LocalDate
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    private suspend fun stringToDateConverter(date:String): LocalDate {
+    fun stringToDateConverter(date:String): LocalDate {
         return LocalDate.parse(date)
     }
 
@@ -94,21 +116,20 @@ class API {
 
         var start = stringToDateConverter(dateStart)
         var end = stringToDateConverter(dateEnd)
-        var dayToFetch = start
 
+        var dayToFetch = start
         var count = 0
+        dayToFetch = dayToFetch.minusDays(1)
 
         do {
-            val format: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val dateToFetch: String = dayToFetch.format(format)
+            dayToFetch = dayToFetch.plusDays(1)
+            val dateToFetch: String = dayToFetch.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
             val dataList = fetchDailyData(dateToFetch)
             count++;
             if (dataList.size > 0) {
                 fetchedData[dataList[0].date] = dataList
             }
-            dayToFetch = dayToFetch.plusDays(1)
-
-            if ( count > 3 ) { // Max dagar
+            if ( count > 7 ) { // Max dagar
                 break;
             }
         } while (dayToFetch != end)
@@ -116,6 +137,7 @@ class API {
         for ((key, value) in fetchedData) {
             graphData[key] = filterToTimeValue(value,sensor,station)
         }
+
     }
 
     /**
@@ -150,8 +172,6 @@ class API {
             hourData[data.station]?.add(data)
         }
     }
-
-
 
     /**
      *
@@ -203,7 +223,6 @@ class API {
         }
         return closestStation
     }
-
 
     /**
      *
@@ -259,7 +278,6 @@ class API {
         }
         return response.toString()
     }
-
 
     /**
      *

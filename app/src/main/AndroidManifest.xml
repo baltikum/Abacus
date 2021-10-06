@@ -3,6 +3,9 @@
     package="com.example.luftkvalitet">
 
     <!-- Enable internet for api usage -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- To request foreground location access, declare one of these permissions. -->

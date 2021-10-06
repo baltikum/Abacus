@@ -32,6 +32,7 @@ class LocationActivity(activity: FragmentActivity) : AppCompatActivity() {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),101)  //Popup "Toast" asking for permission
+
         }
         fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
             // Got last known location. In some rare situations this can be null.
