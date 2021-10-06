@@ -1,5 +1,6 @@
 package com.example.luftkvalitet.ui.main
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
@@ -31,10 +33,12 @@ class statistikFragment : Fragment() {
 
     private var _binding: FragmentStatistikBinding? = null
 
+    private val overViewModel = OverViewModel()
 
 
     private val binding get() = _binding!!
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
@@ -60,6 +64,23 @@ class statistikFragment : Fragment() {
                 adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.sensorSpinn.adapter = adapter
         }
+
+
+        /**
+         * Använd ett liknande call för att hämta grafdata
+         */
+        var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
+        graphData = overViewModel.updateGraphData("2020-02-08","2020-02-09","","NOx","Femman")
+
+        var arr = graphData["2020-02-08"] // Array av Pairs på det datumet
+
+        if (arr != null) {
+            for ( entry in arr ) {
+                val (time, value) = entry
+                    println("Time: $time , SensorValue: $value")
+            }
+        }
+
 
 
 

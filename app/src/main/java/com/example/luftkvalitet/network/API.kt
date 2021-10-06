@@ -74,21 +74,6 @@ class API {
     }
 
     /**
-     *
-     * Fetch range of data from API
-     */
-    suspend fun fetchMonthData(year:String,
-                               month:String,
-                               time: String): ArrayList<AnytimeResultObj> {
-
-        val date = year.plus("-").plus(month).plus("-*")
-        val url = buildUrl(2, "", date, time,"")
-        val stringData = withContext(Dispatchers.IO) { requestData(url) }
-        val json = findJSONObjects(stringData)
-        return parseJSONtoAnytimeObj(json)
-    }
-
-    /**
      * Helper to convert string to LocalDate
      */
     @RequiresApi(Build.VERSION_CODES.O)
