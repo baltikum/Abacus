@@ -90,21 +90,27 @@ class API {
                                 sensor: String,
                                 station: String) {
         graphData.clear()
-        val fetchedData = HashMap<String, ArrayList<AnytimeResultObj>>()
+        var fetchedData = HashMap<String, ArrayList<AnytimeResultObj>>()
 
         var start = stringToDateConverter(dateStart)
         var end = stringToDateConverter(dateEnd)
         var dayToFetch = start
 
+        var count = 0
+
         do {
-            val format: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-mm-dd")
+            val format: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val dateToFetch: String = dayToFetch.format(format)
             val dataList = fetchDailyData(dateToFetch)
-
+            count++;
             if (dataList.size > 0) {
                 fetchedData[dataList[0].date] = dataList
             }
             dayToFetch.plusDays(1)
+
+            if ( count > 3 ) { // Max dagar
+                break;
+            }
         } while (dayToFetch != end)
 
         for ((key, value) in fetchedData) {

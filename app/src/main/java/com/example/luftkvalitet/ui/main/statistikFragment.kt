@@ -69,18 +69,18 @@ class statistikFragment : Fragment() {
         /**
          * Använd ett liknande call för att hämta grafdata
          */
-       // var graphDat = overViewModel.updateGraphData("2020-02-08","2020-02-09","NOx","Femman")
+       var graphDat = overViewModel.updateGraphData("2020-02-08","2020-02-09","NOx","Femman")
 
-        //var arr = graphDat["2020-02-08"] // Array av Pairs på det datumet
+        var arr = graphDat["2020-02-08"] // Array av Pairs på det datumet
 
-       // if (arr != null) {
-           // for ( entry in arr ) {
-             //   var (time, value) = entry
-             //   println("Time: $time , SensorValue: $value")
-            //    binding.showText1.text = time
-            //    binding.showText2.text = value
-           // }
-        //}
+        if (arr != null) {
+            for ( entry in arr ) {
+                var (time, value) = entry
+                println("Time: $time , SensorValue: $value")
+                binding.showText1.text = time
+                binding.showText2.text = value
+            }
+        }
 
 
 
