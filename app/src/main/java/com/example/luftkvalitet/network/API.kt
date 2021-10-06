@@ -14,7 +14,28 @@ import kotlin.math.cos
 import kotlin.math.sqrt
 
 
+val stations_lista = arrayOf(
+    "Femman",
+    "Haga_Norra",
+    "Haga_Sodra",
+    "Lejonet",
+    "Mobil_1",
+    "Mobil_2",
+    "Mobil_3" )
 
+val parameter_lista = arrayOf(
+    "Temperature",
+    "Relative_Humidity",
+    "Global_Radiation",
+    "Air_Pressure",
+    "Wind_Speed",
+    "Wind_Direction",
+    "Rain",
+    "NO2",
+    "NOx",
+    "O3",
+    "PM10",
+    "PM2.5" )
 
 
 private const val BASE_URL = "https://catalog.goteborg.se/rowstore/dataset/"
