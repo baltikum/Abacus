@@ -63,104 +63,104 @@ class AnytimeResultObj (
         when (sensor) {
             "NOx" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_nox) }
-                    "Haga_Norra" -> { ret = Pair(date, haganorra_nox) }
-                    "Mobil_1" -> { ret = Pair(date, mobil1_nox) }
-                    "Mobil_2" -> { ret = Pair(date, mobil2_nox) }
-                    "Mobil_3" -> { ret = Pair(date, mobil3_nox) }
+                    "Femman" -> { ret = Pair(time, femman_nox) }
+                    "Haga_Norra" -> { ret = Pair(time, haganorra_nox) }
+                    "Mobil_1" -> { ret = Pair(time, mobil1_nox) }
+                    "Mobil_2" -> { ret = Pair(time, mobil2_nox) }
+                    "Mobil_3" -> { ret = Pair(time, mobil3_nox) }
                     else -> { return null!! }
                 }
             }
 
             "NO2" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_no2) }
-                    "Haga_Norra" -> { ret = Pair(date, haganorra_no2) }
-                    "Mobil_1" -> { ret = Pair(date, mobil1_no2) }
-                    "Mobil_2" -> { ret = Pair(date, mobil2_no2) }
-                    "Mobil_3" -> { ret = Pair(date, mobil3_no2) }
+                    "Femman" -> { ret = Pair(time, femman_no2) }
+                    "Haga_Norra" -> { ret = Pair(time, haganorra_no2) }
+                    "Mobil_1" -> { ret = Pair(time, mobil1_no2) }
+                    "Mobil_2" -> { ret = Pair(time, mobil2_no2) }
+                    "Mobil_3" -> { ret = Pair(time, mobil3_no2) }
                     else -> { return null!! }
                 }
             }
 
             "O3" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_o3) }
+                    "Femman" -> { ret = Pair(time, femman_o3) }
                     else -> { return null!! }
                 }
             }
 
             "PM10" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_pm10) }
-                    "Haga_Sodra" -> { ret = Pair(date, hagasodra_pm10) }
-                    "Mobil_1" -> { ret = Pair(date, mobil1_pm10) }
-                    "Mobil_2" -> { ret = Pair(date, mobil2_pm10) }
-                    "Mobil_3" -> { ret = Pair(date, mobil3_pm10) }
+                    "Femman" -> { ret = Pair(time, femman_pm10) }
+                    "Haga_Sodra" -> { ret = Pair(time, hagasodra_pm10) }
+                    "Mobil_1" -> { ret = Pair(time, mobil1_pm10) }
+                    "Mobil_2" -> { ret = Pair(time, mobil2_pm10) }
+                    "Mobil_3" -> { ret = Pair(time, mobil3_pm10) }
                     else -> { return null!! }
                 }
             }
 
             "PM2.5" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_pm25) }
-                    "Haga_Sodra" -> { ret = Pair(date, hagasodra_pm25) }
+                    "Femman" -> { ret = Pair(time, femman_pm25) }
+                    "Haga_Sodra" -> { ret = Pair(time, hagasodra_pm25) }
                     else -> { return null!! }
                 }
             }
 
             "Wind_Speed" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_windspeed) }
-                    "Lejonet" -> { ret = Pair(date, lejonet_windspeed) }
+                    "Femman" -> { ret = Pair(time, femman_windspeed) }
+                    "Lejonet" -> { ret = Pair(time, lejonet_windspeed) }
                     else -> { return null!! }
                 }
             }
 
             "Wind_Direction" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_winddir) }
-                    "Lejonet" -> { ret = Pair(date, lejonet_winddir) }
+                    "Femman" -> { ret = Pair(time, femman_winddir) }
+                    "Lejonet" -> { ret = Pair(time, lejonet_winddir) }
                     else -> { return null!! }
                 }
             }
 
             "Rain" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_rain) }
-                    "Lejonet" -> { ret = Pair(date, lejonet_rain) }
+                    "Femman" -> { ret = Pair(time, femman_rain) }
+                    "Lejonet" -> { ret = Pair(time, lejonet_rain) }
                     else -> { return null!! }
                 }
             }
 
             "Temperature" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_temp) }
-                    "Lejonet" -> { ret = Pair(date, lejonet_temp) }
+                    "Femman" -> { ret = Pair(time, femman_temp) }
+                    "Lejonet" -> { ret = Pair(time, lejonet_temp) }
                     else -> { return null!! }
                 }
             }
 
             "Relative_Humidity" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_rh) }
-                    "Lejonet" -> { ret = Pair(date, lejonet_rh) }
+                    "Femman" -> { ret = Pair(time, femman_rh) }
+                    "Lejonet" -> { ret = Pair(time, lejonet_rh) }
                     else -> { return null!! }
                 }
             }
 
             "Global_Radiation" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_globrad) }
-                    "Lejonet" -> { ret = Pair(date, lejonet_globrad) }
+                    "Femman" -> { ret = Pair(time, femman_globrad) }
+                    "Lejonet" -> { ret = Pair(time, lejonet_globrad) }
                     else -> { return null!! }
                 }
             }
 
             "Air_Pressure" -> {
                 when (station) {
-                    "Femman" -> { ret = Pair(date, femman_airpressure) }
-                    "Lejonet" -> { ret = Pair(date, lejonet_airpressure) }
+                    "Femman" -> { ret = Pair(time, femman_airpressure) }
+                    "Lejonet" -> { ret = Pair(time, lejonet_airpressure) }
                     else -> { return null!! }
                 }
             }
