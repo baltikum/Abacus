@@ -1,13 +1,26 @@
 package com.example.luftkvalitet.ui.main
 
+
 import android.graphics.Color
+
+import android.os.Build
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import com.example.luftkvalitet.R
+import com.example.luftkvalitet.databinding.FragmentStartBinding
+
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
+import com.example.luftkvalitet.overview.OverViewModel
 
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -18,22 +31,55 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 import kotlin.collections.ArrayList
 
-
-
-
-
-
 class statistikFragment : Fragment() {
 
     private var _binding: FragmentStatistikBinding? = null
     private val binding get() = _binding!!
-
+    private val overViewModel = OverViewModel()
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentStatistikBinding.inflate(inflater, container, false)
         val view = binding.root
+
+
+        val t = inflater.inflate(R.layout.fragment_statistik, container, false)
+
+
+        binding.stationSpinn.adapter = ArrayAdapter.createFromResource(
+            requireActivity(),
+            R.array.stations_array,
+            android.R.layout.simple_spinner_item).also {
+                adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.stationSpinn.adapter = adapter
+        }
+
+        binding.sensorSpinn.adapter = ArrayAdapter.createFromResource(
+            requireActivity(),
+            R.array.stations_array,
+            android.R.layout.simple_spinner_item).also{
+                adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.sensorSpinn.adapter = adapter
+        }
+
+
+        /**
+         * Använd ett liknande call för att hämta grafdata
+         */
+       var graphDat = overViewModel.updateGraphData("2020-02-08","2020-02-09","NOx","Femman")
+
+        var arr = graphDat["2020-02-08"] // Array av Pairs på det datumet
+
+        if (arr != null) {
+            for ( entry in arr ) {
+                var (time, value) = entry
+                println("Time: $time , SensorValue: $value")
+                binding.showText1.text = time
+                binding.showText2.text = value
+            }
+        }
 
         val entries: ArrayList<BarEntry> = ArrayList()
         entries.add(BarEntry(0f, 12f))

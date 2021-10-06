@@ -26,26 +26,22 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        _binding = FragmentKartaBinding.inflate(inflater, container, false)
+         _binding = FragmentKartaBinding.inflate(inflater, container, false)
          val view = binding.root
-        var permission: LocationActivity = LocationActivity(this.requireActivity())
+
+         var gps = LocationActivity(this.requireActivity())
+
 
         binding.gpsFetch.setOnClickListener {
             binding.gpsFetch.setBackgroundColor(Color.RED)
-            permission.getLocation(this.requireActivity(),binding)
+            binding.showInfo1.text = gps.getLocation()?.latitude.toString()
+            binding.showInfo2.text = gps.getLocation()?.longitude.toString()
         }
         println("activity")
         println(requireActivity())
         val mapFragment = requireActivity().supportFragmentManager
             .findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
-
-
-
-
-
-
 
         return view
     }

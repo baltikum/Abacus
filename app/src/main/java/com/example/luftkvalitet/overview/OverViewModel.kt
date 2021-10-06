@@ -1,13 +1,19 @@
 package com.example.luftkvalitet.overview
 
 import android.graphics.Color
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.network.*
+import com.github.mikephil.charting.data.BarEntry
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class OverViewModel : ViewModel() {
@@ -115,4 +121,27 @@ class OverViewModel : ViewModel() {
 
     }
 
+
+    /**
+     * update GraphData
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun updateGraphData(startDate: String,
+                        endDate:String,
+                        sensor: String,
+                        station: String): HashMap<String,ArrayList<Pair<String,String>>> {
+
+        viewModelScope.launch {
+            val currentDate = SimpleDateFormat("yyyy").format(Date())
+            api.fetchGraphData(startDate,endDate,sensor,station)
+        }
+        return api.getGraphData()
+    }
+
+
+
+    fun returnApi(): API
+    {
+        return api
+    }
 }
