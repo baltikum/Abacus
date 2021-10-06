@@ -128,7 +128,6 @@ class OverViewModel : ViewModel() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun updateGraphData(startDate: String,
                         endDate:String,
-                        time: String,
                         sensor: String,
                         station: String): HashMap<String,ArrayList<Pair<String,String>>> {
 
