@@ -1,11 +1,41 @@
 package com.example.luftkvalitet.network
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.net.URL
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import kotlin.math.cos
+import kotlin.math.sqrt
+
+
+val stations_lista = arrayOf(
+    "Femman",
+    "Haga_Norra",
+    "Haga_Sodra",
+    "Lejonet",
+    "Mobil_1",
+    "Mobil_2",
+    "Mobil_3" )
+
+val parameter_lista = arrayOf(
+    "Temperature",
+    "Relative_Humidity",
+    "Global_Radiation",
+    "Air_Pressure",
+    "Wind_Speed",
+    "Wind_Direction",
+    "Rain",
+    "NO2",
+    "NOx",
+    "O3",
+    "PM10",
+    "PM2.5" )
 
 
 private const val BASE_URL = "https://catalog.goteborg.se/rowstore/dataset/"
@@ -18,6 +48,7 @@ private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 class API {
 
     private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
+    private val graphData = HashMap<String,ArrayList<Pair<String,String>>>()
 
     /**
      *
@@ -32,12 +63,21 @@ class API {
         return parseJSONtoHourlyObj(json)
     }
 
+    /**
+     * Fetch Daily data, all sensors.
+     */
+    private suspend fun fetchDailyData(date: String): ArrayList<AnytimeResultObj>  {
+        val url = buildUrl(2, "", date,"","")
+        val stringData = withContext(Dispatchers.IO) { requestData(url) }
+        val json = findJSONObjects(stringData)
+        return parseJSONtoAnytimeObj(json)
+    }
 
     /**
      *
      * Fetch range of data from API
      */
-    suspend fun fetchRangeData(year:String,
+    suspend fun fetchMonthData(year:String,
                                month:String,
                                time: String): ArrayList<AnytimeResultObj> {
 
@@ -48,7 +88,61 @@ class API {
         return parseJSONtoAnytimeObj(json)
     }
 
+    /**
+     * Helper to convert string to LocalDate
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    private suspend fun stringToDateConverter(date:String): LocalDate {
+        return LocalDate.parse(date)
+    }
 
+    /**
+     * Fetches the requested data
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun fetchGraphData(dateStart: String,
+                                dateEnd: String,
+                                sensor: String,
+                                station: String) {
+        graphData.clear()
+        val fetchedData = HashMap<String, ArrayList<AnytimeResultObj>>()
+
+        var start = stringToDateConverter(dateStart)
+        var end = stringToDateConverter(dateEnd)
+        var dayToFetch = start
+
+        do {
+            val format: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-mm-dd")
+            val dateToFetch: String = dayToFetch.format(format)
+            val dataList = fetchDailyData(dateToFetch)
+
+            if (dataList.size > 0) {
+                fetchedData[dataList[0].date] = dataList
+            }
+            dayToFetch.plusDays(1)
+        } while (dayToFetch != end)
+
+        for ((key, value) in fetchedData) {
+            graphData[key] = filterToTimeValue(value,sensor,station)
+        }
+    }
+
+    /**
+     * Helper function to filter per sensor and station.
+     * Returns a list of Pairs time,value
+     */
+    private fun filterToTimeValue(list: ArrayList<AnytimeResultObj>,
+                             sensor: String,
+                             station: String): ArrayList<Pair<String,String>> {
+        var filtered = ArrayList<Pair<String,String>>()
+        for ( entry in list ) {
+            var value = entry.getValue(sensor,station)
+            if ( !value.equals(null) ) {
+                filtered.add(value)
+            }
+        }
+        return filtered
+    }
 
     /**
      *
@@ -79,14 +173,22 @@ class API {
 
     /**
      *
+     * Get graphdata hashtable.
+     */
+    fun getGraphData() : HashMap<String,ArrayList<Pair<String,String>>> {
+        return graphData
+    }
+
+    /**
+     *
      * Calculate distance in meters between two points
      * Translated from http://www.movable-type.co.uk/scripts/latlong.html
      *
      */
     private fun distanceInMeters(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        val x = Math.toRadians(lon1 - lon2) * Math.cos(Math.toRadians(lat1 - lat2) / 2)
+        val x = Math.toRadians(lon1 - lon2) * cos(Math.toRadians(lat1 - lat2) / 2)
         val y = Math.toRadians(lat1 - lat2)
-        return 6371000.0 * Math.sqrt(x * x + y * y)
+        return 6371000.0 * sqrt(x * x + y * y)
     }
 
     /**

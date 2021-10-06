@@ -45,6 +45,22 @@ class statistikFragment : Fragment() {
         val t = inflater.inflate(R.layout.fragment_statistik, container, false)
 
 
+        binding.stationSpinn.adapter = ArrayAdapter.createFromResource(
+            requireActivity(),
+            R.array.stations_array,
+            android.R.layout.simple_spinner_item).also {
+                adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.stationSpinn.adapter = adapter
+        }
+
+        binding.sensorSpinn.adapter = ArrayAdapter.createFromResource(
+            requireActivity(),
+            R.array.stations_array,
+            android.R.layout.simple_spinner_item).also{
+                adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.sensorSpinn.adapter = adapter
+        }
+
 
 
         val entries: ArrayList<BarEntry> = ArrayList()
