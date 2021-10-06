@@ -106,7 +106,7 @@ class API {
             if (dataList.size > 0) {
                 fetchedData[dataList[0].date] = dataList
             }
-            dayToFetch.plusDays(1)
+            dayToFetch = dayToFetch.plusDays(1)
 
             if ( count > 3 ) { // Max dagar
                 break;
@@ -147,7 +147,6 @@ class API {
             if (!hourData.containsKey(data.station)) {
                 hourData[data.station] = ArrayList<HourlyResultObj>()
             }
-
             hourData[data.station]?.add(data)
         }
     }
