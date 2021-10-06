@@ -9,19 +9,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.statistikFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
-        android:layout_width="268dp"
-        android:layout_height="573dp"
-        android:layout_margin="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="649dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="367dp"
+        android:layout_height="517dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+
+        app:layout_constraintEnd_toEndOf="@id/button"
+        app:layout_constraintStart_toStartOf="@id/button" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 
 </RelativeLayout>

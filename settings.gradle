@@ -6,7 +6,7 @@ dependencyResolutionManagement {
         mavenLocal()
         maven { url 'https://jitpack.io' }
         jcenter() // Warning: this repository is going to shut down soon
-        maven{ url 'https://jitpack.io'}
+
     }
 }
 rootProject.name = "TabTest3"
