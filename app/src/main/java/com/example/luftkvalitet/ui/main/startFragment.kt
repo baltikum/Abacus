@@ -16,7 +16,6 @@ import com.example.luftkvalitet.overview.OverViewModel
     class startFragment : Fragment() {
 
         private var _binding: FragmentStartBinding? = null
-
         private val overViewModel = OverViewModel()
 
         private val binding get() = _binding!!
@@ -44,12 +43,21 @@ import com.example.luftkvalitet.overview.OverViewModel
                 }
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     val type = parent?.getItemAtPosition(position).toString()
-                    /*Toast.makeText(activity,type, Toast.LENGTH_LONG).show()
-                    println(type) */// debug
                     overViewModel.updateStationData(type, binding)
 
                 }
              }
+            var gps = LocationActivity(this.requireActivity())
+
+            //Get nearest station with gps
+            binding.imageView.setOnClickListener{
+                if(gps.getLocation()?.equals(null) == false)
+                {
+                    var station = overViewModel.returnApi().getClosestStationName(gps.getLocation()!!.latitude,gps.getLocation()!!.longitude)
+                    binding.spinner.setSelection((binding.spinner.adapter as ArrayAdapter<CharSequence>).getPosition(station))
+                }
+            }
+
 
             return view
         }
