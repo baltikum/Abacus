@@ -16,13 +16,16 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.components.XAxis
-
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 
 class statistikFragment : Fragment() {
 
 
     private var _binding: FragmentStatistikBinding? = null
+    private  val labels: ArrayList<String> = ArrayList()
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val overViewModel = OverViewModel()
@@ -62,21 +65,7 @@ class statistikFragment : Fragment() {
 
        // overViewModel.updateGraphData("2020-02-08","2020-02-09","PM10","Femman")
 
-        binding.button.setOnClickListener {
-            binding.button.setBackgroundColor(Color.RED)
 
-            var graphDat = overViewModel.returnApi().getGraphData() // Hämtar redan hämtad data via init uppstart.
-
-            for ((key, list) in graphDat ) { // key= datum på formen 2020-02-08.... value är nu ArrayList med Pair< String tid, String värde på efterfrågad sensor > //
-                println(key.plus("------"))
-                for ( entry in list ) { // Varje pair i listan för key datum
-                    var (time, value) = entry
-                    println("Time: $time , SensorValue: $value")
-                    binding.showText1.text = time
-                    binding.showText2.text = value
-                }
-            }
-        }
 
 
         val entries: ArrayList<BarEntry> = ArrayList()
@@ -115,15 +104,103 @@ class statistikFragment : Fragment() {
 
         //add animation
         chart.animateY(1000)
+        chart.setScaleEnabled(false)
+        chart.setFitBars(true);
 
 
-        //draw chart
+       // val labels: ArrayList<String> = ArrayList()
+        labels.add("Jan")
+        labels.add("Feb")
+        labels.add("March")
+        labels.add("April")
+        labels.add("May")
+        labels.add("June")
+        labels.add("July")
+        labels.add("Aug")
+
+
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+
+        chart.setAutoScaleMinMaxEnabled(true);
+
         chart.invalidate()
 
         val xAxis: XAxis = chart.getXAxis()
+
         xAxis.position = XAxis.XAxisPosition.BOTTOM
 
 
+
+
+
+        binding.button2.setOnClickListener{
+
+                      barDataSet.clear()
+
+                             barDataSet.addEntry(BarEntry(0f, 12f))
+                             barDataSet.addEntry(BarEntry(1f, 13f))
+                             barDataSet.addEntry(BarEntry(2f, 14f))
+                             barDataSet.addEntry(BarEntry(3f, 15f))
+                             barDataSet.addEntry(BarEntry(4f, 12f))
+                             barDataSet.addEntry(BarEntry(5f, 13f))
+                             barDataSet.addEntry(BarEntry(6f, 14f))
+
+
+                             labels.clear()
+                             labels.add("Mon")
+                             labels.add("Tue")
+                             labels.add("Wed")
+                             labels.add("Thur")
+                             labels.add("Fri")
+                             labels.add("Sat")
+                             labels.add("Sun")
+
+
+
+
+            chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+
+            chart.data.notifyDataChanged()
+            chart.notifyDataSetChanged()
+            chart.invalidate()
+        }
+
+
+
+        binding.button.setOnClickListener {
+            binding.button.setBackgroundColor(Color.RED)
+
+            var entryIndex = 0f
+            labels.clear()
+            barDataSet.clear()
+
+            var graphDat = overViewModel.returnApi().getGraphData() // Hämtar redan hämtad data via init uppstart.
+
+            for ((key, list) in graphDat ) { // key= datum på formen 2020-02-08.... value är nu ArrayList med Pair< String tid, String värde på efterfrågad sensor > //
+                println(key.plus("------"))
+                for ( entry in list ) { // Varje pair i listan för key datum
+                    var (time, value) = entry
+                    println("Time: $time , SensorValue: $value")
+                    binding.showText1.text = time
+                    binding.showText2.text = value
+
+
+                    labels.add(time.subSequence(0, 2) as String)
+
+
+                    entries.add(BarEntry(entryIndex, value.toFloat()))
+                    entryIndex = entryIndex +1
+
+
+                }
+            }
+            chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+
+            chart.data.notifyDataChanged()
+            chart.notifyDataSetChanged()
+            chart.invalidate()
+
+        }
 
 
         return view
