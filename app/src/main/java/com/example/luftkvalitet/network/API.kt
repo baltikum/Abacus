@@ -79,14 +79,12 @@ class API {
         return parseJSONtoAnytimeObj(json)
     }
 
-
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun rewindOneWeek(date: String): String  {
        var inDate = stringToDateConverter(date)
         return inDate.minusDays(6).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
     }
+
     /**
      * Helper function to get current date.
      */
@@ -137,7 +135,6 @@ class API {
         for ((key, value) in fetchedData) {
             graphData[key] = filterToTimeValue(value,sensor,station)
         }
-
     }
 
     /**
