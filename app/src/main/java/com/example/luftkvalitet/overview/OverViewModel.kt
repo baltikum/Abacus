@@ -1,22 +1,34 @@
 package com.example.luftkvalitet.overview
 
 import android.graphics.Color
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.network.*
+import com.github.mikephil.charting.data.BarEntry
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 class OverViewModel : ViewModel() {
 
     private val api = API()
 
     init {
         updateHourData()
+        updateGraphData("2021-09-13","2021-09-16","NOx","Femman")
+       // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
     }
+
 
     fun updateHourData() {
         viewModelScope.launch {
@@ -115,4 +127,23 @@ class OverViewModel : ViewModel() {
 
     }
 
+
+    /**
+     * update GraphData
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun updateGraphData(startDate: String,
+                        endDate:String,
+                        sensor: String,
+                        station: String) {
+
+        viewModelScope.launch {
+            api.fetchGraphData(startDate,endDate,sensor,station)
+        }
+    }
+
+    fun returnApi(): API
+    {
+        return api
+    }
 }

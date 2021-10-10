@@ -16,7 +16,6 @@ import com.example.luftkvalitet.overview.OverViewModel
     class startFragment : Fragment() {
 
         private var _binding: FragmentStartBinding? = null
-
         private val overViewModel = OverViewModel()
 
         private val binding get() = _binding!!
@@ -28,17 +27,13 @@ import com.example.luftkvalitet.overview.OverViewModel
 
             _binding = FragmentStartBinding.inflate(inflater, container, false)
             val view = binding.root
-            val t = inflater.inflate(R.layout.fragment_start, container, false)
-
-
-            val spinner : Spinner = t.findViewById<Spinner>(R.id.spinner)
 
             binding.spinner.adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.stations_array, android.R.layout.simple_spinner_item).also{
                     adapter ->
                 // Specify the layout to use when the list of choices appears
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 // Apply the adapter to the spinner
-                spinner.adapter = adapter
+                binding.spinner.adapter = adapter
             }
             binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -48,12 +43,21 @@ import com.example.luftkvalitet.overview.OverViewModel
                 }
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     val type = parent?.getItemAtPosition(position).toString()
-                    /*Toast.makeText(activity,type, Toast.LENGTH_LONG).show()
-                    println(type) */// debug
                     overViewModel.updateStationData(type, binding)
 
                 }
              }
+            var gps = LocationActivity(this.requireActivity())
+
+            //Get nearest station with gps
+            binding.imageView.setOnClickListener{
+                if(gps.getLocation()?.equals(null) == false)
+                {
+                    var station = overViewModel.returnApi().getClosestStationName(gps.getLocation()!!.latitude,gps.getLocation()!!.longitude)
+                    binding.spinner.setSelection((binding.spinner.adapter as ArrayAdapter<CharSequence>).getPosition(station))
+                }
+            }
+
 
             return view
         }
