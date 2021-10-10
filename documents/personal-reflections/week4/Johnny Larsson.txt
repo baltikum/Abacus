@@ -1,0 +1,22 @@
+What do I want to learn or understand better?
+I want to understand more on how we can adjust the bar graphs for displaying the info as we want and how to color code based on different values.
+Also how to use Mattias methods, that are not fully implemented yet, so that we could change what values and times we are displaying.
+
+
+
+How can I help someone else, or the entire team, to learn something new?
+I can help with UI and bar graphs and help how to implement those things.
+
+
+
+What is my contribution towards the team’s use of Scrum?
+I stared with using an randomizer to help assign the different roles for the week.
+I have been active and helped with the Scrum board, to show how many things we checked of for the week.
+I have now taken on the role of uploading the team reflection each week.
+
+
+What is my contribution towards the team’s deliveries?
+I have worked with Victoria to implement a bar graph where it first got values from a list. 
+Then I made it so we could change values and change the name on the x-axis to show for example days or months.
+Then we worked with Mattias to make it change to get a list of values and times from the API so that it displays those in the graph. 
+I have also made some changes to the bar graph so that it looks better. 

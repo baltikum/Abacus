@@ -12,17 +12,23 @@ import com.example.luftkvalitet.network.*
 import com.github.mikephil.charting.data.BarEntry
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 class OverViewModel : ViewModel() {
 
     private val api = API()
 
     init {
         updateHourData()
+        updateGraphData("2021-09-13","2021-09-16","NOx","Femman")
+       // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
     }
+
 
     fun updateHourData() {
         viewModelScope.launch {
@@ -129,16 +135,12 @@ class OverViewModel : ViewModel() {
     fun updateGraphData(startDate: String,
                         endDate:String,
                         sensor: String,
-                        station: String): HashMap<String,ArrayList<Pair<String,String>>> {
+                        station: String) {
 
         viewModelScope.launch {
-            val currentDate = SimpleDateFormat("yyyy").format(Date())
             api.fetchGraphData(startDate,endDate,sensor,station)
         }
-        return api.getGraphData()
     }
-
-
 
     fun returnApi(): API
     {

@@ -2,6 +2,7 @@ package com.example.luftkvalitet.network
 val stations = arrayOf(
     "Femman",
     "Haga_Norra",
+    "Haga_Sodra",
     "Lejonet",
     "Mobil_1",
     "Mobil_2",
