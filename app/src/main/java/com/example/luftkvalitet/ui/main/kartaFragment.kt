@@ -20,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 class kartaFragment : Fragment(), OnMapReadyCallback{
@@ -57,18 +58,25 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
                 .position(LatLng(0.0, 0.0))
                 .title("Marker")
         )
+
         val femman = LatLng(57.7087, 11.9705)
         val lejonet = LatLng(57.7157, 11.9923)
         val hagaNorra = LatLng(57.69972, 11.9561)
         val hagaSodra = LatLng(57.69722, 11.9525)
         val northEast = LatLng(59.0, 13.0)
         val southWest = LatLng(55.0,9.0)
+
+
         googleMap.addMarker(MarkerOptions().position(femman).title("Station Femman"))
-        googleMap.addMarker(MarkerOptions().position(lejonet).title("Station Lejonet"))
+
+        Marker minmark = googleMap.addMarker(MarkerOptions().position(lejonet).title("Station Lejonet"))
+     
         googleMap.addMarker(MarkerOptions().position(hagaNorra).title("Station Haga Norra"))
         googleMap.addMarker(MarkerOptions().position(hagaSodra).title("Station Haga Sodra"))
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(13.0f));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(femman))
+
+        femman.
     }
 
 
