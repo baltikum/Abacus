@@ -8,13 +8,13 @@ share my ideas and knowledge in UI, bargraphs and spinners
 -what is my contribution towards the team’s use of Scrum?
 this sprint I was scrummaster and in charge of leading the team, making sure the team were in check etc.
 it was hard to keep the wednesday meeting within 15 minutes, since everyone were finished and we had to update the trello board and also demonstarte.
-it was much appreciated by all team members to have all tasks done in the week except some smaller jobs, because we could use the time for other things like our other course.
+it was appreciated by all team members to have all tasks done in the week except some smaller jobs, because we could use the time for other things like our other course.
 we decided to change and have our longer monday meeting on this friday instead, since we got a lot of work done.
 
 -what is my contribution towards the team’s deliveries?
 for tuesday I implemented a bargraph with PhilJays library, 
-we went with johnnys solution which used MikePhil library for bargraph since his library and solution were easier to implement in code.
+we went with johnnys solution which used MikePhil library for bargraph since his library and solution were easier to implement in code and looked better.
 the rest of the week we implemented so that it could change the x axis to time, my solution was to make a time formatter that changed the x axis to time in dates. 
-johnny found a simpler solution which required to instead of formatting we would use the weekdays in strings and add this as a label to the x axis.
+johnny found a better solution which required to instead of formatting we would use the weekdays in strings and add this as a label to the x axis.
 we worked with mattias to understand how to use his functions and display in the graph.
 
