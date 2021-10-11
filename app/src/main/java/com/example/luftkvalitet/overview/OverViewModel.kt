@@ -11,6 +11,8 @@ import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.network.*
 import com.github.mikephil.charting.data.BarEntry
 import kotlinx.coroutines.launch
+import java.lang.Boolean.FALSE
+import java.lang.Boolean.TRUE
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -21,11 +23,12 @@ import kotlin.collections.ArrayList
 @RequiresApi(Build.VERSION_CODES.O)
 class OverViewModel : ViewModel() {
 
+
     private val api = API()
 
     init {
         updateHourData()
-        updateGraphData("2021-09-13","2021-09-16","NOx","Femman")
+        updateGraphData(api.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",TRUE)
        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
     }
 
@@ -135,10 +138,14 @@ class OverViewModel : ViewModel() {
     fun updateGraphData(startDate: String,
                         endDate:String,
                         sensor: String,
-                        station: String) {
+                        station: String,
+                        time: String,
+                        average: Boolean ) {
 
         viewModelScope.launch {
-            api.fetchGraphData(startDate,endDate,sensor,station)
+            api.fetchGraphData(startDate,endDate,sensor,station,time,average)
+            println("Finished fetching DATA---------------------------------")
+            println("graph size is " + api.getGraphData().size )
         }
     }
 

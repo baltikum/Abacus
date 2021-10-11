@@ -17,6 +17,8 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import java.lang.Boolean
+import java.lang.Boolean.FALSE
 
 
 class statistikFragment : Fragment() {
@@ -29,7 +31,8 @@ class statistikFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val overViewModel = OverViewModel()
-
+    private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
+    private var compareData = HashMap<String,ArrayList<Pair<String,String>>>()
 
     private val binding get() = _binding!!
 
@@ -168,17 +171,29 @@ class statistikFragment : Fragment() {
 
 
         binding.button.setOnClickListener {
+            if ( FALSE ) {
+                overViewModel.updateGraphData(
+                    overViewModel.returnApi().rewindOneWeek("2021-09-16"),
+                    "2021-09-16",
+                    "NOx",
+                    "Femman",
+                    "13:00+01:00",
+                    Boolean.TRUE)
+            }
+
+
+
             binding.button.setBackgroundColor(Color.RED)
 
             var entryIndex = 0f
             labels.clear()
             barDataSet.clear()
 
-            var graphDat = overViewModel.returnApi().getGraphData() // Hämtar redan hämtad data via init uppstart.
+            graphData = overViewModel.returnApi().getGraphData()
 
-            for ((key, list) in graphDat ) { // key= datum på formen 2020-02-08.... value är nu ArrayList med Pair< String tid, String värde på efterfrågad sensor > //
-                println(key.plus("------"))
-                for ( entry in list ) { // Varje pair i listan för key datum
+            for ((date, list) in graphData ) {
+                println(date.plus("------"))
+                for ( entry in list ) {
                     var (time, value) = entry
                     println("Time: $time , SensorValue: $value")
                     binding.showText1.text = time

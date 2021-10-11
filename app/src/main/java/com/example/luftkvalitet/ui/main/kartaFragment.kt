@@ -68,15 +68,12 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
 
 
         googleMap.addMarker(MarkerOptions().position(femman).title("Station Femman"))
-
-        Marker minmark = googleMap.addMarker(MarkerOptions().position(lejonet).title("Station Lejonet"))
-     
+        googleMap.addMarker(MarkerOptions().position(lejonet).title("Station Lejonet"))
         googleMap.addMarker(MarkerOptions().position(hagaNorra).title("Station Haga Norra"))
         googleMap.addMarker(MarkerOptions().position(hagaSodra).title("Station Haga Sodra"))
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(13.0f));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(femman))
 
-        femman.
     }
 
 
