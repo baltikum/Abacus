@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStartBinding
+import com.example.luftkvalitet.network.API
 import com.example.luftkvalitet.overview.OverViewModel
 
 
@@ -53,7 +54,7 @@ import com.example.luftkvalitet.overview.OverViewModel
             binding.imageView.setOnClickListener{
                 if(gps.getLocation()?.equals(null) == false)
                 {
-                    var station = overViewModel.returnApi().getClosestStationName(gps.getLocation()!!.latitude,gps.getLocation()!!.longitude)
+                    var station = API.getClosestStationName(gps.getLocation()!!.latitude,gps.getLocation()!!.longitude)
                     binding.spinner.setSelection((binding.spinner.adapter as ArrayAdapter<CharSequence>).getPosition(station))
                 }
             }

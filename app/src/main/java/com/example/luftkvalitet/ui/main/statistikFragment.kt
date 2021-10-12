@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
+import com.example.luftkvalitet.network.API
 import com.example.luftkvalitet.overview.OverViewModel
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -174,7 +175,7 @@ class statistikFragment : Fragment() {
             labels.clear()
             barDataSet.clear()
 
-            var graphDat = overViewModel.returnApi().getGraphData() // Hämtar redan hämtad data via init uppstart.
+            var graphDat = API.getGraphData() // Hämtar redan hämtad data via init uppstart.
 
             for ((key, list) in graphDat ) { // key= datum på formen 2020-02-08.... value är nu ArrayList med Pair< String tid, String värde på efterfrågad sensor > //
                 println(key.plus("------"))
