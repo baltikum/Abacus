@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
@@ -35,6 +38,23 @@ class statistikFragment : Fragment() {
     private var compareData = HashMap<String,ArrayList<Pair<String,String>>>()
 
     private val binding get() = _binding!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater,
@@ -206,7 +226,7 @@ class statistikFragment : Fragment() {
                     entries.add(BarEntry(entryIndex, value.toFloat()))
                     entryIndex = entryIndex +1
 
-
+                   // chart.setFitBars(false);
                 }
             }
             chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
@@ -214,8 +234,50 @@ class statistikFragment : Fragment() {
             chart.data.notifyDataChanged()
             chart.notifyDataSetChanged()
             chart.invalidate()
+//chart.setVisibleXRangeMinimum(10F)
+
+
+
+
+
+
+
+            binding.spinner2.adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.stations_array, android.R.layout.simple_spinner_item).also{
+                    adapter ->
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                // Apply the adapter to the spinner
+                binding.spinner2.adapter = adapter
+            }
+            binding.spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    val out: String = "error"
+                    Toast.makeText(activity, out, Toast.LENGTH_LONG).show()
+                    println(out)
+                }
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    val type = parent?.getItemAtPosition(position).toString()
+                    overViewModel.updateStationData(type, binding)
+
+                }
+            }
+
+
+
+
+
+
+
 
         }
+
+
+
+
+
+
+
 
 
         return view
