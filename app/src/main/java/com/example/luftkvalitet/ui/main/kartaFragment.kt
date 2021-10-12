@@ -52,15 +52,24 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
         val lejonet = LatLng(57.7157, 11.9923)
         val hagaNorra = LatLng(57.69972, 11.9561)
         val hagaSodra = LatLng(57.69722, 11.9525)
+        val mobil1 = LatLng(57.69368996, 11.95677280)
+        val mobil2 = LatLng(57.70754061, 11.93608760)
+        val mobil3 = LatLng(57.69729072, 11.92677497)
 
         googleMap.addMarker(MarkerOptions().position(femman).title("Station Femman").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Femman"))))
         googleMap.addMarker(MarkerOptions().position(lejonet).title("Station Lejonet").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Lejonet"))))
         googleMap.addMarker(MarkerOptions().position(hagaNorra).title("Station Haga Norra").icon(
-            BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Haga Norra"))))
-        googleMap.addMarker(MarkerOptions().position(hagaSodra).title("Haga Sodra").icon(
-            BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Haga Sodra"))))
+            BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Haga_Norra"))))
+        googleMap.addMarker(MarkerOptions().position(hagaSodra).title("Station Haga Sodra").icon(
+            BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Haga_Sodra"))))
+        googleMap.addMarker(MarkerOptions().position(mobil1).title("Mobil 1").icon(
+            BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_1"))))
+        googleMap.addMarker(MarkerOptions().position(mobil2).title("Mobil 2").icon(
+            BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_2"))))
+        googleMap.addMarker(MarkerOptions().position(mobil3).title("Mobil 3").icon(
+            BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_3"))))
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(13.0f));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(femman))
 
@@ -72,6 +81,9 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
                 "Station Lejonet" -> id = "Lejonet"
                 "Station Haga Norra" -> id = "Haga_Norra"
                 "Station Haga Sodra" -> id = "Haga_Sodra"
+                "Mobil 1" -> id = "Mobil_1"
+                "Mobil 2" -> id = "Mobil_2"
+                "Mobil 3" -> id = "Mobil_3"
             }
             // open popup...
 
@@ -152,6 +164,7 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
                         if (data.raw_value.toDoubleOrNull() == null) {
                             continue
                         } else {
+                            println("Station: " + station + data.raw_value)
                             if(data.raw_value.toDouble() > 4){
                                 if (data.raw_value.toDouble() > 12) {
                                     return HUE_RED
@@ -187,9 +200,6 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
                 }
             }
         }
-
-
-
         return returnValue
     }
 
