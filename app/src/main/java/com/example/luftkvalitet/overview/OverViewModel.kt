@@ -25,7 +25,7 @@ class OverViewModel : ViewModel() {
 
     init {
         updateHourData()
-        updateGraphData("2021-09-13","2021-09-16","NOx","Femman")
+        updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
     }
 
@@ -135,10 +135,14 @@ class OverViewModel : ViewModel() {
     fun updateGraphData(startDate: String,
                         endDate:String,
                         sensor: String,
-                        station: String) {
+                        station: String,
+                        time: String,
+                        average: Boolean) {
 
         viewModelScope.launch {
-            API.fetchGraphData(startDate,endDate,sensor,station)
+            API.fetchGraphData(startDate,endDate,sensor,station,time,average)
+            println("Finished fetching DATA---------------------------------")
+            println("graph size is " + API.getGraphData().size )
         }
     }
 
