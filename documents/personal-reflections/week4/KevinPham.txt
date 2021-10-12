@@ -1,0 +1,12 @@
+What do I want to learn or understand better?
+I want to make the app more user-friendly and learn what kind of design decisions are crucial to the user.
+
+How can I help someone else, or the entire team, to learn something new?
+Since I have studied the use of Google Play Services I can help with bugfixing.
+
+What is my contribution towards the team’s use of Scrum?
+I have had more communication with the team members and attended developing sessions to keep the workflow going.
+
+What is my contribution towards the team’s deliveries?
+I developed a working gps for the app and made use of it in the start-fragment to find the nearest station.
+It was possible in courtesy of the team's predeveloped distance-method. 

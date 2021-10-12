@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
+import com.example.luftkvalitet.network.API
 import com.example.luftkvalitet.overview.OverViewModel
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -30,6 +31,8 @@ class statistikFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private val overViewModel = OverViewModel()
 
+    private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
+    private var compareData = HashMap<String,ArrayList<Pair<String,String>>>()
 
     private val binding get() = _binding!!
 
@@ -168,17 +171,25 @@ class statistikFragment : Fragment() {
 
 
         binding.button.setOnClickListener {
+            if ( false ) {
+                overViewModel.updateGraphData(
+                    API.rewindOneWeek("2021-09-16"),
+                    "2021-09-16",
+                    "NOx",
+                    "Femman",
+                    "13:00+01:00",
+                    true)
+            }
             binding.button.setBackgroundColor(Color.RED)
 
             var entryIndex = 0f
             labels.clear()
             barDataSet.clear()
 
-            var graphDat = overViewModel.returnApi().getGraphData() // Hämtar redan hämtad data via init uppstart.
-
-            for ((key, list) in graphDat ) { // key= datum på formen 2020-02-08.... value är nu ArrayList med Pair< String tid, String värde på efterfrågad sensor > //
-                println(key.plus("------"))
-                for ( entry in list ) { // Varje pair i listan för key datum
+            graphData = API.getGraphData()
+            for ((date, list) in graphData ) {
+                println(date.plus("------"))
+                for ( entry in list ) {
                     var (time, value) = entry
                     println("Time: $time , SensorValue: $value")
                     binding.showText1.text = time

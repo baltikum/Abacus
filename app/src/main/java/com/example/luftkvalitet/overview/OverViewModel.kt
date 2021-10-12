@@ -21,11 +21,11 @@ import kotlin.collections.ArrayList
 @RequiresApi(Build.VERSION_CODES.O)
 class OverViewModel : ViewModel() {
 
-    private val api = API()
+    //private val api = API()
 
     init {
         updateHourData()
-        updateGraphData("2021-09-13","2021-09-16","NOx","Femman")
+        updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
     }
 
@@ -35,13 +35,13 @@ class OverViewModel : ViewModel() {
             // todo get current time and date
             val date = "2021-09-17"
             val time = "22:00*"
-            api.updateHourData(date, time)
+            API.updateHourData(date, time)
         }
     }
 
     fun updateStationData(station: String, binding: FragmentStartBinding) {
 
-        val dataList = api.getStationDataHourly(station)
+        val dataList = API.getStationDataHourly(station)
 
         // clear all text
         binding.showInfo1.text = ""
@@ -135,15 +135,15 @@ class OverViewModel : ViewModel() {
     fun updateGraphData(startDate: String,
                         endDate:String,
                         sensor: String,
-                        station: String) {
+                        station: String,
+                        time: String,
+                        average: Boolean) {
 
         viewModelScope.launch {
-            api.fetchGraphData(startDate,endDate,sensor,station)
+            API.fetchGraphData(startDate,endDate,sensor,station,time,average)
+            println("Finished fetching DATA---------------------------------")
+            println("graph size is " + API.getGraphData().size )
         }
     }
 
-    fun returnApi(): API
-    {
-        return api
-    }
 }
