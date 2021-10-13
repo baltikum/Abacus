@@ -11,8 +11,8 @@
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
-        android:layout_width="343dp"
-        android:layout_height="469dp"
+        android:layout_width="311dp"
+        android:layout_height="430dp"
         android:layout_margin="32dp"
         android:layout_marginBottom="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,9 +25,9 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="120dp"
-        android:text="Months"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="212dp"
+        android:text="Last week"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,9 +35,9 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="120dp"
-        android:text="Days"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="212dp"
+        android:text="Last day"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,8 +45,8 @@
         android:id="@+id/showText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="180dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,8 +55,8 @@
         android:id="@+id/showText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="180dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/showText1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -65,13 +65,61 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="220dp"
         android:text="Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="409dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/set_no2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/set_no2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="108dp"
+        android:text="NO2"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/set_nox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="68dp"
+        android:text="NOx"
+        app:layout_constraintBottom_toTopOf="@+id/showText1"
+        app:layout_constraintStart_toEndOf="@+id/set_no2" />
+
+    <Button
+        android:id="@+id/set_pm25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="68dp"
+        android:text="PM 2.5"
+        app:layout_constraintBottom_toTopOf="@+id/showText2"
+        app:layout_constraintStart_toEndOf="@+id/set_nox" />
+
+    <Button
+        android:id="@+id/set_pm10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="PM 10"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/set_pm25" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

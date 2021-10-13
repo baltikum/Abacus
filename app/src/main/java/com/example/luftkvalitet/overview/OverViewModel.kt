@@ -8,28 +8,58 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.databinding.FragmentStartBinding
+import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 import com.example.luftkvalitet.network.*
 import com.github.mikephil.charting.data.BarEntry
 import kotlinx.coroutines.launch
+import java.lang.Boolean.FALSE
+import java.lang.Boolean.TRUE
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
+val stations_lista = arrayOf(
+    "Femman",
+    "Haga_Norra",
+    "Haga_Sodra",
+    "Lejonet",
+    "Mobil_1",
+    "Mobil_2",
+    "Mobil_3" )
 
+val parameter_lista = arrayOf(
+    "Temperature",
+    "Relative_Humidity",
+    "Global_Radiation",
+    "Air_Pressure",
+    "Wind_Speed",
+    "Wind_Direction",
+    "Rain",
+    "NO2",
+    "NOx",
+    "O3",
+    "PM10",
+    "PM2.5" )
 @RequiresApi(Build.VERSION_CODES.O)
 class OverViewModel : ViewModel() {
 
+    var station_input: String = "Femman"
+    var sensor_input: String = "NOx"
     private val api = API()
 
     init {
         updateHourData()
-        updateGraphData("2021-09-13","2021-09-16","NOx","Femman")
-       // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
+        updateGraphData(api.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Mobil_2","12:00+01:00",TRUE)
+        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
     }
 
-
+    fun setStation(input: String) : API{
+        station_input = input
+        updateGraphData(api.rewindOneWeek("2021-09-16"),"2021-09-16","NOx",station_input,"12:00+01:00",TRUE)
+        return api
+    }
     fun updateHourData() {
         viewModelScope.launch {
             // todo get current time and date
@@ -128,6 +158,7 @@ class OverViewModel : ViewModel() {
     }
 
 
+
     /**
      * update GraphData
      */
@@ -135,10 +166,14 @@ class OverViewModel : ViewModel() {
     fun updateGraphData(startDate: String,
                         endDate:String,
                         sensor: String,
-                        station: String) {
+                        station: String,
+                        time: String,
+                        average: Boolean ) {
 
         viewModelScope.launch {
-            api.fetchGraphData(startDate,endDate,sensor,station)
+            api.fetchGraphData(startDate,endDate,sensor,station,time,average)
+            println("Finished fetching DATA---------------------------------")
+            println("graph size is " + api.getGraphData().size )
         }
     }
 

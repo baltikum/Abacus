@@ -45,7 +45,6 @@ private const val YEARLY ="12e75096-583d-4c0b-afac-093e90d8489e/json?"  //1
 private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 
 
-
 class API {
 
     private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
@@ -79,9 +78,13 @@ class API {
         return parseJSONtoAnytimeObj(json)
     }
 
+
+    /**
+     * Get the date one week back
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     fun rewindOneWeek(date: String): String  {
-       var inDate = stringToDateConverter(date)
+        var inDate = stringToDateConverter(date)
         return inDate.minusDays(6).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
     }
 
@@ -106,9 +109,11 @@ class API {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     suspend fun fetchGraphData(dateStart: String,
-                                dateEnd: String,
-                                sensor: String,
-                                station: String) {
+                               dateEnd: String,
+                               sensor: String,
+                               station: String,
+                               time: String,
+                               average: Boolean) {
         graphData.clear()
         var fetchedData = HashMap<String, ArrayList<AnytimeResultObj>>()
 
@@ -127,13 +132,17 @@ class API {
             if (dataList.size > 0) {
                 fetchedData[dataList[0].date] = dataList
             }
-            if ( count > 7 ) { // Max dagar
+            if ( count > 10 ) { // Max dagar
                 break;
             }
         } while (dayToFetch != end)
 
         for ((key, value) in fetchedData) {
-            graphData[key] = filterToTimeValue(value,sensor,station)
+            if ( average ) {
+                graphData[key] = countDailyAverage(value,sensor,station,time)
+            } else {
+                graphData[key] = filterToTimeValuePerSensor(value,sensor,station,time)
+            }
         }
     }
 
@@ -141,18 +150,51 @@ class API {
      * Helper function to filter per sensor and station.
      * Returns a list of Pairs time,value
      */
-    private fun filterToTimeValue(list: ArrayList<AnytimeResultObj>,
-                             sensor: String,
-                             station: String): ArrayList<Pair<String,String>> {
+    private fun filterToTimeValuePerSensor(list: ArrayList<AnytimeResultObj>,
+                                           sensor: String,
+                                           station: String,
+                                           time: String): ArrayList<Pair<String,String>> {
         var filtered = ArrayList<Pair<String,String>>()
+
+
+        for ( entry in list ) {
+            var value = entry.getValue(sensor,station)
+            if ( time != "" ) {
+                if ( time == value.first ) {
+                    filtered.add(value)
+                }
+            } else {
+                if ( !value.equals(null) ) {
+                    filtered.add(value)
+                }
+            }
+
+        }
+
+        return filtered
+    }
+
+    /**
+     *
+     * Returns a list of one pair entry , dayaverage and average value
+     */
+    private fun countDailyAverage(list: ArrayList<AnytimeResultObj>,
+                                  sensor: String,
+                                  station: String,
+                                  time: String): ArrayList<Pair<String,String>> {
+        var average = ArrayList<Pair<String,String>>()
+        var averageValue = 0.0
         for ( entry in list ) {
             var value = entry.getValue(sensor,station)
             if ( !value.equals(null) ) {
-                filtered.add(value)
+                averageValue += value.second.toDoubleOrNull()!!
             }
         }
-        return filtered
+        averageValue /= 24.0
+        average.add(Pair("Day average",averageValue.toString()))
+        return average
     }
+
 
     /**
      *
