@@ -1,0 +1,17 @@
+- What do I want to learn or understand better?
+
+In the code weve implemnted coroutines using background work to run parts of the code. This got a bit confusing implementing when using the API fetching large chunks of data so this would be good to learn more about. Probably this week I will work on a
+callback listener to work with this.
+
+- How can I help someone else, or the entire team, to learn something new?
+
+Graphical side is working intensly on the statistic tab also map part and both witll fetch data form the API. I will be available to help here.
+
+- What is my contribution towards the team’s use of Scrum?
+This week shows alot of improvement on she smaller todo cards. Also we got more KPIS in use.
+
+- What is my contribution towards the team’s deliveries?
+Ive changed and developed the API alot to now being able to fetch data to the GUI in an effective way. 
+Also Ive assisted GUI side using the API.
+
+

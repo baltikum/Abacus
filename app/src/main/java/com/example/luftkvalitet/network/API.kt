@@ -45,7 +45,8 @@ private const val YEARLY ="12e75096-583d-4c0b-afac-093e90d8489e/json?"  //1
 private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 
 
-class API {
+
+object API {
 
     private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
     private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()

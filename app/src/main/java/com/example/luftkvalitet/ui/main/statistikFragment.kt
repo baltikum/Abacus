@@ -45,7 +45,6 @@ class statistikFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private val overViewModel = OverViewModel()
     private var barDataSet = MyBarDataSet(entries, "")
-    private var api = API()
     private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
     private var compareData = HashMap<String,ArrayList<Pair<String,String>>>()
     //var station_input: String = "Femman"
@@ -104,11 +103,11 @@ class statistikFragment : Fragment() {
 
 
 
-            barDataSet.setColors(
-                ContextCompat.getColor(chart.context, R.color.green),
-                ContextCompat.getColor(chart.context, R.color.orange),
-                ContextCompat.getColor(chart.context, R.color.red)
-                )
+        barDataSet.setColors(
+            ContextCompat.getColor(chart.context, R.color.green),
+            ContextCompat.getColor(chart.context, R.color.orange),
+            ContextCompat.getColor(chart.context, R.color.red)
+        )
 
 
 
@@ -169,8 +168,8 @@ class statistikFragment : Fragment() {
 
         //last day
         binding.button2.setOnClickListener{
-        week_day = "day"
-        barDataSet.clear()
+            week_day = "day"
+            barDataSet.clear()
             updateEntries()
             labels.clear()
             updateChart()
@@ -179,14 +178,14 @@ class statistikFragment : Fragment() {
         }
         //last week
         binding.button3.setOnClickListener{
-        week_day = "week"
-        updateEntries()
-        week()
+            week_day = "week"
+            updateEntries()
+            week()
 
-        //xAxis.labelCount = 10
+            //xAxis.labelCount = 10
 
-        chart.xAxis.granularity = 1f //only intervals of 1 float
-        notifyChanges()
+            chart.xAxis.granularity = 1f //only intervals of 1 float
+            notifyChanges()
         }
 
         binding.spinner2.adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.stations_array, android.R.layout.simple_spinner_item).also{
@@ -256,7 +255,7 @@ class statistikFragment : Fragment() {
         if (FALSE) {
             Toast.makeText(activity, "inside if", Toast.LENGTH_LONG).show() //kommer ej in här
             overViewModel.updateGraphData(
-                overViewModel.returnApi().rewindOneWeek("2021-09-16"),
+                API.rewindOneWeek("2021-09-16"),
                 "2021-09-16",
                 sensor_input,
                 station_input,
@@ -269,7 +268,7 @@ class statistikFragment : Fragment() {
         //labels.clear()
         barDataSet.clear()
 
-        graphData = overViewModel.returnApi().getGraphData()
+        graphData = API.getGraphData()
 
         for ((date, list) in graphData ) {
             println(date.plus("------"))
@@ -282,7 +281,6 @@ class statistikFragment : Fragment() {
                 if(week_day == "week"){
                     week()
                 }
-
                 labels.add(date.subSequence(5, 10) as String) //lägger ut datumet
                 //entries.add(BarEntry(entryIndex, value.toFloat()))
                 barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
