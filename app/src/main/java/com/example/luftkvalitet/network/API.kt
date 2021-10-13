@@ -85,7 +85,7 @@ object API {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     fun rewindOneWeek(date: String): String  {
-       var inDate = stringToDateConverter(date)
+        var inDate = stringToDateConverter(date)
         return inDate.minusDays(6).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
     }
 
@@ -110,11 +110,11 @@ object API {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     suspend fun fetchGraphData(dateStart: String,
-                                dateEnd: String,
-                                sensor: String,
-                                station: String,
-                                time: String,
-                                average: Boolean) {
+                               dateEnd: String,
+                               sensor: String,
+                               station: String,
+                               time: String,
+                               average: Boolean) {
         graphData.clear()
         var fetchedData = HashMap<String, ArrayList<AnytimeResultObj>>()
 
@@ -152,9 +152,9 @@ object API {
      * Returns a list of Pairs time,value
      */
     private fun filterToTimeValuePerSensor(list: ArrayList<AnytimeResultObj>,
-                                  sensor: String,
-                                  station: String,
-                                  time: String): ArrayList<Pair<String,String>> {
+                                           sensor: String,
+                                           station: String,
+                                           time: String): ArrayList<Pair<String,String>> {
         var filtered = ArrayList<Pair<String,String>>()
 
 
@@ -188,7 +188,7 @@ object API {
         for ( entry in list ) {
             var value = entry.getValue(sensor,station)
             if ( !value.equals(null) ) {
-                    averageValue += value.second.toDoubleOrNull()!!
+                averageValue += value.second.toDoubleOrNull()!!
             }
         }
         averageValue /= 24.0

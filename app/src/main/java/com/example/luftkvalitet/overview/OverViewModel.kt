@@ -8,25 +8,52 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.databinding.FragmentStartBinding
+import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 import com.example.luftkvalitet.network.*
+
 import com.github.mikephil.charting.data.BarEntry
 import kotlinx.coroutines.launch
+import java.lang.Boolean.FALSE
+import java.lang.Boolean.TRUE
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
+val stations_lista = arrayOf(
+    "Femman",
+    "Haga_Norra",
+    "Haga_Sodra",
+    "Lejonet",
+    "Mobil_1",
+    "Mobil_2",
+    "Mobil_3" )
 
+val parameter_lista = arrayOf(
+    "Temperature",
+    "Relative_Humidity",
+    "Global_Radiation",
+    "Air_Pressure",
+    "Wind_Speed",
+    "Wind_Direction",
+    "Rain",
+    "NO2",
+    "NOx",
+    "O3",
+    "PM10",
+    "PM2.5" )
 @RequiresApi(Build.VERSION_CODES.O)
 class OverViewModel : ViewModel() {
 
-    //private val api = API()
+
+    var station_input: String = "Femman"
+    var sensor_input: String = "NOx"
 
     init {
         updateHourData()
         updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
-       // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
+        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
     }
 
 
@@ -145,5 +172,4 @@ class OverViewModel : ViewModel() {
             println("graph size is " + API.getGraphData().size )
         }
     }
-
 }
