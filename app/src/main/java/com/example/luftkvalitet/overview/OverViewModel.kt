@@ -168,6 +168,7 @@ class OverViewModel : ViewModel() {
 
         viewModelScope.launch {
             API.fetchGraphData(startDate,endDate,sensor,station,time,average)
+            API.updateListeners()
             println("Finished fetching DATA---------------------------------")
             println("graph size is " + API.getGraphData().size )
         }
