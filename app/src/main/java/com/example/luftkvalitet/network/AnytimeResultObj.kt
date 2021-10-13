@@ -59,6 +59,10 @@ class AnytimeResultObj (
     val lejonet_winddir: String,
     val mobil1_pm10: String ) {
 
+
+    /**
+     * Returns a pair of time and value for requested sensor and station.
+     */
     fun getValue(sensor: String, station: String): Pair<String, String> ? {
         var ret: Pair<String, String>
         when (sensor) {

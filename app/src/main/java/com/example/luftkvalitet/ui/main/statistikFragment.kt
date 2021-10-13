@@ -37,7 +37,6 @@ class statistikFragment : Fragment() , APIListener {
 
     override fun onGraphDataUpdated() {
 
-        println("snoppar plenty------")
         println("fyll grafen nu här !------")
 
     }
@@ -72,27 +71,6 @@ class statistikFragment : Fragment() , APIListener {
         val view = binding.root
         API.addListener(this) // Lägg till oss som lyssnare på API
 
-        /**
-         *      TILL JOHNNY OCH VICTORIA
-         *
-         *      Använd ett liknande call för att hämta grafdata
-         *     overViewModel.updateGraphData("2020-02-08","2020-02-09","PM10","Femman")
-         *
-         *
-         *     OBS!!! En stor hämtning med flera dagar tar lite tid, då funktionen gör ett kall för varje
-         *     dag.
-         *
-         *     Hämtningen körs i bakgrunden.
-         *
-         *     Vi kanske behöver skapa en listener för detta framöver... om någon vill kalla på fornminnen
-         *     Alltså att via en listener väcka fyllning av grafen.
-         *
-         *     via init i OverViewModel hämtas nu 3 senaste dagarnas NOx ifrån Femman
-         *
-         * MVH BALTIKUM
-         * */
-
-
 
 
         entries = ArrayList()
@@ -102,8 +80,6 @@ class statistikFragment : Fragment() , APIListener {
         entries.add(BarEntry(4f, 15f))
         entries.add(BarEntry(5f, 13f))
         entries.add(BarEntry(6f, 2f))
-
-
 
 
 
@@ -122,8 +98,6 @@ class statistikFragment : Fragment() , APIListener {
         dataSets.add(barDataSet)
 
         val data = BarData(dataSets as List<IBarDataSet>?)
-
-
 
 
 
@@ -225,7 +199,6 @@ class statistikFragment : Fragment() , APIListener {
             }
 
 
-
         }
         binding.setNo2.setOnClickListener {
             sensor_input= "NO2"
@@ -261,7 +234,8 @@ class statistikFragment : Fragment() , APIListener {
             ContextCompat.getColor(chart.context, R.color.red)
         )
 
-    if ( !sensor_input.isNullOrEmpty() && !station_input.isNullOrEmpty() ) {
+    if ( API.isSensorAvailable(sensor_input,station_input)) {
+
         overViewModel.updateGraphData(
             API.rewindOneWeek("2021-09-16"),
             "2021-09-16",
