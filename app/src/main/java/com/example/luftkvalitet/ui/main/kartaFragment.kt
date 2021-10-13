@@ -26,7 +26,9 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
     private var _binding: FragmentKartaBinding? = null
     private val binding get() = _binding!!
 
-
+    /**
+     * Various functions to handle fragments and tie this fragment to the tabs
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,11 +45,15 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
         return view
     }
 
+    /**
+     * Implementing the GoogleMap, adding markers, setting the map's zoom level
+     */
     override fun onMapReady(googleMap: GoogleMap) {
 
         // display blue marker at position
         googleMap.isMyLocationEnabled = true
 
+        //List of map locations as LatLng type
         val femman = LatLng(57.7087, 11.9705)
         val lejonet = LatLng(57.7157, 11.9923)
         val hagaNorra = LatLng(57.69972, 11.9561)
@@ -56,6 +62,7 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
         val mobil2 = LatLng(57.70754061, 11.93608760)
         val mobil3 = LatLng(57.69729072, 11.92677497)
 
+        //Adding markers at the given map locations, marker color based on the "worst" current measuring value
         googleMap.addMarker(MarkerOptions().position(femman).title("Station Femman").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Femman"))))
         googleMap.addMarker(MarkerOptions().position(lejonet).title("Station Lejonet").icon(
@@ -139,6 +146,10 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
 
     }
 
+    /**
+     * Function for determining the color of a station marker
+     * Returns HUE_GREEN, HUE_ORANGE or HUE_RED depending on the "worst" current measuring value at the station
+     */
     private fun getStationMarkerColor(station : String) : Float {
 
         var returnValue = HUE_GREEN
