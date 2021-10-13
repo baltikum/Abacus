@@ -59,7 +59,7 @@ class AnytimeResultObj (
     val lejonet_winddir: String,
     val mobil1_pm10: String ) {
 
-    fun getValue(sensor: String, station: String): Pair<String, String>  {
+    fun getValue(sensor: String, station: String): Pair<String, String> ? {
         var ret: Pair<String, String>
         when (sensor) {
             "NOx" -> {

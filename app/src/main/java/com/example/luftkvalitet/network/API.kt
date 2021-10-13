@@ -183,11 +183,11 @@ object API {
         for ( entry in list ) {
             var value = entry.getValue(sensor,station)
             if ( time != "" ) {
-                if ( time == value.first ) {
+                if ( time == value?.first ) {
                     filtered.add(value)
                 }
             } else {
-                if ( !value.equals(null) ) {
+                if ( value != null ) {
                     filtered.add(value)
                 }
             }
@@ -436,6 +436,23 @@ object API {
             parsedObjects.add(parsedObj)
         }
         return parsedObjects
+    }
+
+    /**
+     * Check if a sensor is available.
+     * true = available
+     */
+    fun isSensorAvailable(sensor:String, station: String): Boolean {
+        var temp = AnytimeResultObj(
+            "", "", "", "", "",
+            "", "", "", "", "",
+            "", "", "", "", "",
+            "", "", "", "", "",
+            "", "", "", "", "",
+            "", "", "", "", "","",
+            "","",""
+        )
+        return temp.getValue(sensor,station) != null
     }
 
 }

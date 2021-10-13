@@ -52,8 +52,8 @@ class OverViewModel : ViewModel() {
 
     init {
         updateHourData()
-        updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
-        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
+        //updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
+        updateGraphData("2021-09-16","2021-09-16","NOx","Femman","",false) // AppPresets??
     }
 
 
