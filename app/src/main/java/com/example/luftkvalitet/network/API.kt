@@ -61,9 +61,7 @@ object API {
      * Update all listeners
      */
     fun updateListeners(){
-        if ( listener != null ) {
             listener.get()?.onGraphDataUpdated()
-        }
     }
 
     /**
@@ -449,10 +447,27 @@ object API {
             "", "", "", "", "",
             "", "", "", "", "",
             "", "", "", "", "",
-            "", "", "", "", "","",
-            "","",""
+            "", "", "", "", "", "",
+            "", "", ""
         )
-        return temp.getValue(sensor,station) != null
+        return temp.getValue(sensor, station) != null
+    }
+
+    /**
+     * Returns the station ID when given a station name
+     */
+    fun convertStationNames (station: String) : String {
+        var returnString : String = ""
+        when (station) {
+            "Femman" -> returnString = "Femman"
+            "Lejonet" -> returnString = "Lejonet"
+            "Haga Norra" -> returnString = "Haga_Norra"
+            "Haga Södra" -> returnString = "Haga_Sodra"
+            "Linné" -> returnString = "Mobil_1"
+            "Lindholmen" -> returnString = "Mobil_2"
+            "Majorna" -> returnString = "Mobil_3"
+        }
+        return returnString
     }
 
 }
