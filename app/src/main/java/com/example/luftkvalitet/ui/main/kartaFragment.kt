@@ -46,7 +46,7 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
     override fun onMapReady(googleMap: GoogleMap) {
 
         // display blue marker at position
-        //googleMap.isMyLocationEnabled = true
+        googleMap.isMyLocationEnabled = true
 
         val femman = LatLng(57.7087, 11.9705)
         val lejonet = LatLng(57.7157, 11.9923)
@@ -64,14 +64,14 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Haga_Norra"))))
         googleMap.addMarker(MarkerOptions().position(hagaSodra).title("Station Haga Sodra").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Haga_Sodra"))))
-        googleMap.addMarker(MarkerOptions().position(mobil1).title("Mobil 1").icon(
+        googleMap.addMarker(MarkerOptions().position(mobil1).title("Station Linné").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_1"))))
-        googleMap.addMarker(MarkerOptions().position(mobil2).title("Mobil 2").icon(
+        googleMap.addMarker(MarkerOptions().position(mobil2).title("Station Lindholmen").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_2"))))
-        googleMap.addMarker(MarkerOptions().position(mobil3).title("Mobil 3").icon(
+        googleMap.addMarker(MarkerOptions().position(mobil3).title("Station Majorna").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_3"))))
-        googleMap.moveCamera(CameraUpdateFactory.zoomTo(13.0f));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(femman))
+        googleMap.moveCamera(CameraUpdateFactory.zoomTo(12.5f));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(hagaNorra))
 
         googleMap.setOnMarkerClickListener { marker ->
             println("station: "+ marker.title)
@@ -81,9 +81,9 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
                 "Station Lejonet" -> id = "Lejonet"
                 "Station Haga Norra" -> id = "Haga_Norra"
                 "Station Haga Sodra" -> id = "Haga_Sodra"
-                "Mobil 1" -> id = "Mobil_1"
-                "Mobil 2" -> id = "Mobil_2"
-                "Mobil 3" -> id = "Mobil_3"
+                "Station Linné" -> id = "Mobil_1"
+                "Station Lindholmen" -> id = "Mobil_2"
+                "Station Majorna" -> id = "Mobil_3"
             }
             // open popup...
 
