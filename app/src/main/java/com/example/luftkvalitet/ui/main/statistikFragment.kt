@@ -1,6 +1,5 @@
 package com.example.luftkvalitet.ui.main
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,25 +11,21 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.R
-
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 import com.example.luftkvalitet.network.API
-import com.example.luftkvalitet.network.AnytimeResultObj
 import com.example.luftkvalitet.overview.OverViewModel
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
-import com.github.mikephil.charting.utils.Utils.init
-import kotlinx.coroutines.launch
 import java.lang.Boolean
 import java.lang.Boolean.FALSE
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class statistikFragment : Fragment() {
 
@@ -38,7 +33,7 @@ class statistikFragment : Fragment() {
     private var _binding: FragmentStatistikBinding? = null
     private  var labels: ArrayList<String> = ArrayList()
     private var entries: ArrayList<BarEntry> = ArrayList()
-    //private lateinit var barDataSet : BarDataSet
+
     var dataSets: ArrayList<MyBarDataSet> = ArrayList()
     private lateinit var chart: BarChart
     private var week_day: String = "week"
@@ -47,9 +42,11 @@ class statistikFragment : Fragment() {
     private var barDataSet = MyBarDataSet(entries, "")
     private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
     private var compareData = HashMap<String,ArrayList<Pair<String,String>>>()
-    //var station_input: String = "Femman"
     private val binding get() = _binding!!
+
     companion object{
+        fun updateChart() {}
+
         var sensor_input: String = "NO2"
         var station_input: String = "Femman"
     }
@@ -182,6 +179,8 @@ class statistikFragment : Fragment() {
             updateEntries()
             week()
 
+
+            //getDay()
             //xAxis.labelCount = 10
 
             chart.xAxis.granularity = 1f //only intervals of 1 float
@@ -221,24 +220,24 @@ class statistikFragment : Fragment() {
         }
         binding.setNo2.setOnClickListener {
             sensor_input= "NO2"
-            updateChart()
+            //updateChart()
         }
         binding.setNox.setOnClickListener {
             sensor_input= "NOx"
-            updateChart()
+            //updateChart()
         }
 
         binding.setPm25.setOnClickListener {
             sensor_input = "PM2.5"
-            updateChart()
+            //updateChart()
         }
 
         binding.setPm10.setOnClickListener {
             sensor_input = "PM10"
-            updateChart()
+            //updateChart()
         }
         binding.button.setOnClickListener { // behaves like last_day, keep as days
-            updateChart()
+            //updateChart()
         }
 
         return view
@@ -275,11 +274,15 @@ class statistikFragment : Fragment() {
             for ( entry in list ) {
                 var (time, value) = entry //time == time average eller nonaverage
                 println("Time: $time , SensorValue: $value") //sensor value
+                if(value.toFloat() < 0){
+                    value = "0f"
+                }
                 binding.showText1.text = time
                 binding.showText2.text = value
 
                 if(week_day == "week"){
                     week()
+
                 }
                 labels.add(date.subSequence(5, 10) as String) //lägger ut datumet
                 //entries.add(BarEntry(entryIndex, value.toFloat()))
@@ -292,7 +295,7 @@ class statistikFragment : Fragment() {
         notifyChanges()
     }
 
-    fun updateEntries(){
+    private fun updateEntries(){
         barDataSet.clear()
 
         barDataSet.addEntry(BarEntry(0f, 12f))
@@ -304,7 +307,7 @@ class statistikFragment : Fragment() {
         barDataSet.addEntry(BarEntry(6f, 8f))
     }
 
-    fun week(){
+    private fun week(){
 
         labels.clear()
         labels.add("Mån")
@@ -316,11 +319,12 @@ class statistikFragment : Fragment() {
         labels.add("Sön")
     }
 
-    fun notifyChanges(){
+    private fun notifyChanges(){
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
         chart.data.notifyDataChanged()
         chart.notifyDataSetChanged()
         chart.invalidate()
     }
+
 
 }
