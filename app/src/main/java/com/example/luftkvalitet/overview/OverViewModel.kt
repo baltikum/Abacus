@@ -66,7 +66,7 @@ class OverViewModel : ViewModel() {
         }
     }
 
-    fun updateStationData(station: String, binding: FragmentStartBinding) {
+    fun updateStationData(stationName : String, station: String, binding: FragmentStartBinding) {
 
         val dataList = API.getStationDataHourly(station)
 
@@ -81,7 +81,7 @@ class OverViewModel : ViewModel() {
 
         if (dataList != null && dataList.size > 0) {
 
-            binding.showInfo1.text = dataList[0].station
+            binding.showInfo1.text = stationName
             binding.showInfo2.text = dataList[0].latitude_wgs84
             binding.showInfo3.text = dataList[0].longitude_wgs84
 

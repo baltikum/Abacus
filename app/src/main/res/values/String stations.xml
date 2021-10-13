@@ -4,11 +4,11 @@
    <string-array name="stations_array">
         <item>"Select station"</item>
         <item>"Femman"</item>
-        <item>"Haga_Norra"</item>
-        <item>"Haga_Sodra"</item>
+        <item>"Haga Norra"</item>
+        <item>"Haga Södra"</item>
         <item>"Lejonet"</item>
-        <item>"Mobil_1"</item>
-        <item>"Mobil_2"</item>
-        <item>"Mobil_3"</item>
+        <item>"Linné"</item>
+        <item>"Lindholmen"</item>
+        <item>"Majorna"</item>
     </string-array>
 </resources>
