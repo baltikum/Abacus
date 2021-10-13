@@ -26,7 +26,9 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
     private var _binding: FragmentKartaBinding? = null
     private val binding get() = _binding!!
 
-
+    /**
+     * Various functions to handle fragments and tie this fragment to the tabs
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,11 +45,15 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
         return view
     }
 
+    /**
+     * Implementing the GoogleMap, adding markers, setting the map's zoom level
+     */
     override fun onMapReady(googleMap: GoogleMap) {
 
         // display blue marker at position
         googleMap.isMyLocationEnabled = true
 
+        //List of map locations as LatLng type
         val femman = LatLng(57.7087, 11.9705)
         val lejonet = LatLng(57.7157, 11.9923)
         val hagaNorra = LatLng(57.69972, 11.9561)
@@ -56,36 +62,26 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
         val mobil2 = LatLng(57.70754061, 11.93608760)
         val mobil3 = LatLng(57.69729072, 11.92677497)
 
-        googleMap.addMarker(MarkerOptions().position(femman).title("Station Femman").icon(
+        //Adding markers at the given map locations, marker color based on the "worst" current measuring value
+        googleMap.addMarker(MarkerOptions().position(femman).title("Femman").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Femman"))))
-        googleMap.addMarker(MarkerOptions().position(lejonet).title("Station Lejonet").icon(
+        googleMap.addMarker(MarkerOptions().position(lejonet).title("Lejonet").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Lejonet"))))
-        googleMap.addMarker(MarkerOptions().position(hagaNorra).title("Station Haga Norra").icon(
+        googleMap.addMarker(MarkerOptions().position(hagaNorra).title("Haga Norra").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Haga_Norra"))))
-        googleMap.addMarker(MarkerOptions().position(hagaSodra).title("Station Haga Sodra").icon(
+        googleMap.addMarker(MarkerOptions().position(hagaSodra).title("Haga Södra").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Haga_Sodra"))))
-        googleMap.addMarker(MarkerOptions().position(mobil1).title("Station Linné").icon(
+        googleMap.addMarker(MarkerOptions().position(mobil1).title("Linné").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_1"))))
-        googleMap.addMarker(MarkerOptions().position(mobil2).title("Station Lindholmen").icon(
+        googleMap.addMarker(MarkerOptions().position(mobil2).title("Lindholmen").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_2"))))
-        googleMap.addMarker(MarkerOptions().position(mobil3).title("Station Majorna").icon(
+        googleMap.addMarker(MarkerOptions().position(mobil3).title("Majorna").icon(
             BitmapDescriptorFactory.defaultMarker(getStationMarkerColor("Mobil_3"))))
         googleMap.moveCamera(CameraUpdateFactory.zoomTo(12.5f));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(hagaNorra))
 
         googleMap.setOnMarkerClickListener { marker ->
-            println("station: "+ marker.title)
-            var id = ""
-            when (marker.title) {
-                "Station Femman" -> id = "Femman"
-                "Station Lejonet" -> id = "Lejonet"
-                "Station Haga Norra" -> id = "Haga_Norra"
-                "Station Haga Sodra" -> id = "Haga_Sodra"
-                "Station Linné" -> id = "Mobil_1"
-                "Station Lindholmen" -> id = "Mobil_2"
-                "Station Majorna" -> id = "Mobil_3"
-            }
-            // open popup...
+            var id = API.convertStationNames(marker.title)
 
             var popupText = marker.title
             val dataList = API.getStationDataHourly(id)
@@ -139,6 +135,10 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
 
     }
 
+    /**
+     * Function for determining the color of a station marker
+     * Returns HUE_GREEN, HUE_ORANGE or HUE_RED depending on the "worst" current measuring value at the station
+     */
     private fun getStationMarkerColor(station : String) : Float {
 
         var returnValue = HUE_GREEN

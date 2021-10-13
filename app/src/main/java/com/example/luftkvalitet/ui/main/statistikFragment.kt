@@ -14,6 +14,10 @@ import androidx.core.content.ContextCompat
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 import com.example.luftkvalitet.network.API
+
+import com.example.luftkvalitet.network.APIListener
+import com.example.luftkvalitet.network.AnytimeResultObj
+
 import com.example.luftkvalitet.overview.OverViewModel
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
@@ -27,7 +31,14 @@ import java.lang.Boolean.FALSE
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class statistikFragment : Fragment() {
+class statistikFragment : Fragment() , APIListener {
+
+    override fun onGraphDataUpdated() {
+
+        println("snoppar plenty------")
+        println("fyll grafen nu här !------")
+
+    }
 
 
     private var _binding: FragmentStatistikBinding? = null
@@ -59,7 +70,7 @@ class statistikFragment : Fragment() {
 
         _binding = FragmentStatistikBinding.inflate(inflater, container, false)
         val view = binding.root
-
+        API.addListener(this) // Lägg till oss som lyssnare på API
 
         /**
          *      TILL JOHNNY OCH VICTORIA
@@ -244,24 +255,29 @@ class statistikFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun updateChart(){
+    fun updateChart() {
         barDataSet.sensor = sensor_input
         barDataSet.setColors(
             ContextCompat.getColor(chart.context, R.color.green),
             ContextCompat.getColor(chart.context, R.color.orange),
             ContextCompat.getColor(chart.context, R.color.red)
         )
-        if (FALSE) {
-            Toast.makeText(activity, "inside if", Toast.LENGTH_LONG).show() //kommer ej in här
-            overViewModel.updateGraphData(
-                API.rewindOneWeek("2021-09-16"),
-                "2021-09-16",
-                sensor_input,
-                station_input,
-                "13:00+01:00",
-                Boolean.TRUE
-            )
-        }
+
+    if ( !sensor_input.isNullOrEmpty() && !station_input.isNullOrEmpty() ) {
+        overViewModel.updateGraphData(
+            API.rewindOneWeek("2021-09-16"),
+            "2021-09-16",
+            "NOx",
+           "Femman",
+            "13:00+01:00",
+            Boolean.TRUE
+        )
+
+    }
+
+
+
+
 
         var entryIndex = 0f
         //labels.clear()
@@ -270,7 +286,7 @@ class statistikFragment : Fragment() {
         graphData = API.getGraphData()
 
         for ((date, list) in graphData ) {
-            println(date.plus("------"))
+            //println(date.plus("------"))
             for ( entry in list ) {
                 var (time, value) = entry //time == time average eller nonaverage
                 println("Time: $time , SensorValue: $value") //sensor value
