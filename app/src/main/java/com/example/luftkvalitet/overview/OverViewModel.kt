@@ -8,7 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.databinding.FragmentStartBinding
+import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 import com.example.luftkvalitet.network.*
+
 import com.github.mikephil.charting.data.BarEntry
 import kotlinx.coroutines.launch
 import java.lang.Boolean.FALSE
@@ -19,17 +21,39 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
+val stations_lista = arrayOf(
+    "Femman",
+    "Haga_Norra",
+    "Haga_Sodra",
+    "Lejonet",
+    "Mobil_1",
+    "Mobil_2",
+    "Mobil_3" )
 
+val parameter_lista = arrayOf(
+    "Temperature",
+    "Relative_Humidity",
+    "Global_Radiation",
+    "Air_Pressure",
+    "Wind_Speed",
+    "Wind_Direction",
+    "Rain",
+    "NO2",
+    "NOx",
+    "O3",
+    "PM10",
+    "PM2.5" )
 @RequiresApi(Build.VERSION_CODES.O)
 class OverViewModel : ViewModel() {
 
 
-    private val api = API()
+    var station_input: String = "Femman"
+    var sensor_input: String = "NOx"
 
     init {
         updateHourData()
-        updateGraphData(api.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",TRUE)
-       // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
+        updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
+        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
     }
 
 
@@ -38,13 +62,13 @@ class OverViewModel : ViewModel() {
             // todo get current time and date
             val date = "2021-09-17"
             val time = "22:00*"
-            api.updateHourData(date, time)
+            API.updateHourData(date, time)
         }
     }
 
     fun updateStationData(station: String, binding: FragmentStartBinding) {
 
-        val dataList = api.getStationDataHourly(station)
+        val dataList = API.getStationDataHourly(station)
 
         // clear all text
         binding.showInfo1.text = ""
@@ -140,17 +164,12 @@ class OverViewModel : ViewModel() {
                         sensor: String,
                         station: String,
                         time: String,
-                        average: Boolean ) {
+                        average: Boolean) {
 
         viewModelScope.launch {
-            api.fetchGraphData(startDate,endDate,sensor,station,time,average)
+            API.fetchGraphData(startDate,endDate,sensor,station,time,average)
             println("Finished fetching DATA---------------------------------")
-            println("graph size is " + api.getGraphData().size )
+            println("graph size is " + API.getGraphData().size )
         }
-    }
-
-    fun returnApi(): API
-    {
-        return api
     }
 }
