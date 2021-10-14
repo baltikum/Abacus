@@ -62,6 +62,7 @@ object API {
      */
     fun updateListeners(){
         listener.get()?.onGraphDataUpdated()
+
     }
 
     /**

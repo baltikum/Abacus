@@ -31,7 +31,6 @@ class statistikFragment : Fragment() , APIListener {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onGraphDataUpdated() { //callbacker for overviewmodel,
 
-
         println("fyll grafen nu här !------")
         //uppdatera chart efter ny data har hämtats
         if(week_day == "week"){
@@ -73,7 +72,6 @@ class statistikFragment : Fragment() , APIListener {
         val view = binding.root
         API.addListener(this) // Lägg till oss som lyssnare på API
 
-
         entries = ArrayList()
         entries.add(BarEntry(1f, 4f))
         entries.add(BarEntry(2f, 10f))
@@ -99,8 +97,6 @@ class statistikFragment : Fragment() , APIListener {
         dataSets.add(barDataSet)
 
         val data = BarData(dataSets as List<IBarDataSet>?)
-
-
 
 
 
@@ -195,7 +191,6 @@ class statistikFragment : Fragment() , APIListener {
                 Toast.makeText(activity, out, Toast.LENGTH_LONG).show()
                 println(out)
             }
-
 
 
         }

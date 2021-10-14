@@ -146,7 +146,7 @@ class OverViewModel : ViewModel() {
 
 
     /**
-     * update GraphData
+     * updates GraphData inside API and initiates callback to listeners.
      */
     @RequiresApi(Build.VERSION_CODES.O)
     fun updateGraphData(startDate: String,
@@ -159,8 +159,6 @@ class OverViewModel : ViewModel() {
         viewModelScope.launch {
             API.fetchGraphData(startDate,endDate,sensor,station,time,average)
             API.updateListeners()
-            println("Finished fetching DATA---------------------------------")
-            println("graph size is " + API.getGraphData().size )
         }
     }
 }
