@@ -2,7 +2,6 @@
 <resources>
     <string name="selected_station"></string>
    <string-array name="stations_array">
-        <item>"Select station"</item>
         <item>"Femman"</item>
         <item>"Haga Norra"</item>
         <item>"Haga Södra"</item>

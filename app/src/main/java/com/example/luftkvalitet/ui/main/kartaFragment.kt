@@ -1,7 +1,9 @@
 package com.example.luftkvalitet.ui.main
 
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentKartaBinding
 import com.example.luftkvalitet.network.API
@@ -51,7 +54,9 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
     override fun onMapReady(googleMap: GoogleMap) {
 
         // display blue marker at position
-        googleMap.isMyLocationEnabled = true
+
+
+        //googleMap.isMyLocationEnabled = true
 
         //List of map locations as LatLng type
         val femman = LatLng(57.7087, 11.9705)
