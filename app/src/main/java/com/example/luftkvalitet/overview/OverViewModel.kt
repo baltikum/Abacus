@@ -52,8 +52,8 @@ class OverViewModel : ViewModel() {
 
     init {
         updateHourData()
-        updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
-        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
+        //updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
+        updateGraphData("2021-09-16","2021-09-16","NOx","Femman","",false) // AppPresets??
     }
 
 
@@ -66,7 +66,7 @@ class OverViewModel : ViewModel() {
         }
     }
 
-    fun updateStationData(station: String, binding: FragmentStartBinding) {
+    fun updateStationData(stationName : String, station: String, binding: FragmentStartBinding) {
 
         val dataList = API.getStationDataHourly(station)
 
@@ -81,7 +81,7 @@ class OverViewModel : ViewModel() {
 
         if (dataList != null && dataList.size > 0) {
 
-            binding.showInfo1.text = dataList[0].station
+            binding.showInfo1.text = stationName
             binding.showInfo2.text = dataList[0].latitude_wgs84
             binding.showInfo3.text = dataList[0].longitude_wgs84
 
@@ -156,7 +156,7 @@ class OverViewModel : ViewModel() {
 
 
     /**
-     * update GraphData
+     * updates GraphData inside API and initiates callback to listeners.
      */
     @RequiresApi(Build.VERSION_CODES.O)
     fun updateGraphData(startDate: String,
@@ -168,8 +168,7 @@ class OverViewModel : ViewModel() {
 
         viewModelScope.launch {
             API.fetchGraphData(startDate,endDate,sensor,station,time,average)
-            println("Finished fetching DATA---------------------------------")
-            println("graph size is " + API.getGraphData().size )
+            API.updateListeners()
         }
     }
 }

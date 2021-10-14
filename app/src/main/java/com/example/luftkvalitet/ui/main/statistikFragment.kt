@@ -17,6 +17,7 @@ import com.example.luftkvalitet.R
 
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 import com.example.luftkvalitet.network.API
+import com.example.luftkvalitet.network.APIListener
 import com.example.luftkvalitet.network.AnytimeResultObj
 import com.example.luftkvalitet.overview.OverViewModel
 import com.github.mikephil.charting.charts.BarChart
@@ -32,7 +33,13 @@ import kotlinx.coroutines.launch
 import java.lang.Boolean
 import java.lang.Boolean.FALSE
 
-class statistikFragment : Fragment() {
+class statistikFragment : Fragment() , APIListener {
+
+    override fun onGraphDataUpdated() {
+
+        println("fyll grafen nu här !------")
+
+    }
 
 
     private var _binding: FragmentStatistikBinding? = null
@@ -62,28 +69,7 @@ class statistikFragment : Fragment() {
 
         _binding = FragmentStatistikBinding.inflate(inflater, container, false)
         val view = binding.root
-
-
-        /**
-         *      TILL JOHNNY OCH VICTORIA
-         *
-         *      Använd ett liknande call för att hämta grafdata
-         *     overViewModel.updateGraphData("2020-02-08","2020-02-09","PM10","Femman")
-         *
-         *
-         *     OBS!!! En stor hämtning med flera dagar tar lite tid, då funktionen gör ett kall för varje
-         *     dag.
-         *
-         *     Hämtningen körs i bakgrunden.
-         *
-         *     Vi kanske behöver skapa en listener för detta framöver... om någon vill kalla på fornminnen
-         *     Alltså att via en listener väcka fyllning av grafen.
-         *
-         *     via init i OverViewModel hämtas nu 3 senaste dagarnas NOx ifrån Femman
-         *
-         * MVH BALTIKUM
-         * */
-
+        API.addListener(this) // Lägg till oss som lyssnare på API
 
 
 
@@ -94,8 +80,6 @@ class statistikFragment : Fragment() {
         entries.add(BarEntry(4f, 15f))
         entries.add(BarEntry(5f, 13f))
         entries.add(BarEntry(6f, 2f))
-
-
 
 
 
@@ -114,8 +98,6 @@ class statistikFragment : Fragment() {
         dataSets.add(barDataSet)
 
         val data = BarData(dataSets as List<IBarDataSet>?)
-
-
 
 
 
@@ -217,7 +199,6 @@ class statistikFragment : Fragment() {
             }
 
 
-
         }
         binding.setNo2.setOnClickListener {
             sensor_input= "NO2"
@@ -245,24 +226,30 @@ class statistikFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun updateChart(){
+    fun updateChart() {
         barDataSet.sensor = sensor_input
         barDataSet.setColors(
             ContextCompat.getColor(chart.context, R.color.green),
             ContextCompat.getColor(chart.context, R.color.orange),
             ContextCompat.getColor(chart.context, R.color.red)
         )
-        if (FALSE) {
-            Toast.makeText(activity, "inside if", Toast.LENGTH_LONG).show() //kommer ej in här
-            overViewModel.updateGraphData(
-                API.rewindOneWeek("2021-09-16"),
-                "2021-09-16",
-                sensor_input,
-                station_input,
-                "13:00+01:00",
-                Boolean.TRUE
-            )
-        }
+
+    if ( API.isSensorAvailable(sensor_input,station_input)) {
+
+        overViewModel.updateGraphData(
+            API.rewindOneWeek("2021-09-16"),
+            "2021-09-16",
+            "NOx",
+           "Femman",
+            "13:00+01:00",
+            Boolean.TRUE
+        )
+
+    }
+
+
+
+
 
         var entryIndex = 0f
         //labels.clear()
@@ -271,10 +258,10 @@ class statistikFragment : Fragment() {
         graphData = API.getGraphData()
 
         for ((date, list) in graphData ) {
-            println(date.plus("------"))
+            //println(date.plus("------"))
             for ( entry in list ) {
                 var (time, value) = entry //time == time average eller nonaverage
-                println("Time: $time , SensorValue: $value") //sensor value
+                //println("Time: $time , SensorValue: $value") //sensor value
                 binding.showText1.text = time
                 binding.showText2.text = value
 

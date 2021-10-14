@@ -54,7 +54,8 @@ import android.R.color
                 @RequiresApi(Build.VERSION_CODES.O)
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     val type = parent?.getItemAtPosition(position).toString()
-                    overViewModel.updateStationData(type, binding)
+                    val stationID = API.convertStationNames(type)
+                    overViewModel.updateStationData(type, stationID, binding)
                 }
              }
             var gps = LocationActivity(this.requireActivity())

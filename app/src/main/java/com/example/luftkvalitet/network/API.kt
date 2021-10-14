@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.ref.WeakReference
 import java.net.URL
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -48,9 +49,28 @@ private const val ALLTIME = "3ec70191-60d2-4cdd-823e-f92f9938034b/json?" //2
 
 object API {
 
+
+    private var listener = WeakReference<APIListener>(null)
     private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
     private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
 
+
+
+    /**
+     *
+     * Update all listeners
+     */
+    fun updateListeners(){
+            listener.get()?.onGraphDataUpdated()
+    }
+
+    /**
+     *
+     * Add a new listener to this API
+     */
+    fun addListener(listener: APIListener ) {
+        this.listener = WeakReference(listener)
+    }
     /**
      *
      * Fetch data from the hourly API
@@ -161,11 +181,11 @@ object API {
         for ( entry in list ) {
             var value = entry.getValue(sensor,station)
             if ( time != "" ) {
-                if ( time == value.first ) {
+                if ( time == value?.first ) {
                     filtered.add(value)
                 }
             } else {
-                if ( !value.equals(null) ) {
+                if ( value != null ) {
                     filtered.add(value)
                 }
             }
@@ -187,7 +207,7 @@ object API {
         var averageValue = 0.0
         for ( entry in list ) {
             var value = entry.getValue(sensor,station)
-            if ( !value.equals(null) ) {
+            if (value != null) {
                 averageValue += value.second.toDoubleOrNull()!!
             }
         }
@@ -414,6 +434,40 @@ object API {
             parsedObjects.add(parsedObj)
         }
         return parsedObjects
+    }
+
+    /**
+     * Check if a sensor is available.
+     * true = available
+     */
+    fun isSensorAvailable(sensor:String, station: String): Boolean {
+        var temp = AnytimeResultObj(
+            "", "", "", "", "",
+            "", "", "", "", "",
+            "", "", "", "", "",
+            "", "", "", "", "",
+            "", "", "", "", "",
+            "", "", "", "", "", "",
+            "", "", ""
+        )
+        return temp.getValue(sensor, station) != null
+    }
+
+    /**
+     * Returns the station ID when given a station name
+     */
+    fun convertStationNames (station: String) : String {
+        var returnString : String = ""
+        when (station) {
+            "Femman" -> returnString = "Femman"
+            "Lejonet" -> returnString = "Lejonet"
+            "Haga Norra" -> returnString = "Haga_Norra"
+            "Haga Södra" -> returnString = "Haga_Sodra"
+            "Linné" -> returnString = "Mobil_1"
+            "Lindholmen" -> returnString = "Mobil_2"
+            "Majorna" -> returnString = "Mobil_3"
+        }
+        return returnString
     }
 
 }
