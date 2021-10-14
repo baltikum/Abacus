@@ -3,23 +3,12 @@ package com.example.luftkvalitet.overview
 import android.graphics.Color
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.databinding.FragmentStartBinding
-import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 import com.example.luftkvalitet.network.*
-
-import com.github.mikephil.charting.data.BarEntry
+import com.example.luftkvalitet.ui.main.statistikFragment
 import kotlinx.coroutines.launch
-import java.lang.Boolean.FALSE
-import java.lang.Boolean.TRUE
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
-import kotlin.collections.ArrayList
 
 val stations_lista = arrayOf(
     "Femman",
@@ -52,8 +41,9 @@ class OverViewModel : ViewModel() {
 
     init {
         updateHourData()
-        //updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
-        updateGraphData("2021-09-16","2021-09-16","NOx","Femman","",false) // AppPresets??
+        updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
+        // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
+        //updateGraphData("2021-09-16","2021-09-17","NOx","Femman", "12:00+01:00", false)
     }
 
 

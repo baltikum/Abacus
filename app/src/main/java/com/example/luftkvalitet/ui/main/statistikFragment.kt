@@ -1,6 +1,5 @@
 package com.example.luftkvalitet.ui.main
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,54 +11,56 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.viewModelScope
 import com.example.luftkvalitet.R
-
 import com.example.luftkvalitet.databinding.FragmentStatistikBinding
 import com.example.luftkvalitet.network.API
 import com.example.luftkvalitet.network.APIListener
-import com.example.luftkvalitet.network.AnytimeResultObj
 import com.example.luftkvalitet.overview.OverViewModel
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
-import com.github.mikephil.charting.utils.Utils.init
-import kotlinx.coroutines.launch
 import java.lang.Boolean
-import java.lang.Boolean.FALSE
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class statistikFragment : Fragment() , APIListener {
 
-    override fun onGraphDataUpdated() {
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onGraphDataUpdated() { //callbacker for overviewmodel,
 
         println("fyll grafen nu här !------")
-
+        //uppdatera chart efter ny data har hämtats
+        if(week_day == "week"){
+            updateEntries()
+            week()
+            notifyChanges()
+        }
+        if(week_day == "day"){
+            updateEntries()
+            day()
+            notifyChanges()
+        }
     }
 
 
     private var _binding: FragmentStatistikBinding? = null
     private  var labels: ArrayList<String> = ArrayList()
     private var entries: ArrayList<BarEntry> = ArrayList()
-    //private lateinit var barDataSet : BarDataSet
+
     var dataSets: ArrayList<MyBarDataSet> = ArrayList()
     private lateinit var chart: BarChart
-    private var week_day: String = "week"
+
     @RequiresApi(Build.VERSION_CODES.O)
     private val overViewModel = OverViewModel()
     private var barDataSet = MyBarDataSet(entries, "")
     private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
-    private var compareData = HashMap<String,ArrayList<Pair<String,String>>>()
-    //var station_input: String = "Femman"
     private val binding get() = _binding!!
-    companion object{
-        var sensor_input: String = "NO2"
-        var station_input: String = "Femman"
-    }
+    private var week_day = "week"
+    private var sensor_input: String = "NOx"
+    private var station_input: String = "Femman"
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater,
@@ -70,8 +71,6 @@ class statistikFragment : Fragment() , APIListener {
         _binding = FragmentStatistikBinding.inflate(inflater, container, false)
         val view = binding.root
         API.addListener(this) // Lägg till oss som lyssnare på API
-
-
 
         entries = ArrayList()
         entries.add(BarEntry(1f, 4f))
@@ -151,27 +150,22 @@ class statistikFragment : Fragment() , APIListener {
         //last day
         binding.button2.setOnClickListener{
             week_day = "day"
-            barDataSet.clear()
-            updateEntries()
-            labels.clear()
-            updateChart()
-            //labels.clear()
+            updateAPI()
+            /*updateEntries()
+            day()
+            notifyChanges()*/
 
         }
         //last week
         binding.button3.setOnClickListener{
             week_day = "week"
-            updateEntries()
+            updateAPI()
+            /*updateEntries()
             week()
-
-            //xAxis.labelCount = 10
-
-            chart.xAxis.granularity = 1f //only intervals of 1 float
-            notifyChanges()
+            notifyChanges()*/
         }
 
         binding.spinner2.adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.stations_array, android.R.layout.simple_spinner_item).also{
-
                 adapter ->
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -179,11 +173,7 @@ class statistikFragment : Fragment() , APIListener {
             binding.spinner2.adapter = adapter
         }
         binding.spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                val out = "error"
-                Toast.makeText(activity, out, Toast.LENGTH_LONG).show()
-                println(out)
-            }
+
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
@@ -192,94 +182,85 @@ class statistikFragment : Fragment() , APIListener {
 
 
                 Toast.makeText(activity, station_input, Toast.LENGTH_LONG).show()
-                overViewModel.station_input = station_input
-                updateChart()
+                //updateChart()
+                updateAPI()
 
-
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                val out = "error"
+                Toast.makeText(activity, out, Toast.LENGTH_LONG).show()
+                println(out)
             }
 
 
         }
         binding.setNo2.setOnClickListener {
             sensor_input= "NO2"
-            updateChart()
+            if (API.isSensorAvailable(sensor_input, station_input)) {
+                updateAPI()
+            }
         }
         binding.setNox.setOnClickListener {
             sensor_input= "NOx"
-            updateChart()
+            if (API.isSensorAvailable(sensor_input, station_input)) {
+                updateAPI()
+            }
         }
 
         binding.setPm25.setOnClickListener {
             sensor_input = "PM2.5"
-            updateChart()
+            if (API.isSensorAvailable(sensor_input, station_input)) {
+                updateAPI()
+            }
         }
 
         binding.setPm10.setOnClickListener {
             sensor_input = "PM10"
-            updateChart()
+            if (API.isSensorAvailable(sensor_input, station_input)) {
+                updateAPI()
+            }
         }
-        binding.button.setOnClickListener { // behaves like last_day, keep as days
-            updateChart()
+        binding.button.setOnClickListener {
+            if (API.isSensorAvailable(sensor_input, station_input)) {
+                updateAPI()
+            }
         }
 
         return view
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
-    fun updateChart() {
-        barDataSet.sensor = sensor_input
-        barDataSet.setColors(
-            ContextCompat.getColor(chart.context, R.color.green),
-            ContextCompat.getColor(chart.context, R.color.orange),
-            ContextCompat.getColor(chart.context, R.color.red)
-        )
-
-    if ( API.isSensorAvailable(sensor_input,station_input)) {
-
-        overViewModel.updateGraphData(
-            API.rewindOneWeek("2021-09-16"),
-            "2021-09-16",
-            "NOx",
-           "Femman",
-            "13:00+01:00",
-            Boolean.TRUE
-        )
-
-    }
-
-
-
-
-
-        var entryIndex = 0f
-        //labels.clear()
-        barDataSet.clear()
-
-        graphData = API.getGraphData()
-
-        for ((date, list) in graphData ) {
-            //println(date.plus("------"))
-            for ( entry in list ) {
-                var (time, value) = entry //time == time average eller nonaverage
-                //println("Time: $time , SensorValue: $value") //sensor value
-                binding.showText1.text = time
-                binding.showText2.text = value
-
-                if(week_day == "week"){
-                    week()
-                }
-                labels.add(date.subSequence(5, 10) as String) //lägger ut datumet
-                //entries.add(BarEntry(entryIndex, value.toFloat()))
-                barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
-                entryIndex = entryIndex + 1
-
+    private fun updateAPI(){
+        if(sensor_input != null && station_input != null) {
+            Toast.makeText(activity, "no null values", Toast.LENGTH_LONG).show()
+            if(week_day == "week") {
+                    println("................................" )
+                    println("sensor in: " + sensor_input)
+                    println("sensor in: " + station_input)
+                    println("................................" )
+                    overViewModel.updateGraphData(
+                        API.rewindOneWeek("2021-09-16"),
+                        "2021-09-16",
+                        sensor_input,
+                        API.convertStationNames(station_input),
+                        "13:00+01:00",
+                        Boolean.TRUE
+                    )
+            }
+            else if(week_day == "day") {
+                    overViewModel.updateGraphData(
+                        "2021-09-16",
+                        "2021-09-17",
+                        sensor_input,
+                        API.convertStationNames(station_input),
+                        "13:00+01:00",
+                        Boolean.TRUE
+                    )
             }
         }
-
-        notifyChanges()
     }
-
-    fun updateEntries(){
+    private fun updateEntries(){
         barDataSet.clear()
 
         barDataSet.addEntry(BarEntry(0f, 12f))
@@ -291,23 +272,87 @@ class statistikFragment : Fragment() , APIListener {
         barDataSet.addEntry(BarEntry(6f, 8f))
     }
 
-    fun week(){
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun week(){
+        updateBarColor()
 
+        var entryIndex = 0f
         labels.clear()
-        labels.add("Mån")
-        labels.add("Tis")
-        labels.add("Ons")
-        labels.add("Tors")
-        labels.add("Fre")
-        labels.add("Lör")
-        labels.add("Sön")
+        barDataSet.clear()
+        graphData = API.getGraphData()
+
+        for ((date, list) in graphData ) {
+            //println(date.plus("------"))
+            for ( entry in list ) {
+                var (time, value) = entry //time == time average eller nonaverage
+                //println("Time: $time , SensorValue: $value") //sensor value
+                if(value.toFloat() < 0){
+                    value = "0f"
+                }
+                binding.showText1.text = time
+                binding.showText2.text = value
+
+                labels.add(date.subSequence(5, 10) as String) //lägger ut datumet
+                //entries.add(BarEntry(entryIndex, value.toFloat()))
+                barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
+                entryIndex = entryIndex + 1
+
+            }
+        }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun day(){
+        updateBarColor()
+
+        var entryIndex = 0f
+        labels.clear()
+        barDataSet.clear()
+        graphData = API.getGraphData()
+
+        for ((clock, list) in graphData ) {
+            //println(clock.plus("------"))
+            for ( entry in list ) {
+                var (time, value) = entry //time == time average eller nonaverage
+               // println("Time: $time , SensorValue: $value") //sensor value
+                if(value.toFloat() < 0){
+                    value = "0f"
+                }
+                binding.showText1.text = time
+                binding.showText2.text = value
+
+                labels.add(clock as String) //lägger ut tid
+                //entries.add(BarEntry(entryIndex, value.toFloat()))
+                barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
+                entryIndex = entryIndex + 1
+
+            }
+        }
     }
 
-    fun notifyChanges(){
+    private fun notifyChanges(){
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
         chart.data.notifyDataChanged()
         chart.notifyDataSetChanged()
         chart.invalidate()
+    }
+    private fun updateBarColor(){
+        barDataSet.sensor = sensor_input
+        barDataSet.setColors(
+            ContextCompat.getColor(chart.context, R.color.green),
+            ContextCompat.getColor(chart.context, R.color.orange),
+            ContextCompat.getColor(chart.context, R.color.red)
+        )
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun callWeekOrDay(){
+        if(week_day == "week"){
+            week()
+            notifyChanges()
+        }
+        if(week_day == "day"){
+            day()
+            notifyChanges()
+        }
     }
 
 }

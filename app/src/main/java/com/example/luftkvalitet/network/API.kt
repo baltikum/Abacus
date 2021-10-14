@@ -61,7 +61,8 @@ object API {
      * Update all listeners
      */
     fun updateListeners(){
-            listener.get()?.onGraphDataUpdated()
+        listener.get()?.onGraphDataUpdated()
+
     }
 
     /**
