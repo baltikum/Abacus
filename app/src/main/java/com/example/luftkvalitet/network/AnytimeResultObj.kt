@@ -70,10 +70,10 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_nox) }
                     "Haga_Norra" -> { ret = Pair(time, haganorra_nox) }
-                    "Mobil_1" -> { ret = Pair(time, mobil1_nox) }
-                    "Mobil_2" -> { ret = Pair(time, mobil2_nox) }
-                    "Mobil_3" -> { ret = Pair(time, mobil3_nox) }
-                    else -> { return null!! }
+                    "Mobil_1" -> { ret = Pair(time, mobil1_nox) } //Linné
+                    "Mobil_2" -> { ret = Pair(time, mobil2_nox) } //Lindholmen
+                    "Mobil_3" -> { ret = Pair(time, mobil3_nox) } //Majorna
+                    else -> { return null }
                 }
             }
 
@@ -84,14 +84,14 @@ class AnytimeResultObj (
                     "Mobil_1" -> { ret = Pair(time, mobil1_no2) }
                     "Mobil_2" -> { ret = Pair(time, mobil2_no2) }
                     "Mobil_3" -> { ret = Pair(time, mobil3_no2) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
             "O3" -> {
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_o3) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -102,7 +102,7 @@ class AnytimeResultObj (
                     "Mobil_1" -> { ret = Pair(time, mobil1_pm10) }
                     "Mobil_2" -> { ret = Pair(time, mobil2_pm10) }
                     "Mobil_3" -> { ret = Pair(time, mobil3_pm10) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -110,7 +110,7 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_pm25) }
                     "Haga_Sodra" -> { ret = Pair(time, hagasodra_pm25) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -118,7 +118,7 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_windspeed) }
                     "Lejonet" -> { ret = Pair(time, lejonet_windspeed) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -126,7 +126,7 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_winddir) }
                     "Lejonet" -> { ret = Pair(time, lejonet_winddir) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -134,7 +134,7 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_rain) }
                     "Lejonet" -> { ret = Pair(time, lejonet_rain) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -142,7 +142,7 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_temp) }
                     "Lejonet" -> { ret = Pair(time, lejonet_temp) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -150,7 +150,7 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_rh) }
                     "Lejonet" -> { ret = Pair(time, lejonet_rh) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -158,7 +158,7 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_globrad) }
                     "Lejonet" -> { ret = Pair(time, lejonet_globrad) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
@@ -166,12 +166,12 @@ class AnytimeResultObj (
                 when (station) {
                     "Femman" -> { ret = Pair(time, femman_airpressure) }
                     "Lejonet" -> { ret = Pair(time, lejonet_airpressure) }
-                    else -> { return null!! }
+                    else -> { return null }
                 }
             }
 
             else -> {
-                return null!!
+                return null
             }
         }
         return ret

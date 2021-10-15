@@ -1,16 +1,10 @@
 package com.example.luftkvalitet.ui.main
 
-import android.content.Context
-import android.graphics.Color
+
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
-import com.example.luftkvalitet.R
-import com.example.luftkvalitet.databinding.FragmentStartBinding
-import com.example.luftkvalitet.databinding.FragmentStatistikBinding
-import com.example.luftkvalitet.network.API
-import com.example.luftkvalitet.overview.OverViewModel
+
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 

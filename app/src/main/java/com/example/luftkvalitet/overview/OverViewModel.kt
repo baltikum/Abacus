@@ -36,8 +36,6 @@ val parameter_lista = arrayOf(
 class OverViewModel : ViewModel() {
 
 
-    var station_input: String = "Femman"
-    var sensor_input: String = "NOx"
 
     init {
         updateHourData()
@@ -157,8 +155,11 @@ class OverViewModel : ViewModel() {
                         average: Boolean) {
 
         viewModelScope.launch {
+            //println("updategraphData......................................")
             API.fetchGraphData(startDate,endDate,sensor,station,time,average)
+            //println("fetched new graphData......................................")
             API.updateListeners()
+            //println("updated listener.........................................")
         }
     }
 }
