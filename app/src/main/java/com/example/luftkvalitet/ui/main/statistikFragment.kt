@@ -54,10 +54,10 @@ class statistikFragment : Fragment() , APIListener {
     private var barDataSet = MyBarDataSet(entries, "")
     private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
     private val binding get() = _binding!!
-    private var week_day = "week"
+    private var week_day = "day"
     private var sensor_input: String = "NOx"
     private var station_input: String = "Femman"
-
+    private var entryIndex: Float = 0f
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -221,10 +221,6 @@ class statistikFragment : Fragment() , APIListener {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateAPI(){
       if(week_day == "week") {
-          println("................................" )
-          println("sensor in: " + sensor_input)
-          println("sensor in: " + station_input)
-          println("................................" )
           overViewModel.updateGraphData(
               API.rewindOneWeek("2021-09-16"),
               "2021-09-16",
@@ -250,8 +246,7 @@ class statistikFragment : Fragment() , APIListener {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun week(){
         updateBarColor()
-        var entryIndex = 0f
-
+        entryIndex = 0f
         labels.clear()
         barDataSet.clear()
         graphData = API.getGraphData()
@@ -270,20 +265,20 @@ class statistikFragment : Fragment() , APIListener {
 
                 labels.add(date.subSequence(5, 10) as String) //lägger ut datumet
                 barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
-                entryIndex = entryIndex + 1
+                entryIndex += 1
 
             }
         }
-       chart.data //set the chart data to be able to modify it later
+        chart.data //set the chart data to be able to modify it later
         chart.setVisibleXRangeMinimum(7f) //set x axis range
+        //allow 7 values to be displayed at once on the x-axis, not more
         chart.setVisibleXRangeMaximum(7f)
 
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun day(){
         updateBarColor()
-
-        var entryIndex = 0f
+        entryIndex = 0f
         labels.clear()
         barDataSet.clear()
 
@@ -291,7 +286,7 @@ class statistikFragment : Fragment() , APIListener {
 
         for ((date, list) in graphData ) {
             for ( entry in list ) {
-                var (time, value) = entry //time == time average eller nonaverage
+                var (time, value) = entry //time == clock time
                 println("Time: $time , SensorValue: $value") //sensor value
                 if(value.toFloatOrNull() == null)
                     value = "0"
@@ -300,7 +295,7 @@ class statistikFragment : Fragment() , APIListener {
 
                 labels.add(time.subSequence(0, 5) as String)
                 barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
-                entryIndex = entryIndex + 1
+                entryIndex += 1
 
             }
         }
@@ -310,7 +305,6 @@ class statistikFragment : Fragment() , APIListener {
     }
 
     private fun notifyChanges(){
-
         chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         chart.animateY(1000)
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
@@ -326,6 +320,7 @@ class statistikFragment : Fragment() , APIListener {
         chart.data.notifyDataChanged()
         chart.invalidate()
     }
+    /*calls on MyBarDataSet and customize the color accordig to sensor input*/
     private fun updateBarColor(){
         barDataSet.sensor = sensor_input
         barDataSet.setColors(

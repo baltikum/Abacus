@@ -7,7 +7,7 @@ import androidx.annotation.RequiresApi
 
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-
+/*this class extends BarDataSet class so it can override its getColor function and change color of barchart as we want*/
 class MyBarDataSet(yVals: MutableList<BarEntry>?, label: String?) : BarDataSet(yVals, label) {
 
     private var lowValue: Float = 10f
@@ -19,7 +19,7 @@ class MyBarDataSet(yVals: MutableList<BarEntry>?, label: String?) : BarDataSet(y
     override fun getEntryIndex(e: BarEntry?): Int {
         TODO("Not yet implemented")
     }
-
+    /*takes sensor input and adjust the color depending of its value*/
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getColor(index: Int): Int {
         if(sensor == "PM2.5"){
@@ -37,7 +37,7 @@ class MyBarDataSet(yVals: MutableList<BarEntry>?, label: String?) : BarDataSet(y
             lowValue = 36f
             highValue = 48f
         }
-        if(sensor == "NOx"){ //researcha värdena!!
+        if(sensor == "NOx"){
 
             lowValue = 4f
             highValue = 12f
