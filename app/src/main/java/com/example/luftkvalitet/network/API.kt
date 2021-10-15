@@ -472,4 +472,22 @@ object API {
         return returnString
     }
 
+    /**
+     * Returns the station name when given Id
+     */
+    fun convertIdNames (id: String) : String {
+        var returnString : String = ""
+        when(id) {
+            "Femman" -> returnString = "Femman"
+            "Lejonet" -> returnString = "Lejonet"
+            "Haga_Norra" -> returnString = "Haga Norra"
+            "Haga_Sodra" -> returnString = "Haga Södra"
+            "Mobil_1" -> returnString = "Linné"
+            "Mobil_2" -> returnString = "Lindholmen"
+            "Mobil_3" -> returnString = "Majorna"
+        }
+        return returnString
+    }
+
+
 }

@@ -13,10 +13,12 @@
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/drawable/ic_baseline_near_me_24.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/drawable/ic_launcher_background.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/drawable/spinner_bg.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/drawable/spinner_sla.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/layout/activity_main.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/layout/activity_splash_screen.xml" value="0.29739583333333336" />
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/layout/fragment_karta.xml" value="0.33" />
-        <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/layout/fragment_start.xml" value="0.29739583333333336" />
+        <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/layout/fragment_start.xml" value="0.5" />
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/layout/fragment_statistik.xml" value="0.2984375" />
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15625" />
         <entry key="..\:/Users/Kevin/Desktop/Abacus/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.31354166666666666" />
