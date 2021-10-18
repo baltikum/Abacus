@@ -136,7 +136,7 @@ class statistikFragment : Fragment() , APIListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 station_input = parent?.getItemAtPosition(position).toString()
-                if (API.isSensorAvailable(sensor_input, station_input)) {
+                if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
                     updateAPI()
                 }
                 else{
