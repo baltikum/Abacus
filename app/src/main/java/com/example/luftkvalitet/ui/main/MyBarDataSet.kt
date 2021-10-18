@@ -17,7 +17,7 @@ class MyBarDataSet(yVals: MutableList<BarEntry>?, label: String?) : BarDataSet(y
     @RequiresApi(Build.VERSION_CODES.O)
 
     override fun getEntryIndex(e: BarEntry?): Int {
-        TODO("Not yet implemented")
+        return 0
     }
     /*takes sensor input and adjust the color depending of its value*/
     @RequiresApi(Build.VERSION_CODES.O)
