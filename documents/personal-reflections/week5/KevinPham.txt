@@ -1,0 +1,12 @@
+What do I want to learn or understand better?
+I want to make the app more user-friendly and learn what kind of design decisions are crucial to the user. (Same as last week)
+
+How can I help someone else, or the entire team, to learn something new?
+I can provide another perspective.
+
+What is my contribution towards the team’s use of Scrum?
+I have had more communication with the team members and attended developing sessions to keep the workflow going.
+
+What is my contribution towards the team’s deliveries?
+I redid the design of the startFragment and added app icon and a splash screen.
+I also did some small changes/tweaks to the location code to be more informative to the user.

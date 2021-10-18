@@ -10,12 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.ViewModelProvider
 import com.example.luftkvalitet.R
 import com.example.luftkvalitet.databinding.FragmentStartBinding
 import com.example.luftkvalitet.network.API
 import com.example.luftkvalitet.overview.OverViewModel
-import android.R.color
 
 
 
@@ -37,7 +35,6 @@ import android.R.color
 
             _binding = FragmentStartBinding.inflate(inflater, container, false)
             val view = binding.root
-
             binding.spinner.adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.stations_array, android.R.layout.simple_spinner_item).also{
                     adapter ->
                 // Specify the layout to use when the list of choices appears
@@ -65,10 +62,13 @@ import android.R.color
                 if(gps.getLocation()?.equals(null) == false)
                 {
                     var station = API.getClosestStationName(gps.getLocation()!!.latitude,gps.getLocation()!!.longitude)
-                    binding.spinner.setSelection((binding.spinner.adapter as ArrayAdapter<CharSequence>).getPosition(station))
+                    val stationName = API.convertIdNames(station)
+                    binding.spinner.setSelection((binding.spinner.adapter as ArrayAdapter<CharSequence>).getPosition(stationName))
                 }
                 else {
-                    Toast.makeText(activity,"Try Again!",Toast.LENGTH_SHORT).show()
+                    if (gps.isLocationEnabled()) {
+                        Toast.makeText(activity, "Try Again!", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 

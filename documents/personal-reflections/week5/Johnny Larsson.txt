@@ -1,0 +1,21 @@
+What do I want to learn or understand better?
+I want to learn more about the bugs around the graphs and how to fix them until Wednesday next week:
+
+
+How can I help someone else, or the entire team, to learn something new?
+As we mostly have the statistics tab left, I can help with why the problems we have are there, so that we together can fix them.
+
+
+What is my contribution towards the team’s use of Scrum?
+I stared with using an randomizer to help assign the different roles for the week.
+I have been the scrum master and have been organizing and taken the lead in the meetings, and worked
+hard to make sure things get done.
+
+
+What is my contribution towards the team’s deliveries?
+I have worked with Victoria on the statistics page. Also with Mattias as he made the helper methods we needed for the graphs
+and Lukas when he helped us with some crashes.
+We have implemented 4 buttons for different sensor values, 2 buttons for choose last day or last week, and a spinner to choose station.
+It was a lot harder then I thought with a lot of different bugs. We had to make changes in Mattias code so it didnt crash when he had null
+values. We got it working with different colors for different values in the graph, that the x-axis change values and scale when we change
+form last day with 24 entries, vs last week with an average for the last 7 days.

@@ -36,14 +36,12 @@ val parameter_lista = arrayOf(
 class OverViewModel : ViewModel() {
 
 
-    var station_input: String = "Femman"
-    var sensor_input: String = "NOx"
 
     init {
         updateHourData()
-        updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
+        //updateGraphData(API.rewindOneWeek("2021-09-16"),"2021-09-16","NOx","Femman","12:00+01:00",true)
         // updateGraphData(api.todaysDate(),api.rewindOneWeek(api.todaysDate()),"NOx","Femman") // AppPresets??
-        //updateGraphData("2021-09-16","2021-09-17","NOx","Femman", "12:00+01:00", false)
+        updateGraphData("2021-09-16","2021-09-16","NOx","Femman", "", false)
     }
 
 
@@ -157,8 +155,11 @@ class OverViewModel : ViewModel() {
                         average: Boolean) {
 
         viewModelScope.launch {
+            //println("updategraphData......................................")
             API.fetchGraphData(startDate,endDate,sensor,station,time,average)
+            //println("fetched new graphData......................................")
             API.updateListeners()
+            //println("updated listener.........................................")
         }
     }
 }

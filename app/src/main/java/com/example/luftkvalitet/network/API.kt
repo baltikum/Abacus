@@ -51,8 +51,8 @@ object API {
 
 
     private var listener = WeakReference<APIListener>(null)
-    private val hourData = HashMap<String, ArrayList<HourlyResultObj>>()
-    private var graphData = HashMap<String,ArrayList<Pair<String,String>>>()
+    private val hourData = LinkedHashMap<String, ArrayList<HourlyResultObj>>()
+    private var graphData = LinkedHashMap<String,ArrayList<Pair<String,String>>>()
 
 
 
@@ -137,7 +137,7 @@ object API {
                                time: String,
                                average: Boolean) {
         graphData.clear()
-        var fetchedData = HashMap<String, ArrayList<AnytimeResultObj>>()
+        var fetchedData = LinkedHashMap<String, ArrayList<AnytimeResultObj>>()
 
         var start = stringToDateConverter(dateStart)
         var end = stringToDateConverter(dateEnd)
@@ -208,7 +208,8 @@ object API {
         var averageValue = 0.0
         for ( entry in list ) {
             var value = entry.getValue(sensor,station)
-            if (value != null) {
+            if (value != null && value.second.toDoubleOrNull()!= null) {
+                //println("value :" + value.second.toDoubleOrNull())
                 averageValue += value.second.toDoubleOrNull()!!
             }
         }
@@ -470,5 +471,23 @@ object API {
         }
         return returnString
     }
+
+    /**
+     * Returns the station name when given Id
+     */
+    fun convertIdNames (id: String) : String {
+        var returnString : String = ""
+        when(id) {
+            "Femman" -> returnString = "Femman"
+            "Lejonet" -> returnString = "Lejonet"
+            "Haga_Norra" -> returnString = "Haga Norra"
+            "Haga_Sodra" -> returnString = "Haga Södra"
+            "Mobil_1" -> returnString = "Linné"
+            "Mobil_2" -> returnString = "Lindholmen"
+            "Mobil_3" -> returnString = "Majorna"
+        }
+        return returnString
+    }
+
 
 }
