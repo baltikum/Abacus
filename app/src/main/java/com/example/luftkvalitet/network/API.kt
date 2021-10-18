@@ -452,8 +452,6 @@ object API {
             "", "", "", "", "", "",
             "", "", ""
         )
-        if(temp.getValue(sensor, station) == null)
-        println("null")
 
         return temp.getValue(sensor, station) != null
     }

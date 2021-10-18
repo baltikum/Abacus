@@ -155,7 +155,7 @@ class statistikFragment : Fragment() , APIListener {
         }
         binding.setNo2.setOnClickListener {
             sensor_input= "NO2"
-            if (API.isSensorAvailable(sensor_input, station_input)) {
+            if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
                 binding.setValue.text = sensor_input
                 updateAPI()
             }
@@ -166,7 +166,7 @@ class statistikFragment : Fragment() , APIListener {
         }
         binding.setNox.setOnClickListener {
             sensor_input= "NOx"
-            if (API.isSensorAvailable(sensor_input, station_input)) {
+            if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
                 binding.setValue.text = sensor_input
                 updateAPI()
             }
@@ -178,7 +178,7 @@ class statistikFragment : Fragment() , APIListener {
 
         binding.setPm25.setOnClickListener {
             sensor_input = "PM2.5"
-            if (API.isSensorAvailable(sensor_input, station_input)) {
+            if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
                 binding.setValue.text = sensor_input
                 updateAPI()
             }
@@ -190,7 +190,7 @@ class statistikFragment : Fragment() , APIListener {
 
         binding.setPm10.setOnClickListener {
             sensor_input = "PM10"
-            if (API.isSensorAvailable(sensor_input, station_input)) {
+            if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
                 binding.setValue.text = sensor_input
                 updateAPI()
             }
