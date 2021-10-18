@@ -74,15 +74,6 @@ class statistikFragment : Fragment() , APIListener {
         chart = binding.barChart
 
 
-
-        barDataSet.setColors(
-            ContextCompat.getColor(chart.context, R.color.green),
-            ContextCompat.getColor(chart.context, R.color.orange),
-            ContextCompat.getColor(chart.context, R.color.red)
-        )
-
-
-
         dataSets.add(barDataSet)
 
         val data = BarData(dataSets as List<IBarDataSet>?)
