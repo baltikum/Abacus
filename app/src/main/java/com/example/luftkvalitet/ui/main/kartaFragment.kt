@@ -55,8 +55,17 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
 
         // display blue marker at position
 
-
-        //googleMap.isMyLocationEnabled = true
+        //Prevents the crash. Find me works after restart and permissions set.
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            googleMap.isMyLocationEnabled = true
+        }
 
         //List of map locations as LatLng type
         val femman = LatLng(57.7087, 11.9705)

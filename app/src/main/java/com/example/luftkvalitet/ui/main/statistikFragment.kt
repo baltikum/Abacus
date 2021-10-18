@@ -74,15 +74,6 @@ class statistikFragment : Fragment() , APIListener {
         chart = binding.barChart
 
 
-
-        barDataSet.setColors(
-            ContextCompat.getColor(chart.context, R.color.green),
-            ContextCompat.getColor(chart.context, R.color.orange),
-            ContextCompat.getColor(chart.context, R.color.red)
-        )
-
-
-
         dataSets.add(barDataSet)
 
         val data = BarData(dataSets as List<IBarDataSet>?)
@@ -96,7 +87,7 @@ class statistikFragment : Fragment() , APIListener {
         chart.axisLeft.setDrawGridLines(false)
         chart.xAxis.setDrawGridLines(false)
         chart.xAxis.setDrawAxisLine(false)
-
+        chart.axisLeft.axisMinimum = 0F
         //remove right y-axis
         chart.axisRight.isEnabled = false
 
@@ -123,12 +114,12 @@ class statistikFragment : Fragment() , APIListener {
         xAxis.position = XAxis.XAxisPosition.BOTTOM
 
         //last day
-        binding.button2.setOnClickListener{
+        binding.setDay.setOnClickListener{
             week_day = "day"
             updateAPI()
         }
         //last week
-        binding.button3.setOnClickListener{
+        binding.setWeek.setOnClickListener{
             week_day = "week"
             updateAPI()
         }
@@ -164,7 +155,8 @@ class statistikFragment : Fragment() , APIListener {
         }
         binding.setNo2.setOnClickListener {
             sensor_input= "NO2"
-            if (API.isSensorAvailable(sensor_input, station_input)) {
+            if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
+                binding.setValue.text = sensor_input
                 updateAPI()
             }
             else{
@@ -174,7 +166,8 @@ class statistikFragment : Fragment() , APIListener {
         }
         binding.setNox.setOnClickListener {
             sensor_input= "NOx"
-            if (API.isSensorAvailable(sensor_input, station_input)) {
+            if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
+                binding.setValue.text = sensor_input
                 updateAPI()
             }
             else{
@@ -185,7 +178,8 @@ class statistikFragment : Fragment() , APIListener {
 
         binding.setPm25.setOnClickListener {
             sensor_input = "PM2.5"
-            if (API.isSensorAvailable(sensor_input, station_input)) {
+            if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
+                binding.setValue.text = sensor_input
                 updateAPI()
             }
             else{
@@ -196,16 +190,8 @@ class statistikFragment : Fragment() , APIListener {
 
         binding.setPm10.setOnClickListener {
             sensor_input = "PM10"
-            if (API.isSensorAvailable(sensor_input, station_input)) {
-                updateAPI()
-            }
-            else{
-                Toast.makeText(activity, "data not available", Toast.LENGTH_SHORT).show()
-
-            }
-        }
-        binding.button.setOnClickListener {
-            if (API.isSensorAvailable(sensor_input, station_input)) {
+            if (API.isSensorAvailable(sensor_input, API.convertStationNames(station_input))) {
+                binding.setValue.text = sensor_input
                 updateAPI()
             }
             else{
@@ -260,8 +246,7 @@ class statistikFragment : Fragment() , APIListener {
                     value = "0"
                 if(value.toFloat() < 0)
                     value = "0"
-                binding.showText1.text = time
-                binding.showText2.text = value
+
 
                 labels.add(date.subSequence(5, 10) as String) //lägger ut datumet
                 barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
@@ -312,21 +297,13 @@ class statistikFragment : Fragment() , APIListener {
         chart.notifyDataSetChanged()
         chart.invalidate()
     }
-    private fun delete(){
-
-        chart.fitScreen()
-        chart.xAxis.valueFormatter = null
-        chart.notifyDataSetChanged()
-        chart.data.notifyDataChanged()
-        chart.invalidate()
-    }
     /*calls on MyBarDataSet and customize the color accordig to sensor input*/
     private fun updateBarColor(){
         barDataSet.sensor = sensor_input
         barDataSet.setColors(
             ContextCompat.getColor(chart.context, R.color.green),
-            ContextCompat.getColor(chart.context, R.color.orange),
-            ContextCompat.getColor(chart.context, R.color.red)
+            ContextCompat.getColor(chart.context, R.color.red),
+            ContextCompat.getColor(chart.context, R.color.yellow)
         )
     }
 

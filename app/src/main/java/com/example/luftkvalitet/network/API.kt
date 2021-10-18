@@ -452,6 +452,7 @@ object API {
             "", "", "", "", "", "",
             "", "", ""
         )
+
         return temp.getValue(sensor, station) != null
     }
 
