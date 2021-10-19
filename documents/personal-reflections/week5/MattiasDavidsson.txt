@@ -1,0 +1,17 @@
+- What do I want to learn or understand better?
+
+Considering the application I have good knowledge about all the parts now and most of it is done now so I feel confident about that.
+Also the Scrum / DoD / KPI parts are also clear to me now. Theres always more to learn, I would have to say that gradle is something that I would want to learn more about. This part has been delt with through the project but barely scratched the surface.
+
+
+- How can I help someone else, or the entire team, to learn something new?
+
+Still trying to provide the team with my knowledge of the API and basically anything I might know that they dont.
+
+- What is my contribution towards the team’s use of Scrum?
+I was product owner this week and I feel that i pushed the important parts well but also got
+plenty more than this done this week. We had a really productive week. Hoping to become and try out scrummaster next week.
+
+- What is my contribution towards the team’s deliveries?
+I this week also do most backend code. Developing the API with further functionallity such as a listener and more choices.
+Ive also spent alot of time helping out with bugs and getting stuff working for the others this week. 
