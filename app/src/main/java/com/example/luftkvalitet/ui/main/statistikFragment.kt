@@ -206,26 +206,25 @@ class statistikFragment : Fragment() , APIListener {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateAPI(){
-      if(week_day == "week") {
-          overViewModel.updateGraphData(
-              API.rewindOneWeek("2021-09-16"),
-              "2021-09-16",
-              sensor_input,
-              API.convertStationNames(station_input),
-              "13:00+01:00",
-              Boolean.TRUE
-          )
-      }
-      else if(week_day == "day") {
-          overViewModel.updateGraphData(
-              "2021-09-16",
-              "2021-09-16",
-              sensor_input,
-              API.convertStationNames(station_input),
-              "",
-              Boolean.FALSE
-          )
-      }
+      if (week_day == "week") {
+              overViewModel.updateGraphData(
+                  API.rewindOneWeek("2021-09-16"),
+                  "2021-09-16",
+                  sensor_input,
+                  API.convertStationNames(station_input),
+                  "13:00+01:00",
+                  Boolean.TRUE
+              )
+          } else if (week_day == "day") {
+              overViewModel.updateGraphData(
+                  "2021-09-16",
+                  "2021-09-16",
+                  sensor_input,
+                  API.convertStationNames(station_input),
+                  "",
+                  Boolean.FALSE
+              )
+          }
 
     }
 

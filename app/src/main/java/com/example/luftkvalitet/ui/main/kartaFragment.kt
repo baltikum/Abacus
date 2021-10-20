@@ -179,8 +179,8 @@ class kartaFragment : Fragment(), OnMapReadyCallback{
                             continue
                         } else {
                             println("Station: " + station + data.raw_value)
-                            if(data.raw_value.toDouble() > 4){
-                                if (data.raw_value.toDouble() > 12) {
+                            if(data.raw_value.toDouble() > 15){
+                                if (data.raw_value.toDouble() > 30) {
                                     return HUE_RED
                                 }
                                 returnValue = HUE_ORANGE
