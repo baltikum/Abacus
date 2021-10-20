@@ -93,9 +93,9 @@ class OverViewModel : ViewModel() {
                         if (data.raw_value.toDoubleOrNull() == null) {
                             continue
                         } else {
-                            if(data.raw_value.toDouble() < 4){
+                            if(data.raw_value.toDouble() < 15){
                                 binding.showInfo5.setTextColor(Color.GREEN)
-                            } else if (data.raw_value.toDouble() > 12) {
+                            } else if (data.raw_value.toDouble() > 30) {
                                 binding.showInfo5.setTextColor(Color.RED)
                             } else {
                                 binding.showInfo5.setTextColor(Color.parseColor ("#D1D100"))

@@ -39,8 +39,8 @@ class MyBarDataSet(yVals: MutableList<BarEntry>?, label: String?) : BarDataSet(y
         }
         if(sensor == "NOx"){
 
-            lowValue = 4f
-            highValue = 12f
+            lowValue = 15f
+            highValue = 30f
         }
         if(getEntryForIndex(index).y <= lowValue){ //grön
             return mColors.get(0)

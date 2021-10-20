@@ -9,60 +9,63 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
-        android:layout_width="346dp"
-        android:layout_height="365dp"
+        android:layout_width="380dp"
+        android:layout_height="393dp"
         android:layout_margin="32dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintTop_toBottomOf="@+id/set_week" />
 
     <Button
         android:id="@+id/set_week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="15dp"
         android:text="Last week"
-        app:layout_constraintBottom_toTopOf="@+id/barChart"
-        app:layout_constraintStart_toEndOf="@+id/set_day" />
+        app:layout_constraintStart_toEndOf="@+id/set_day"
+        app:layout_constraintTop_toBottomOf="@+id/set_nox" />
 
     <Button
         android:id="@+id/set_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:text="Last day"
-        app:layout_constraintBottom_toTopOf="@+id/barChart"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_no2" />
 
     <TextView
         android:id="@+id/set_sensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="5dp"
         android:text="sensor:"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/set_value"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/set_week"
         app:layout_constraintTop_toBottomOf="@+id/set_pm10" />
 
     <TextView
         android:id="@+id/set_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="40dp"
         android:text="NOx"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/set_sensor"
         app:layout_constraintTop_toBottomOf="@+id/set_pm10" />
 
@@ -79,8 +82,8 @@
         android:id="@+id/set_no2"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="5dp"
         android:text="NO2"
         app:layout_constraintEnd_toStartOf="@+id/set_nox"
@@ -91,7 +94,7 @@
         android:id="@+id/set_nox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="5dp"
         android:text="NOx"
         app:layout_constraintEnd_toStartOf="@+id/set_pm25"
@@ -101,7 +104,7 @@
         android:id="@+id/set_pm25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="5dp"
         android:text="PM 2.5"
         app:layout_constraintEnd_toStartOf="@+id/set_pm10"
@@ -111,10 +114,10 @@
         android:id="@+id/set_pm10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
         android:text="PM 10"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/set_pm25"
         app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
 
