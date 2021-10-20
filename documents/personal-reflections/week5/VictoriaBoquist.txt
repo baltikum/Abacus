@@ -1,0 +1,16 @@
+-what do I want to learn or understand better?
+I want to understand how to get rid of our bugs in statistikFragment
+
+-how can I help someone else, or the entire team, to learn something new?
+share my ideas and knowledge in UI, bargraphs and spinners
+
+-what is my contribution towards the team’s use of Scrum?
+this week I were not assigned a role by the randomizer, i have been in the team meetings and trying to contribute.
+
+
+-what is my contribution towards the team’s deliveries?
+ we worked together with lukas and mattias, and got rid of one big bug which caused the app to crash often.
+mattias helped us use his helper methods so we could fetch the api data.
+me and Johnny have worked a lot with the charts, we have managed to change color of the bar graph based on different values,
+connected the GUI with the API fetching, and implemented a working spinner for stations and buttons for the sensors,
+ as well as fetch the API for last day or week depending of what the user chooses.
