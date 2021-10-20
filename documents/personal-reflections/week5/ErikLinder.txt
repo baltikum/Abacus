@@ -1,0 +1,15 @@
+- What do I want to learn or understand better?
+
+We are approaching a ready product, and this week I will continue work on the map with Lukas and getting it ready for the "MVP" (minimal valuable product). In doing so we need to figure out how to best change the color of the markers and the best way to display the measuring values from the API for that station, which works best for user friendliness of the app. 
+
+- How can I help someone else, or the entire team, to learn something new?
+
+A lot of the work now is done via team effort, me and Lukas help eachother as best we can and different parts of the team also get help from eachother when dealing with eachothers' parts of the code/program. 
+
+- What is my contribution towards the team’s use of Scrum?
+
+I was the secretary for this week, so apart from attending our meetings and establishing the week's goals I also took notes and tried my best to get people to clarify what they meant during the meetings to give the notes better value and more relevance when/if we read them. 
+
+- What is my contribution towards the team’s deliveries?
+
+The app now has a map with markers that changes color (green/orange/red) based on the worst current measuring value at that station, as well as displays the current values for that station when the user presses that marker. 

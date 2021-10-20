@@ -1,0 +1,13 @@
+-What do I want to learn or understand better?
+I will have to learn more about the google maps api. I will work with Erik this sprint to finish up on the map segment of the app.
+
+-How can I help someone else, or the entire team, to learn something new?
+Me and Erik worked together and helped eachother to implement all the features we had planned to the map segment. I also helped Johnny and Victoria with some bugs they had trouble with.
+
+I help if there is any questions in our group chat or on the meetings. I also work together with Erik on the map so we help eachother.
+ 
+-What is my contribution towards the team’s use of Scrum?
+I participated in the meetings and discussions.
+ 
+-What is my contribution towards the team’s deliveries?
+We got done with the map. We implemented so that you can see your position on the map. You can also see different colors of the measuringstations to indicate the airquality. You can also press on the stations to display their stats. I also helped other team members when they needed help.
