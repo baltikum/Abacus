@@ -49,6 +49,10 @@ class statistikFragment : Fragment() , APIListener {
     var dataSets: ArrayList<MyBarDataSet> = ArrayList()
     private lateinit var chart: BarChart
 
+
+    /**
+     * Creates a bar graph and a spinner
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     private val overViewModel = OverViewModel()
     private var barDataSet = MyBarDataSet(entries, "")
@@ -66,59 +70,33 @@ class statistikFragment : Fragment() , APIListener {
 
         _binding = FragmentStatistikBinding.inflate(inflater, container, false)
         val view = binding.root
-        API.addListener(this) // Lägg till oss som lyssnare på API
-
+        API.addListener(this)
         entries = ArrayList()
-
-
         chart = binding.barChart
-
-
         dataSets.add(barDataSet)
-
         val data = BarData(dataSets as List<IBarDataSet>?)
 
-
-
         chart.data = data
-
-
-        //hide grid lines
         chart.axisLeft.setDrawGridLines(false)
         chart.xAxis.setDrawGridLines(false)
         chart.xAxis.setDrawAxisLine(false)
         chart.axisLeft.axisMinimum = 0F
-        //remove right y-axis
         chart.axisRight.isEnabled = false
-
-        //remove legend
         chart.legend.isEnabled = false
-
-
-        //remove description label
         chart.description.isEnabled = false
-
-
-        //add animation
         chart.animateY(1000)
         chart.setScaleEnabled(false)
-        //chart.setFitBars(true);
-
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
         chart.setAutoScaleMinMaxEnabled(true);
-
         chart.invalidate()
-
         val xAxis: XAxis = chart.getXAxis()
-
         xAxis.position = XAxis.XAxisPosition.BOTTOM
 
-        //last day
         binding.setDay.setOnClickListener{
             week_day = "day"
             updateAPI()
         }
-        //last week
+
         binding.setWeek.setOnClickListener{
             week_day = "week"
             updateAPI()
@@ -133,6 +111,9 @@ class statistikFragment : Fragment() , APIListener {
         }
         binding.spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
+            /**
+             * Sets the station that is picked in the spinner
+             */
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 station_input = parent?.getItemAtPosition(position).toString()
@@ -141,17 +122,13 @@ class statistikFragment : Fragment() , APIListener {
                 }
                 else{
                     Toast.makeText(activity, "station not available", Toast.LENGTH_SHORT).show()
-
                 }
-
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 val out = "error"
                 Toast.makeText(activity, out, Toast.LENGTH_LONG).show()
                 println(out)
             }
-
-
         }
         binding.setNo2.setOnClickListener {
             sensor_input= "NO2"
@@ -161,7 +138,6 @@ class statistikFragment : Fragment() , APIListener {
             }
             else{
                 Toast.makeText(activity, "data not available", Toast.LENGTH_SHORT).show()
-
             }
         }
         binding.setNox.setOnClickListener {
@@ -172,7 +148,6 @@ class statistikFragment : Fragment() , APIListener {
             }
             else{
                 Toast.makeText(activity, "data not available", Toast.LENGTH_SHORT).show()
-
             }
         }
 
@@ -184,7 +159,6 @@ class statistikFragment : Fragment() , APIListener {
             }
             else{
                 Toast.makeText(activity, "data not available", Toast.LENGTH_SHORT).show()
-
             }
         }
 
@@ -196,14 +170,15 @@ class statistikFragment : Fragment() , APIListener {
             }
             else{
                 Toast.makeText(activity, "data not available", Toast.LENGTH_SHORT).show()
-
             }
         }
-
         return view
     }
 
 
+    /**
+     * Updates the API with the values have choosen
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateAPI(){
       if (week_day == "week") {
@@ -225,9 +200,11 @@ class statistikFragment : Fragment() , APIListener {
                   Boolean.FALSE
               )
           }
-
     }
 
+    /**
+     * Updates the barchart when having chosen last week
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     private fun week(){
         updateBarColor()
@@ -246,7 +223,6 @@ class statistikFragment : Fragment() , APIListener {
                 if(value.toFloat() < 0)
                     value = "0"
 
-
                 labels.add(date.subSequence(5, 10) as String) //lägger ut datumet
                 barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
                 entryIndex += 1
@@ -257,8 +233,11 @@ class statistikFragment : Fragment() , APIListener {
         chart.setVisibleXRangeMinimum(7f) //set x axis range
         //allow 7 values to be displayed at once on the x-axis, not more
         chart.setVisibleXRangeMaximum(7f)
-
     }
+
+    /**
+     * Updates the barchart when having chosen last day
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     private fun day(){
         updateBarColor()
@@ -280,7 +259,6 @@ class statistikFragment : Fragment() , APIListener {
                 labels.add(time.subSequence(0, 5) as String)
                 barDataSet.addEntry(BarEntry(entryIndex, value.toFloat()))
                 entryIndex += 1
-
             }
         }
         chart.data //set the chart data to be able to modify it later
@@ -288,6 +266,9 @@ class statistikFragment : Fragment() , APIListener {
         chart.setVisibleXRangeMaximum(24f)
     }
 
+    /**
+     * Notify changes for the barchart
+     */
     private fun notifyChanges(){
         chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         chart.animateY(1000)
@@ -296,7 +277,10 @@ class statistikFragment : Fragment() , APIListener {
         chart.notifyDataSetChanged()
         chart.invalidate()
     }
-    /*calls on MyBarDataSet and customize the color accordig to sensor input*/
+
+    /**
+     * Calls on MyBarDataSet and customize the color according to sensor input
+     */
     private fun updateBarColor(){
         barDataSet.sensor = sensor_input
         barDataSet.setColors(
@@ -305,5 +289,4 @@ class statistikFragment : Fragment() , APIListener {
             ContextCompat.getColor(chart.context, R.color.yellow)
         )
     }
-
 }
