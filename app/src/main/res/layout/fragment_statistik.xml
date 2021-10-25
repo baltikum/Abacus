@@ -7,118 +7,152 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.statistikFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
-        android:layout_width="380dp"
-        android:layout_height="393dp"
-        android:layout_margin="32dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/set_week" />
+        app:layout_constraintTop_toTopOf="@id/linearLayout2">
 
-    <Button
-        android:id="@+id/set_week"
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="378dp"
+            android:layout_height="387dp"
+            android:layout_gravity="center"
+
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"></com.github.mikephil.charting.charts.BarChart>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
-        android:text="Last week"
-        app:layout_constraintStart_toEndOf="@+id/set_day"
-        app:layout_constraintTop_toBottomOf="@+id/set_nox" />
-
-    <Button
-        android:id="@+id/set_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Last day"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/set_no2" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/set_sensor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="5dp"
-        android:text="sensor:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/set_value"
-        app:layout_constraintStart_toEndOf="@+id/set_week"
-        app:layout_constraintTop_toBottomOf="@+id/set_pm10" />
 
-    <TextView
-        android:id="@+id/set_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="28dp"
-        android:text="NOx"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/set_sensor"
-        app:layout_constraintTop_toBottomOf="@+id/set_pm10" />
+        <Button
+            android:id="@+id/set_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="5dp"
+            android:text="Last week"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/set_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="5dp"
+            android:text="Last day"
+            app:layout_constraintEnd_toStartOf="@+id/set_week"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/set_sensor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="75dp"
+            android:text="sensor:"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/set_day"
+
+            app:layout_constraintTop_toBottomOf="@+id/set_pm10" />
+
+        <TextView
+            android:id="@+id/set_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="75dp"
+            android:text="NOx"
+            android:textSize="16sp"
+
+            app:layout_constraintStart_toEndOf="@+id/set_week"
+            app:layout_constraintTop_toBottomOf="@+id/set_pm10" />
+
+
+    </LinearLayout>
+
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginStart="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/set_no2"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="5dp"
-        android:text="NO2"
-        app:layout_constraintEnd_toStartOf="@+id/set_nox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
-    <Button
-        android:id="@+id/set_nox"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="5dp"
-        android:text="NOx"
-        app:layout_constraintEnd_toStartOf="@+id/set_pm25"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
-
-    <Button
-        android:id="@+id/set_pm25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="5dp"
-        android:text="PM 2.5"
-        app:layout_constraintEnd_toStartOf="@+id/set_pm10"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
-
-    <Button
-        android:id="@+id/set_pm10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:text="PM 10"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintStart_toStartOf="@id/spinner2"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/set_no2"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:text="NO2"
+            app:layout_constraintEnd_toStartOf="@+id/set_nox"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+        <Button
+            android:id="@+id/set_nox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:text="NOx"
+            app:layout_constraintEnd_toStartOf="@+id/set_pm25"
+            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+        <Button
+            android:id="@+id/set_pm25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:text="PM 2.5"
+            app:layout_constraintEnd_toStartOf="@+id/set_pm10"
+            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+        <Button
+            android:id="@+id/set_pm10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="PM 10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
