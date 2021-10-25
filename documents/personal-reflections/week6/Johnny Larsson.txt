@@ -1,0 +1,16 @@
+What do I want to learn or understand better?
+I want to learn more about to adjust xml settings so it works better on different phoens
+
+
+How can I help someone else, or the entire team, to learn something new?
+I can help them with UI and xml settings
+
+
+What is my contribution towards the team’s use of Scrum?
+I was the product owner and gave my opinion on what I wanted done before the presentation
+
+
+What is my contribution towards the team’s deliveries?
+I again worked with Victoria and we fixed the statistics tab.
+Removed a button, made it look better, centered the buttons so they look good on different phones,
+set the Y axis lowest value to 0, changed the theme color, etc. 
