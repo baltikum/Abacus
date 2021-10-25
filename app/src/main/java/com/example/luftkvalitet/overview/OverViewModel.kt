@@ -40,7 +40,6 @@ class OverViewModel : ViewModel() {
     init {
         updateHourData()
         updateGraphData("2021-09-16","2021-09-16","NOx","Femman", "", false)
-        calculateMinMaxNOx(4)
     }
 
 
@@ -156,16 +155,6 @@ class OverViewModel : ViewModel() {
         viewModelScope.launch {
             API.fetchGraphData(startDate,endDate,sensor,station,time,average)
             API.updateListeners()
-        }
-    }
-
-
-    /**
-     * Call this with an integer saying for how many days you want the min max values to be calculated form.
-     */
-    private fun calculateMinMaxNOx(rangeInDays: Int) {
-        viewModelScope.launch {
-            API.calculateMinMax("NOx", rangeInDays)
         }
     }
 }
