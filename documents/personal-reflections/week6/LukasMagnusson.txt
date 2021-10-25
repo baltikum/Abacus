@@ -1,0 +1,11 @@
+-What do I want to learn or understand better?
+This is the last sprint so we gotta finish the remaining tasks. 
+
+-How can I help someone else, or the entire team, to learn something new?
+This sprint we didn't have that much to do so I jumped around in the team and helped wherever I could.
+ 
+-What is my contribution towards the team’s use of Scrum?
+I participated in the meetings and discussions.
+ 
+-What is my contribution towards the team’s deliveries?
+I helped fix some bugs and cleaned up some code.
