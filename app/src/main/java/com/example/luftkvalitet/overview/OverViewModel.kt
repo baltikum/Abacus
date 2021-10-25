@@ -36,15 +36,22 @@ val parameter_lista = arrayOf(
 class OverViewModel : ViewModel() {
 
 
-
+    /**
+     *
+     * Fetch and save data from api
+     */
     init {
         updateHourData()
         updateGraphData("2021-09-16","2021-09-16","NOx","Femman", "", false)
-        calculateMinMaxNOx(4)
+
     }
 
-
-    fun updateHourData() {
+    /**
+     *
+     * Get the most recent hour data from the api
+     * Right now it is hardcoded date and time because the api we used crashed and stopped updating newer values.
+     */
+    private fun updateHourData() {
         viewModelScope.launch {
             // todo get current time and date
             val date = "2021-09-17"
@@ -53,6 +60,10 @@ class OverViewModel : ViewModel() {
         }
     }
 
+    /**
+     *
+     * Get data from the specified station and updates the labels with values from the api
+     */
     fun updateStationData(stationName : String, station: String, binding: FragmentStartBinding) {
 
         val dataList = API.getStationDataHourly(station)
@@ -160,12 +171,5 @@ class OverViewModel : ViewModel() {
     }
 
 
-    /**
-     * Call this with an integer saying for how many days you want the min max values to be calculated form.
-     */
-    private fun calculateMinMaxNOx(rangeInDays: Int) {
-        viewModelScope.launch {
-            API.calculateMinMax("NOx", rangeInDays)
-        }
-    }
+
 }
