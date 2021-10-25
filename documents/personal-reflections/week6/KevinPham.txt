@@ -1,0 +1,12 @@
+What do I want to learn or understand better?
+I want to know how to make an .apk of the app. I already have it on my phone since I installed it through Android Studio to debug but would be nice to know an alternative way to get the app.
+
+How can I help someone else, or the entire team, to learn something new?
+There isn't much to do left but I could always help debug.
+
+What is my contribution towards the team’s use of Scrum?
+I was the secretary this sprint and took notes of things that we could bring to the final team reflection.
+
+What is my contribution towards the team’s deliveries?
+My assignment for this week was relative small. Together with other teammembers we just debugged and tried to get the app working on a phone.
+The presentation was this sprint and we were told it was not a very serious occasion, so I made an ad-like video for the app to lighten the mood.
