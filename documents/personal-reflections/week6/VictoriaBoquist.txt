@@ -1,0 +1,15 @@
+-what do I want to learn or understand better?
+I want to learn how to perfect our code in statistikFragment, get it more close to bugless
+
+-how can I help someone else, or the entire team, to learn something new?
+share my ideas and knowledge in UI, bargraphs and spinners
+
+-what is my contribution towards the team’s use of Scrum?
+this week I were not assigned a role by the randomizer, i have been in the team meetings and trying to contribute.
+
+
+-what is my contribution towards the team’s deliveries?
+me and Johnny have worked together to get rid of some minor bugs, and UI improvements to make the app look more user friendly. 
+for example we changed colour of the ui from purple to light blue color, this gave a more professional look to the app
+Johnny found a way to set the minimum y axis value to zero for the graph, this gave the graph a better UI look. 
+Before this altercation, the graph would sometimes alter its position depending if the sensor values were missing for a button. 
