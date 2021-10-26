@@ -1,0 +1,15 @@
+- What do I want to learn or understand better?
+
+I want to learn how to export and run an app on a mobile phone. 
+
+- How can I help someone else, or the entire team, to learn something new?
+
+Since we are mostly doing finishing touches ahead of wednesday's presentation and what will be the final product, like last week most work is done via team efforts. I will be in the team to test that the phone runs on a phone, and hopefully I can help with issues primarily around the map. 
+
+- What is my contribution towards the team’s use of Scrum?
+
+I was Scrum Master this week, so I tried being a bit extra driving and taking the word to move things forward when there were moments of silence. 
+
+- What is my contribution towards the team’s deliveries?
+
+We debugged and made sure the app works on a phone, and the app was showcased on Wednesday's presentation. 
