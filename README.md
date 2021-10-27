@@ -17,11 +17,12 @@ Lukvargren - Lukas Magnusson<br>
 vicboq - Victoria Boqvist<br>
 
 All attending TIDAL-03, Computer Engineering at Chalmers Technical Univeristy of Gothenburg.
-<br>
+
 Source code located in app/src/main/java/com/example/luftkvalitet/
 
 It is divided in three parts, the user-interface, networking classes, and overview that simplified connects backend together.
-<br>
+
+
 The projects scrumboard was made and used in Trello and it can be found here https://trello.com/b/oBP6vXgw/abacus
 
 
