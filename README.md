@@ -28,6 +28,8 @@ You can find personal reflections and team reflections in documents
 
 APK file is available under the Build folder
 
+Team deliverables is found in documents as Project_scope
+
 ## Trello
 The projects scrumboard was made and used in Trello and it can be found here <br>https://trello.com/b/oBP6vXgw/abacus
 
