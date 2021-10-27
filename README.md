@@ -76,4 +76,7 @@ Satisfy criterias on the card.
 
 Also comment other code, but not mandatory
 
+## Social contract
+https://docs.google.com/document/d/1KDBV0glvLXlHXxFPSmRWVnZTtU3T58W8wPyJHFTZTT8/edit#
+
 
