@@ -60,3 +60,11 @@ With support from the team members I was able to:
 - Redesign UI on first tab (Home/Start tab)
 - Implement Splashscreen & add app icon
 
+Victoria<br>
+I mostly worked with the startpage and backend code for statisticspage. 
+Implemented the spinner structure, and 
+Co worked with Johnny a lot on the statistics section. 
+Researched with Johnny for different air sensor intervals.
+Created the MyBarDataSet class which overrides the chart color setting and with help from Johnny set the bar color depending of air quality intervals.
+Redesigned statistics code and splitted it up in helper methods.
+
