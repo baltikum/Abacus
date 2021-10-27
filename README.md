@@ -3,6 +3,10 @@ Agile Programming School Project
 
 - An Android App displaying airpollutant values in the city of Gothenburg.
 
+
+https://user-images.githubusercontent.com/26551674/139029232-b07be213-2e58-421d-aef8-cd47d89f8631.mp4
+
+
 Who we are:
 
 baltikum - Mattias Davidsson<br>
