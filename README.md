@@ -48,4 +48,8 @@ Overall, my work mostly focused on map related issues. <br>
 - Co-worked mostly with Lukas to implement the final version using Google Maps into the tabbed fragment app, creating functions like markers and popup toasts when clicking on the markers, displaying the values for different stations.<br>
 <br>
 
+Mattias
+
+I worked with the API and backend parts of the Application. Both fetching and parsing the results retrieved. Also made functions that can fetch specific data the user requests. Making calls run in the background. Callback listener to update the graphical parts when data is received. I also worked out GPS positioning before we rerouted the project towards using Google Services to implement this.
+
 
