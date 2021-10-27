@@ -53,4 +53,5 @@ Mattias
 I worked with the API and backend parts of the Application. Both fetching and parsing the results retrieved. Also made functions that can fetch specific data the user requests. Making calls run in the background. Callback listener to update the graphical parts when data is received. I also worked out GPS positioning before we rerouted the project towards using Google Services to implement this.
 
 Lukas
+
 I started out working on fetching data from the API and also display that data on the labels that other team memebers created. I added a structure to fetch the data and save it for later use to be able to get instant response time when showing data. Then in the end I worked on the google map part with Erik. I was also quite flexible since I had worked on both ui and the api and could help other team members if they needed help.
