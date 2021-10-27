@@ -3,9 +3,7 @@ Agile Programming School Project
 
 - An Android App displaying airpollutant values in the city of Gothenburg.
 <br>
---
-LÄNK ELLER EMBEDDED VIDEO EXEMPEL
---
+<div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"><iframe src="https://streamable.com/e/st25l2" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe></div>
 <br>
 Who we are:
 
