@@ -48,10 +48,15 @@ Overall, my work mostly focused on map related issues. <br>
 - Co-worked mostly with Lukas to implement the final version using Google Maps into the tabbed fragment app, creating functions like markers and popup toasts when clicking on the markers, displaying the values for different stations.<br>
 <br>
 
-Mattias
-
+Mattias<br>
 I worked with the API and backend parts of the Application. Both fetching and parsing the results retrieved. Also made functions that can fetch specific data the user requests. Making calls run in the background. Callback listener to update the graphical parts when data is received. I also worked out GPS positioning before we rerouted the project towards using Google Services to implement this.
 
-Lukas
-
+Lukas<br>
 I started out working on fetching data from the API and also display that data on the labels that other team memebers created. I added a structure to fetch the data and save it for later use to be able to get instant response time when showing data. Then in the end I worked on the google map part with Erik. I was also quite flexible since I had worked on both ui and the api and could help other team members if they needed help.
+
+Kevin<br>
+With support from the team members I was able to:
+- Implement GPS (Location) with Google Services to the app.
+- Redesign UI on first tab (Home/Start tab)
+- Implement Splashscreen & add app icon
+
