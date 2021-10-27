@@ -25,7 +25,7 @@ Source code located in app/src/main/java/com/example/luftkvalitet/
 It is divided in three parts, the user-interface, networking classes, and overview that simplified connects backend together.
 
 ## Trello
-The projects scrumboard was made and used in Trello and it can be found here https://trello.com/b/oBP6vXgw/abacus
+The projects scrumboard was made and used in Trello and it can be found here <br>https://trello.com/b/oBP6vXgw/abacus
 
 
 ## Gitinfo
