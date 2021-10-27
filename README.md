@@ -81,6 +81,19 @@ Satisfy criterias on the card.
 Also comment other code, but not mandatory
 
 ## Social contract
-https://docs.google.com/document/d/1KDBV0glvLXlHXxFPSmRWVnZTtU3T58W8wPyJHFTZTT8/edit#
+Meetings
+Come prepared to meetings.
+If you can’t attend or need to leave early from a meeting, notify the team beforehand, preferably with good notice.
+Meeting at 09:15. 15 minutes for short ones, and one longer every week on mondays. Change times if needed. 
+
+Communication
+Respect each other and understand differences in knowledge
+There are no silly questions, if you don’t understand, ask.
+Meetings held through Zoom, or Discord.
+Chat on Discord.
+ 
+Agile way of working
+Both single- and pair-programming. 
+Update the Scrum Board “trello” as you progress the story i.e. don’t update at standup.
 
 
