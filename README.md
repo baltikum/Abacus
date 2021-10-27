@@ -68,3 +68,12 @@ Researched with Johnny for different air sensor intervals.
 Created the MyBarDataSet class which overrides the chart color setting and with help from Johnny set the bar color depending of air quality intervals.
 Redesigned statistics code and splitted it up in helper methods.
 
+## Definition of Done
+You should comment code you have written, it should be well commented.
+Codereview before pushing to master, at least one teammember should have looked at it.
+Been through testing.
+Satisfy criterias on the card.
+
+Also comment other code, but not mandatory
+
+
