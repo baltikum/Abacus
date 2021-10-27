@@ -14,7 +14,7 @@ ErikLinderGit - Erik Linder<br>
 kevinph00 - Kevin Pham<br>
 kossamu - Johnny Larsson<br>
 Lukvargren - Lukas Magnusson<br>
-vicboq - Victoria Boqvist<br>
+vicboq - Victoria Boquist<br>
 
 All attending TIDAL-03, Computer Engineering at Chalmers Technical Univeristy of Gothenburg.
 
