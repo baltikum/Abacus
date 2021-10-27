@@ -9,7 +9,7 @@ LÄNK ELLER EMBEDDED VIDEO EXEMPEL
 
 Who we are:
 
-baltikum - Mattias Davidsson
+baltikum - Mattias Davidsson<br>
 ErikLinderGit - Erik Linder
 kevinph00 - Kevin Pham
 kossamu - Johnny Larsson
